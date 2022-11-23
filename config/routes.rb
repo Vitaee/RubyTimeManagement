@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   post "logout", to: "sessions#destroy"
   get "login", to: "sessions#new"
 
-  get "home", to: "home#show"
+  get "home", to: "home#new"
+  post "home", to: "home#create"
 end

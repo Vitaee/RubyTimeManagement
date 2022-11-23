@@ -5,6 +5,7 @@ class UserController < ApplicationController
         @user = User.new(user_params)
 
         if @user.save
+            flash[:success] = "User registered!"
             redirect_to "/login"
         else
             render :new, status: :unprocessable_entity

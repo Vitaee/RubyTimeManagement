@@ -44,7 +44,7 @@ gem "bootsnap", require: false
 
 gem "haml"
 
-gem 'bootstrap'
+gem 'bootstrap', '~> 5.2.2'
 gem 'jquery-rails'
 gem 'autoprefixer-rails'
 
