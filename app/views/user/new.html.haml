@@ -1,0 +1,32 @@
+%section.vh-100{:style => "background-color: #eee;"}
+  .container.h-100
+    .row.d-flex.justify-content-center.align-items-center.h-100
+      .col-lg-12.col-xl-11
+        .card.text-black{:style => "border-radius: 25px;"}
+          .card-body.p-md-5
+            .row.justify-content-center
+              .col-md-10.col-lg-6.col-xl-5.order-2.order-lg-1
+                %p.text-center.h1.fw-bold.mb-5.mx-1.mx-md-4.mt-4 Sign up
+                =form_with model: @user, url: sign_up_path do |form|
+                  %form.mx-1.mx-md-4
+                    .d-flex.flex-row.align-items-center.mb-4
+                      %i.fas.fa-user.fa-lg.me-3.fa-fw
+                      .form-outline.flex-fill.mb-0
+                        =form.email_field :email, class: 'form-control'
+                        =form.label "Email", class: 'form-label'
+                    .d-flex.flex-row.align-items-center.mb-4
+                      %i.fas.fa-envelope.fa-lg.me-3.fa-fw
+                      .form-outline.flex-fill.mb-0
+                        =form.text_field :username, class: 'form-control'
+                        =form.label "Username", class: 'form-label'
+                    .d-flex.flex-row.align-items-center.mb-4
+                      %i.fas.fa-lock.fa-lg.me-3.fa-fw
+                      .form-outline.flex-fill.mb-0
+                        =form.password_field :password, class: 'form-control'
+                        =form.label "Password", class: 'form-label'
+                    .d-flex.flex-row.align-items-center.mb-4
+                      %i.fas.fa-key.fa-lg.me-3.fa-fw
+                      .form-outline.flex-fill.mb-0
+                      =form.button "Register", class: 'btn btn-primary btn-lg'
+              .col-md-10.col-lg-6.col-xl-7.d-flex.align-items-center.order-1.order-lg-2
+                %img.img-fluid{:alt => "Sample image", :src => "https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"}/
