@@ -50,7 +50,7 @@
                 - if object.end_date
                   %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
                 - else
-                  %td= "Put End Date"
+                  %td= link_to "Click to Update", {:controller => "home", :action => "show", :id => object.id}
                 %td= object.comment
                 %td= object.time_type
                 %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete,  class: 'btn btn-danger' 

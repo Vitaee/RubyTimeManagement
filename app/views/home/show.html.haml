@@ -1,0 +1,27 @@
+%div.container
+  %h4= "Your Time Record" 
+  %p 
+    Hours Passed: 
+    Maybe later
+    -#{ time_ago_in_words(@timerecord.start_date) }
+    -#{ Time.at( (Time.now - @timerecord.start_date).abs  ).localtime.strftime("%H:%M:%S") }
+  %table.table
+    %tbody
+      %tr
+        %td Start Date
+        %td End Date
+        %td Comment
+        %td Type
+        %td Actions
+      %tr
+        %td= @timerecord.start_date.strftime('%Y-%m-%d %H:%M:%S')
+        %td= "Not yet!"
+        %td= @timerecord.comment
+        %td= @timerecord.time_type
+        %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => @timerecord.id}, :method => :delete,  class: 'btn btn-danger' 
+
+  %br
+  %h4= button_to "Click to Finish", {:controller => "home",  :action => "update", :id => @timerecord.id}, :method => :put, class: 'btn btn-info'
+
+  = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
+

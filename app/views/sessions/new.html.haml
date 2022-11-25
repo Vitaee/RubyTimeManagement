@@ -1,5 +1,9 @@
 %section.vh-100{:style => "background-color: #eee;"}
   .container.h-100
+    - if flash[:error]
+      %div.alert.alert-danger.alert-bold{:role => "alert"}
+        %div.alert-text
+          #{ sanitize(flash[:error])}
     .row.d-flex.justify-content-center.align-items-center.h-100
       .col-lg-12.col-xl-11
         .card.text-black{:style => "border-radius: 25px;"}
@@ -22,6 +26,8 @@
                     .d-flex.flex-row.align-items-center.mb-4
                       %i.fas.fa-key.fa-lg.me-3.fa-fw
                       .form-outline.flex-fill.mb-0
-                      =form.button "Login", class: 'btn btn-primary btn-lg'
+                        =form.submit "Login", class: 'btn btn-primary btn-lg'
+                %a{:href => sign_up_path, :title => "Account?"}
+                  %p="Don't you have an account?"
               .col-md-10.col-lg-6.col-xl-7.d-flex.align-items-center.order-1.order-lg-2
                 %img.img-fluid{:alt => "Sample image", :src => "https://colorlib.com/etc/regform/colorlib-regform-7/images/signin-image.jpg"}/

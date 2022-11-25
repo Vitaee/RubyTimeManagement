@@ -1,8 +1,7 @@
 class HomeController < ApplicationController
 
     def create
-        @user = current_user
-        @timerecord = @user.time_records.create(timerecord_params)
+        @timerecord = current_user.time_records.create(timerecord_params)
 
         if @timerecord.save
             redirect_to "/home"
@@ -12,8 +11,7 @@ class HomeController < ApplicationController
     end
 
     def destroy
-        @user = current_user
-        @timerecord = @user.time_records.delete(params[:id])
+        @timerecord = current_user.time_records.delete(params[:id])
         redirect_to "/home"
     end
 
@@ -21,6 +19,17 @@ class HomeController < ApplicationController
         @user = current_user
         @timerecord = TimeRecord.new
         @user_time_records = User.find(current_user.id).time_records
+    end
+
+    def update
+        @timerecord = current_user.time_records.find(params[:id]).update(end_date: Time.now)
+
+        redirect_to "/home"
+    end
+
+    def show
+        @user = current_user
+        @timerecord = @user.time_records.find(params[:id])
     end
 
     
