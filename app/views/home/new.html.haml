@@ -19,13 +19,13 @@
         %label.col-sm-1.col-form-label 
           =form.label "Start Time"
         %div.col-sm-10
-          =form.date_field :start_date, required: true
+          =form.datetime_local_field :start_date, required: true
       
       %div.form-gruop.row
         %label.col-sm-1.col-form-label 
           =form.label "End Time"
         %div.col-sm-10
-          =form.date_field :end_date
+          =form.datetime_local_field :end_date
       
       %div.form-gruop.row
         %label.col-sm-1.col-form-label 
@@ -55,12 +55,14 @@
           %td End Date:
           %td Comment:
           %td Type
+          %td Actions
         - @user_time_records.each do |object|
           %tr
-            %td= object.start_date
-            %td= object.end_date
+            %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+            %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
             %td= object.comment
             %td= object.time_type
+            %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete
   - else
     %p="You do not have any time record."
   %br 

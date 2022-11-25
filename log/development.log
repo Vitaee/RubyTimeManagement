@@ -12857,3 +12857,1465 @@ Processing by SessionsController#create as HTML
 Completed 422 Unprocessable Entity in 8ms (Views: 4.7ms | ActiveRecord: 0.3ms | Allocations: 4325)
 
 
+  [1m[35m (73.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (77.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1352609692405194300)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20221121134258)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (153.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "username" character varying, "password" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221121134258"]]
+  [1m[36mTRANSACTION (72.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTimeRecords (20221121134451)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (64.7ms)[0m  [1m[35mCREATE TABLE "time_records" ("id" bigserial primary key, "comment" text, "time_type" character varying, "start_date" date, "end_date" date, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221121134451"]]
+  [1m[36mTRANSACTION (42.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddIsAdminToUser (20221121134824)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221121134824"]]
+  [1m[36mTRANSACTION (20.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCurrents (20221121135709)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (67.4ms)[0m  [1m[35mCREATE TABLE "currents" ("id" bigserial primary key, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221121135709"]]
+  [1m[36mTRANSACTION (27.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddPasswordDigestToUser (20221121142412)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221121142412"]]
+  [1m[36mTRANSACTION (3.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddConfirmationAndPasswordColumnsToUser (20221121142744)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "users" ADD "confirmed_at" timestamp(6)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "users" ADD "password_digest" character varying[0m
+  [1m[36mActiveRecord::SchemaMigration Create (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221121142744"]]
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddUserIdToTimeRecords (20221123144313)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "time_records" ADD "user_id" integer[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221123144313"]]
+  [1m[36mTRANSACTION (7.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-11-25 06:26:02.508858"], ["updated_at", "2022-11-25 06:26:02.508858"]]
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(1352609692405194300)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1352609692405194300)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(1352609692405194300)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/sign_up" for 127.0.0.1 at 2022-11-25 08:26:53 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UserController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering user/new.html.erb within layouts/application
+  Rendered shared/_form_errors.html.erb (Duration: 0.4ms | Allocations: 209)
+  Rendered user/new.html.erb within layouts/application (Duration: 12.1ms | Allocations: 6152)
+  Rendered layout layouts/application.html.erb (Duration: 2272.3ms | Allocations: 115626)
+Completed 200 OK in 2323ms (Views: 2276.9ms | ActiveRecord: 3.3ms | Allocations: 146158)
+
+
+Started POST "/sign_up" for 127.0.0.1 at 2022-11-25 08:27:08 +0200
+Processing by UserController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"can@gmail.com", "username"=>"vitae", "password"=>"[FILTERED]"}, "commit"=>"Sign Up"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/user_controller.rb:7:in `create'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "can@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/user_controller.rb:7:in `create'
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password", "created_at", "updated_at", "confirmed_at", "password_digest") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "can@gmail.com"], ["username", "vitae"], ["password", "[FILTERED]"], ["created_at", "2022-11-25 06:27:08.854502"], ["updated_at", "2022-11-25 06:27:08.854502"], ["confirmed_at", nil], ["password_digest", "[FILTERED]"]]
+  ↳ app/controllers/user_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (11.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/user_controller.rb:7:in `create'
+Redirected to http://127.0.0.1:3000/login
+Completed 302 Found in 271ms (ActiveRecord: 13.1ms | Allocations: 7391)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-11-25 08:27:08 +0200
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 3.8ms | Allocations: 2504)
+  Rendered layout layouts/application.html.erb (Duration: 5.5ms | Allocations: 3668)
+Completed 200 OK in 9ms (Views: 8.1ms | ActiveRecord: 0.0ms | Allocations: 5029)
+
+
+Started POST "/login" for 127.0.0.1 at 2022-11-25 08:27:14 +0200
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"can@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Sign In"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "can@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:5:in `create'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 257ms (ActiveRecord: 0.5ms | Allocations: 1544)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:27:14 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:17:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 34.5ms | Allocations: 30046)
+  Rendered layout layouts/application.html.erb (Duration: 38.0ms | Allocations: 31820)
+Completed 200 OK in 147ms (Views: 39.2ms | ActiveRecord: 3.7ms | Allocations: 57960)
+
+
+Started POST "/home" for 127.0.0.1 at 2022-11-25 08:27:35 +0200
+Processing by HomeController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "time_record"=>{"start_date"=>"2022-11-24", "end_date"=>"2022-11-26", "comment"=>"deneme task", "time_type"=>"feature"}, "commit"=>"Save"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/home_controller.rb:5:in `create'
+  [1m[36mTimeRecord Create (0.6ms)[0m  [1m[32mINSERT INTO "time_records" ("comment", "time_type", "start_date", "end_date", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["comment", "deneme task"], ["time_type", "feature"], ["start_date", "2022-11-24"], ["end_date", "2022-11-26"], ["created_at", "2022-11-25 06:27:35.701338"], ["updated_at", "2022-11-25 06:27:35.701338"], ["user_id", 1]]
+  ↳ app/controllers/home_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (56.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/home_controller.rb:5:in `create'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 77ms (ActiveRecord: 57.7ms | Allocations: 5437)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:27:35 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:17:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 4.0ms | Allocations: 2385)
+  Rendered layout layouts/application.html.erb (Duration: 5.9ms | Allocations: 4064)
+Completed 200 OK in 9ms (Views: 6.3ms | ActiveRecord: 0.5ms | Allocations: 5670)
+
+
+Started POST "/home" for 127.0.0.1 at 2022-11-25 08:27:50 +0200
+Processing by HomeController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "time_record"=>{"start_date"=>"2022-11-25", "end_date"=>"", "comment"=>"second task", "time_type"=>"bug"}, "commit"=>"Save"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/home_controller.rb:5:in `create'
+  [1m[36mTimeRecord Create (0.6ms)[0m  [1m[32mINSERT INTO "time_records" ("comment", "time_type", "start_date", "end_date", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["comment", "second task"], ["time_type", "bug"], ["start_date", "2022-11-25"], ["end_date", nil], ["created_at", "2022-11-25 06:27:50.087363"], ["updated_at", "2022-11-25 06:27:50.087363"], ["user_id", 1]]
+  ↳ app/controllers/home_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (49.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/home_controller.rb:5:in `create'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 63ms (ActiveRecord: 50.4ms | Allocations: 3363)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:27:50 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:17:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 4.0ms | Allocations: 2214)
+  Rendered layout layouts/application.html.erb (Duration: 6.6ms | Allocations: 3794)
+Completed 200 OK in 10ms (Views: 6.8ms | ActiveRecord: 0.5ms | Allocations: 5262)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:29:42 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:17:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 40.1ms | Allocations: 23350)
+  Rendered layout layouts/application.html.erb (Duration: 57.5ms | Allocations: 25328)
+Completed 200 OK in 66ms (Views: 60.6ms | ActiveRecord: 0.6ms | Allocations: 27701)
+
+
+Started POST "/home" for 127.0.0.1 at 2022-11-25 08:30:07 +0200
+Processing by HomeController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "time_record"=>{"start_date"=>"08:29", "end_date"=>"12:35", "comment"=>"saat deneme", "time_type"=>"done"}, "commit"=>"Save"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/home_controller.rb:5:in `create'
+  [1m[36mTimeRecord Create (0.3ms)[0m  [1m[32mINSERT INTO "time_records" ("comment", "time_type", "start_date", "end_date", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["comment", "saat deneme"], ["time_type", "done"], ["start_date", nil], ["end_date", nil], ["created_at", "2022-11-25 06:30:07.801354"], ["updated_at", "2022-11-25 06:30:07.801354"], ["user_id", 1]]
+  ↳ app/controllers/home_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (23.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/home_controller.rb:5:in `create'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 55ms (ActiveRecord: 23.8ms | Allocations: 3540)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:30:07 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:17:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 4.8ms | Allocations: 2241)
+  Rendered layout layouts/application.html.erb (Duration: 7.4ms | Allocations: 3835)
+Completed 200 OK in 14ms (Views: 8.6ms | ActiveRecord: 0.6ms | Allocations: 5356)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:31:17 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:17:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 32.4ms | Allocations: 25860)
+  Rendered layout layouts/application.html.erb (Duration: 33.0ms | Allocations: 25953)
+Completed 500 Internal Server Error in 43ms (ActiveRecord: 0.6ms | Allocations: 28257)
+
+
+  
+ActionView::Template::Error (private method `hour' called for Thu, 24 Nov 2022:Date):
+    57:           %td Type
+    58:         - @user_time_records.each do |object|
+    59:           %tr
+    60:             %td= object.start_date.hour
+    61:             %td= object.end_date
+    62:             %td= object.comment
+    63:             %td= object.time_type
+  
+app/views/home/new.html.haml:60
+app/views/home/new.html.haml:58
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:34:25 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:17:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 32.6ms | Allocations: 21898)
+  Rendered layout layouts/application.html.erb (Duration: 32.8ms | Allocations: 21979)
+Completed 500 Internal Server Error in 38ms (ActiveRecord: 0.4ms | Allocations: 24380)
+
+
+  
+ActionView::Template::Error (undefined method `split' for Thu, 24 Nov 2022:Date):
+    57:           %td Type
+    58:         - @user_time_records.each do |object|
+    59:           %tr
+    60:             %td= object.start_date.split[1]
+    61:             %td= object.end_date
+    62:             %td= object.comment
+    63:             %td= object.time_type
+  
+app/views/home/new.html.haml:60
+app/views/home/new.html.haml:58
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:40:10 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:17:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 30.5ms | Allocations: 21436)
+  Rendered layout layouts/application.html.erb (Duration: 31.1ms | Allocations: 21517)
+Completed 500 Internal Server Error in 74ms (ActiveRecord: 6.7ms | Allocations: 26870)
+
+
+  
+ActionView::Template::Error (undefined method `strftime' for nil:NilClass):
+    57:           %td Type
+    58:         - @user_time_records.each do |object|
+    59:           %tr
+    60:             %td= object.start_date.strftime("%Y-%m-%d %H:%M:%S")
+    61:             %td= object.end_date
+    62:             %td= object.comment
+    63:             %td= object.time_type
+  
+app/views/home/new.html.haml:60
+app/views/home/new.html.haml:58
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:45:09 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:17:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 20.5ms | Allocations: 23824)
+  Rendered layout layouts/application.html.erb (Duration: 20.9ms | Allocations: 23905)
+Completed 500 Internal Server Error in 48ms (ActiveRecord: 7.5ms | Allocations: 36508)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"destroy", :controller=>"home"}):
+    62:             %td= object.end_date
+    63:             %td= object.comment
+    64:             %td= object.time_type
+    65:             %td= button_to "Delete", action: "destroy", controller: "home", params: object.id
+    66:   - else
+    67:     %p="You do not have any time record."
+    68:   %br 
+  
+app/views/home/new.html.haml:65
+app/views/home/new.html.haml:59
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:45:58 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 30.3ms | Allocations: 35342)
+  Rendered layout layouts/application.html.erb (Duration: 30.5ms | Allocations: 35448)
+Completed 500 Internal Server Error in 88ms (ActiveRecord: 6.2ms | Allocations: 86239)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"destroy", :controller=>"home"}):
+    62:             %td= object.end_date
+    63:             %td= object.comment
+    64:             %td= object.time_type
+    65:             %td= button_to "Delete", action: "destroy", controller: "home", params: object.id
+    66:   - else
+    67:     %p="You do not have any time record."
+    68:   %br 
+  
+app/views/home/new.html.haml:65
+app/views/home/new.html.haml:59
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:46:21 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 8.0ms | Allocations: 5190)
+  Rendered layout layouts/application.html.erb (Duration: 46.0ms | Allocations: 34285)
+Completed 200 OK in 71ms (Views: 48.2ms | ActiveRecord: 4.9ms | Allocations: 46556)
+
+
+Started POST "/home?params=3" for 127.0.0.1 at 2022-11-25 08:46:25 +0200
+Processing by HomeController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "params"=>"3"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+Completed 400 Bad Request in 6ms (ActiveRecord: 0.7ms | Allocations: 1574)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: time_record):
+  
+app/controllers/home_controller.rb:29:in `timerecord_params'
+app/controllers/home_controller.rb:5:in `create'
+Started GET "/home?params=3" for 127.0.0.1 at 2022-11-25 08:47:01 +0200
+  
+NoMethodError (undefined method `destroy' for #<ActionDispatch::Routing::Mapper:0x00007f27b4dbb1d0 @set=#<ActionDispatch::Routing::RouteSet:0x0000555de4d91bc8>, @draw_paths=[#<Pathname:/home/vitae/Desktop/RubyTimeManagement/config/routes>], @scope=#<ActionDispatch::Routing::Mapper::Scope:0x00007f27b4dbb180 @hash={:path_names=>{:new=>"new", :edit=>"edit"}}, @parent=#<ActionDispatch::Routing::Mapper::Scope:0x0000555de5094208 @hash=nil, @parent=nil, @scope_level=nil>, @scope_level=nil>, @concerns={}>):
+  
+config/routes.rb:16:in `block in <main>'
+config/routes.rb:1:in `<main>'
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:47:06 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 12.0ms | Allocations: 4994)
+  Rendered layout layouts/application.html.erb (Duration: 12.5ms | Allocations: 5075)
+Completed 500 Internal Server Error in 38ms (ActiveRecord: 5.5ms | Allocations: 17210)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"destroy", :controller=>"home"}):
+    62:             %td= object.end_date
+    63:             %td= object.comment
+    64:             %td= object.time_type
+    65:             %td= button_to "Delete", action: "destroy", controller: "home", params: object.id
+    66:   - else
+    67:     %p="You do not have any time record."
+    68:   %br 
+  
+app/views/home/new.html.haml:65
+app/views/home/new.html.haml:59
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:47:37 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 6.9ms | Allocations: 5163)
+  Rendered layout layouts/application.html.erb (Duration: 13.5ms | Allocations: 9847)
+Completed 200 OK in 40ms (Views: 14.4ms | ActiveRecord: 5.7ms | Allocations: 22041)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:48:23 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 22.6ms | Allocations: 21833)
+  Rendered layout layouts/application.html.erb (Duration: 25.5ms | Allocations: 23787)
+Completed 200 OK in 47ms (Views: 27.1ms | ActiveRecord: 1.2ms | Allocations: 26169)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:48:42 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.6ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 27.2ms | Allocations: 21801)
+  Rendered layout layouts/application.html.erb (Duration: 32.7ms | Allocations: 23746)
+Completed 200 OK in 42ms (Views: 38.1ms | ActiveRecord: 0.9ms | Allocations: 26122)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:48:54 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.6ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 93.8ms | Allocations: 24960)
+  Rendered layout layouts/application.html.erb (Duration: 94.3ms | Allocations: 25041)
+Completed 500 Internal Server Error in 107ms (ActiveRecord: 1.2ms | Allocations: 27387)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `delete' for #<ActionView::Base:0x00000000016738>):
+    62:             %td= object.end_date
+    63:             %td= object.comment
+    64:             %td= object.time_type
+    65:             %td= button_to "Delete",  action: "destroy", method: delete, controller: "home", params: object.id
+    66:   - else
+    67:     %p="You do not have any time record."
+    68:   %br 
+  
+app/views/home/new.html.haml:65
+app/views/home/new.html.haml:59
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:49:01 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.7ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 81.8ms | Allocations: 21813)
+  Rendered layout layouts/application.html.erb (Duration: 87.5ms | Allocations: 23767)
+Completed 200 OK in 103ms (Views: 93.2ms | ActiveRecord: 1.3ms | Allocations: 26175)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:49:45 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 19.4ms | Allocations: 22010)
+  Rendered layout layouts/application.html.erb (Duration: 19.6ms | Allocations: 22091)
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.5ms | Allocations: 24421)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"index", :controller=>"home", :method=>:delete}):
+    62:             %td= object.end_date
+    63:             %td= object.comment
+    64:             %td= object.time_type
+    65:             %td= button_to "Delete", method: :delete, controller: "home", params: object.id
+    66:   - else
+    67:     %p="You do not have any time record."
+    68:   %br 
+  
+app/views/home/new.html.haml:65
+app/views/home/new.html.haml:59
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:50:04 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.5ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 63.3ms | Allocations: 21622)
+  Rendered layout layouts/application.html.erb (Duration: 68.5ms | Allocations: 23575)
+Completed 200 OK in 90ms (Views: 73.2ms | ActiveRecord: 1.2ms | Allocations: 25949)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:52:40 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 19.7ms | Allocations: 22069)
+  Rendered layout layouts/application.html.erb (Duration: 22.6ms | Allocations: 24013)
+Completed 200 OK in 28ms (Views: 23.8ms | ActiveRecord: 0.5ms | Allocations: 26392)
+
+
+Started DELETE "/home?id=1" for 127.0.0.1 at 2022-11-25 08:52:54 +0200
+Processing by HomeController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"1"}
+  [1m[36mUser Load (5.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+No template found for HomeController#destroy, rendering head :no_content
+Completed 204 No Content in 19ms (ActiveRecord: 5.9ms | Allocations: 1231)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:53:44 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:22:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 7.3ms | Allocations: 5328)
+  Rendered layout layouts/application.html.erb (Duration: 12.7ms | Allocations: 10011)
+Completed 200 OK in 37ms (Views: 14.5ms | ActiveRecord: 5.3ms | Allocations: 22191)
+
+
+Started DELETE "/home?id=3" for 127.0.0.1 at 2022-11-25 08:53:46 +0200
+Processing by HomeController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.5ms | Allocations: 1750)
+
+
+  
+NoMethodError (undefined method `time_records' for nil:NilClass):
+  
+app/controllers/home_controller.rb:15:in `destroy'
+Started GET "/home?id=3" for 127.0.0.1 at 2022-11-25 08:53:57 +0200
+Processing by HomeController#new as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 7.1ms | Allocations: 5338)
+  Rendered layout layouts/application.html.erb (Duration: 16.4ms | Allocations: 10022)
+Completed 200 OK in 39ms (Views: 18.1ms | ActiveRecord: 5.6ms | Allocations: 22234)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:54:02 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 4.8ms | Allocations: 3049)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | Allocations: 4629)
+Completed 200 OK in 11ms (Views: 7.1ms | ActiveRecord: 0.5ms | Allocations: 6184)
+
+
+Started DELETE "/home?id=3" for 127.0.0.1 at 2022-11-25 08:54:04 +0200
+Processing by HomeController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mTimeRecord Load (2.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1 AND "time_records"."id" = $2 LIMIT $3[0m  [["user_id", 1], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:16:in `destroy'
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/home_controller.rb:16:in `destroy'
+  [1m[36mTimeRecord Destroy (0.5ms)[0m  [1m[31mDELETE FROM "time_records" WHERE "time_records"."id" = $1[0m  [["id", 3]]
+  ↳ app/controllers/home_controller.rb:16:in `destroy'
+  [1m[36mTRANSACTION (41.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/home_controller.rb:16:in `destroy'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 68ms (ActiveRecord: 44.8ms | Allocations: 3789)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:54:04 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 3.9ms | Allocations: 2758)
+  Rendered layout layouts/application.html.erb (Duration: 5.6ms | Allocations: 4338)
+Completed 200 OK in 9ms (Views: 5.9ms | ActiveRecord: 0.4ms | Allocations: 5812)
+
+
+Started DELETE "/home?id=2" for 127.0.0.1 at 2022-11-25 08:54:08 +0200
+Processing by HomeController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mTimeRecord Load (0.5ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1 AND "time_records"."id" = $2 LIMIT $3[0m  [["user_id", 1], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:16:in `destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/home_controller.rb:16:in `destroy'
+  [1m[36mTimeRecord Destroy (0.4ms)[0m  [1m[31mDELETE FROM "time_records" WHERE "time_records"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/home_controller.rb:16:in `destroy'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/home_controller.rb:16:in `destroy'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 18ms (ActiveRecord: 4.3ms | Allocations: 3345)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:54:08 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 4.4ms | Allocations: 2457)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | Allocations: 4037)
+Completed 200 OK in 11ms (Views: 6.8ms | ActiveRecord: 0.5ms | Allocations: 5502)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:54:38 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 17.6ms | Allocations: 21587)
+  Rendered layout layouts/application.html.erb (Duration: 19.7ms | Allocations: 23533)
+Completed 200 OK in 29ms (Views: 25.2ms | ActiveRecord: 0.5ms | Allocations: 25831)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 08:55:03 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 27.8ms | Allocations: 21654)
+  Rendered layout layouts/application.html.erb (Duration: 30.3ms | Allocations: 23610)
+Completed 200 OK in 38ms (Views: 31.9ms | ActiveRecord: 0.5ms | Allocations: 25993)
+
+
+Started POST "/home" for 127.0.0.1 at 2022-11-25 09:02:09 +0200
+Processing by HomeController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "time_record"=>{"start_date"=>"2022-11-24", "end_date"=>"2022-11-26", "comment"=>"saat deneme", "time_type"=>"bug"}, "commit"=>"Save"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/home_controller.rb:5:in `create'
+  [1m[36mTimeRecord Create (0.6ms)[0m  [1m[32mINSERT INTO "time_records" ("comment", "time_type", "start_date", "end_date", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["comment", "saat deneme"], ["time_type", "bug"], ["start_date", "2022-11-24"], ["end_date", "2022-11-26"], ["created_at", "2022-11-25 07:02:09.369165"], ["updated_at", "2022-11-25 07:02:09.369165"], ["user_id", 1]]
+  ↳ app/controllers/home_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (25.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/home_controller.rb:5:in `create'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 48ms (ActiveRecord: 30.8ms | Allocations: 7687)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 09:02:09 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 5.8ms | Allocations: 2838)
+  Rendered layout layouts/application.html.erb (Duration: 7.9ms | Allocations: 4418)
+Completed 200 OK in 16ms (Views: 8.5ms | ActiveRecord: 0.8ms | Allocations: 5928)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 09:09:04 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 26.9ms | Allocations: 25173)
+  Rendered layout layouts/application.html.erb (Duration: 29.7ms | Allocations: 27149)
+Completed 200 OK in 49ms (Views: 30.9ms | ActiveRecord: 5.1ms | Allocations: 32291)
+
+
+Started POST "/home" for 127.0.0.1 at 2022-11-25 09:09:37 +0200
+Processing by HomeController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "time_record"=>{"start_date"=>"2022-11-25T09:09", "end_date"=>"2022-11-25T11:09", "comment"=>"bug fixed", "time_type"=>"done"}, "commit"=>"Save"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/home_controller.rb:5:in `create'
+  [1m[36mTimeRecord Create (0.4ms)[0m  [1m[32mINSERT INTO "time_records" ("comment", "time_type", "start_date", "end_date", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["comment", "bug fixed"], ["time_type", "done"], ["start_date", "2022-11-25"], ["end_date", "2022-11-25"], ["created_at", "2022-11-25 07:09:37.536688"], ["updated_at", "2022-11-25 07:09:37.536688"], ["user_id", 1]]
+  ↳ app/controllers/home_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (22.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/home_controller.rb:5:in `create'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 33ms (ActiveRecord: 23.9ms | Allocations: 3582)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 09:09:37 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 4.2ms | Allocations: 3096)
+  Rendered layout layouts/application.html.erb (Duration: 6.0ms | Allocations: 4677)
+Completed 200 OK in 9ms (Views: 6.2ms | ActiveRecord: 0.5ms | Allocations: 6191)
+
+
+Started DELETE "/home?id=4" for 127.0.0.1 at 2022-11-25 09:09:45 +0200
+Processing by HomeController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"4"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1 AND "time_records"."id" = $2 LIMIT $3[0m  [["user_id", 1], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:16:in `destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/home_controller.rb:16:in `destroy'
+  [1m[36mTimeRecord Destroy (0.3ms)[0m  [1m[31mDELETE FROM "time_records" WHERE "time_records"."id" = $1[0m  [["id", 4]]
+  ↳ app/controllers/home_controller.rb:16:in `destroy'
+  [1m[36mTRANSACTION (19.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/home_controller.rb:16:in `destroy'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 29ms (ActiveRecord: 20.2ms | Allocations: 3394)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 09:09:45 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 3.8ms | Allocations: 2772)
+  Rendered layout layouts/application.html.erb (Duration: 6.8ms | Allocations: 4352)
+Completed 200 OK in 10ms (Views: 7.3ms | ActiveRecord: 0.5ms | Allocations: 5832)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 09:11:06 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 23.7ms | Allocations: 21776)
+  Rendered layout layouts/application.html.erb (Duration: 26.5ms | Allocations: 23720)
+Completed 200 OK in 44ms (Views: 35.6ms | ActiveRecord: 1.0ms | Allocations: 26035)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 09:11:07 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (2.5ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 15.7ms | Allocations: 2768)
+  Rendered layout layouts/application.html.erb (Duration: 19.1ms | Allocations: 4348)
+Completed 200 OK in 28ms (Views: 18.4ms | ActiveRecord: 3.2ms | Allocations: 5915)
+
+
+Started DELETE "/home?id=1" for 127.0.0.1 at 2022-11-25 09:19:06 +0200
+Processing by HomeController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mTimeRecord Load (0.7ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1 AND "time_records"."id" = $2 LIMIT $3[0m  [["user_id", 1], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:16:in `destroy'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/home_controller.rb:16:in `destroy'
+  [1m[36mTimeRecord Destroy (0.7ms)[0m  [1m[31mDELETE FROM "time_records" WHERE "time_records"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/home_controller.rb:16:in `destroy'
+  [1m[36mTRANSACTION (12.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/home_controller.rb:16:in `destroy'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 65ms (ActiveRecord: 25.7ms | Allocations: 6442)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 09:19:06 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 5.8ms | Allocations: 2460)
+  Rendered layout layouts/application.html.erb (Duration: 8.0ms | Allocations: 4040)
+Completed 200 OK in 18ms (Views: 8.4ms | ActiveRecord: 0.9ms | Allocations: 5529)
+
+
+Started DELETE "/home?id=5" for 127.0.0.1 at 2022-11-25 09:19:07 +0200
+Processing by HomeController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"5"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mTimeRecord Load (0.7ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1 AND "time_records"."id" = $2 LIMIT $3[0m  [["user_id", 1], ["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:16:in `destroy'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/home_controller.rb:16:in `destroy'
+  [1m[36mTimeRecord Destroy (1.3ms)[0m  [1m[31mDELETE FROM "time_records" WHERE "time_records"."id" = $1[0m  [["id", 5]]
+  ↳ app/controllers/home_controller.rb:16:in `destroy'
+  [1m[36mTRANSACTION (5.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/home_controller.rb:16:in `destroy'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 24ms (ActiveRecord: 8.4ms | Allocations: 3349)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 09:19:07 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.5ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 6.0ms | Allocations: 2145)
+  Rendered layout layouts/application.html.erb (Duration: 8.7ms | Allocations: 3725)
+Completed 200 OK in 17ms (Views: 9.1ms | ActiveRecord: 1.2ms | Allocations: 5193)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1352609692405194300)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to ChangeStartDateFromDateToDateTime (20221125072347)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "time_record" ALTER COLUMN "start_date" TYPE date_time[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(1352609692405194300)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1352609692405194300)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to ChangeStartDateFromDateToDateTime (20221125072347)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "time_records" ALTER COLUMN "start_date" TYPE date_time[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(1352609692405194300)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1352609692405194300)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to ChangeStartDateFromDateToDateTime (20221125072347)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (88.3ms)[0m  [1m[35mALTER TABLE "time_records" ALTER COLUMN "start_date" TYPE timestamp[0m
+  [1m[35m (76.7ms)[0m  [1m[35mALTER TABLE "time_records" ALTER COLUMN "end_date" TYPE timestamp[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20221125072347"]]
+  [1m[36mTRANSACTION (12.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(1352609692405194300)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/home" for 127.0.0.1 at 2022-11-25 09:26:16 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 28.9ms | Allocations: 32420)
+  Rendered layout layouts/application.html.erb (Duration: 86.0ms | Allocations: 61572)
+Completed 200 OK in 147ms (Views: 88.9ms | ActiveRecord: 6.8ms | Allocations: 112393)
+
+
+Started POST "/home" for 127.0.0.1 at 2022-11-25 09:26:25 +0200
+Processing by HomeController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "time_record"=>{"start_date"=>"2022-11-25T09:26", "end_date"=>"2022-11-25T11:28", "comment"=>"deneme task", "time_type"=>"bug"}, "commit"=>"Save"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/home_controller.rb:5:in `create'
+  [1m[36mTimeRecord Create (0.6ms)[0m  [1m[32mINSERT INTO "time_records" ("comment", "time_type", "start_date", "end_date", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["comment", "deneme task"], ["time_type", "bug"], ["start_date", "2022-11-25 09:26:00"], ["end_date", "2022-11-25 11:28:00"], ["created_at", "2022-11-25 07:26:25.283048"], ["updated_at", "2022-11-25 07:26:25.283048"], ["user_id", 1]]
+  ↳ app/controllers/home_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (41.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/home_controller.rb:5:in `create'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 59ms (ActiveRecord: 43.1ms | Allocations: 6462)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 09:26:25 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 4.4ms | Allocations: 2706)
+  Rendered layout layouts/application.html.erb (Duration: 6.5ms | Allocations: 4386)
+Completed 200 OK in 10ms (Views: 6.7ms | ActiveRecord: 0.5ms | Allocations: 5996)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 09:26:51 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (1.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 25.2ms | Allocations: 21702)
+  Rendered layout layouts/application.html.erb (Duration: 30.4ms | Allocations: 23647)
+Completed 200 OK in 45ms (Views: 33.7ms | ActiveRecord: 2.3ms | Allocations: 25967)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 09:36:52 +0200
+  
+ActiveRecord::NoDatabaseError (We could not find your database: Rails.application.config.db_name. Which can be found in the database configuration file located at config/database.yml.
+
+To resolve this issue:
+
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+
+To create your database, run:
+
+        bin/rails db:create
+):
+  
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:81:in `rescue in new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:77:in `new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `public_send'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:700:in `checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:679:in `try_to_checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:640:in `acquire_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:341:in `checkout'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:181:in `connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_handler.rb:211:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:313:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:280:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:613:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:608:in `build_watcher'
+activerecord (7.0.4) lib/active_record/migration.rb:590:in `block in call'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/home" for 127.0.0.1 at 2022-11-25 09:37:01 +0200
+  
+ActiveRecord::NoDatabaseError (We could not find your database: Rails.application.config.db_name. Which can be found in the database configuration file located at config/database.yml.
+
+To resolve this issue:
+
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+
+To create your database, run:
+
+        bin/rails db:create
+):
+  
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:81:in `rescue in new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:77:in `new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `public_send'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:700:in `checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:679:in `try_to_checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:640:in `acquire_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:341:in `checkout'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:181:in `connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_handler.rb:211:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:313:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:280:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:613:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:608:in `build_watcher'
+activerecord (7.0.4) lib/active_record/migration.rb:590:in `block in call'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/home" for 127.0.0.1 at 2022-11-25 09:38:43 +0200
+  
+ActiveRecord::NoDatabaseError (We could not find your database: Rails.configuration.db_name. Which can be found in the database configuration file located at config/database.yml.
+
+To resolve this issue:
+
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+
+To create your database, run:
+
+        bin/rails db:create
+):
+  
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:81:in `rescue in new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:77:in `new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `public_send'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:700:in `checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:679:in `try_to_checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:640:in `acquire_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:341:in `checkout'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:181:in `connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_handler.rb:211:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:313:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:280:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:613:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:608:in `build_watcher'
+activerecord (7.0.4) lib/active_record/migration.rb:590:in `block in call'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/home" for 127.0.0.1 at 2022-11-25 09:39:44 +0200
+  
+ActiveRecord::NoDatabaseError (We could not find your database: Rails.configuration.db_name. Which can be found in the database configuration file located at config/database.yml.
+
+To resolve this issue:
+
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+
+To create your database, run:
+
+        bin/rails db:create
+):
+  
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:81:in `rescue in new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:77:in `new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `public_send'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:700:in `checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:679:in `try_to_checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:640:in `acquire_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:341:in `checkout'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:181:in `connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_handler.rb:211:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:313:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:280:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:613:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:608:in `build_watcher'
+activerecord (7.0.4) lib/active_record/migration.rb:590:in `block in call'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/home" for 127.0.0.1 at 2022-11-25 09:39:54 +0200
+  
+ActiveRecord::NoDatabaseError (We could not find your database: Rails.configuration.environments.development.db_name. Which can be found in the database configuration file located at config/database.yml.
+
+To resolve this issue:
+
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+
+To create your database, run:
+
+        bin/rails db:create
+):
+  
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:81:in `rescue in new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:77:in `new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `public_send'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:700:in `checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:679:in `try_to_checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:640:in `acquire_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:341:in `checkout'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:181:in `connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_handler.rb:211:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:313:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:280:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:613:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:608:in `build_watcher'
+activerecord (7.0.4) lib/active_record/migration.rb:590:in `block in call'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/home" for 127.0.0.1 at 2022-11-25 09:41:54 +0200
+  
+ActiveRecord::NoDatabaseError (We could not find your database: ENV['DB_NAME']. Which can be found in the database configuration file located at config/database.yml.
+
+To resolve this issue:
+
+- Did you create the database for this app, or delete it? You may need to create your database.
+- Has the database name changed? Check your database.yml config has the correct database name.
+
+To create your database, run:
+
+        bin/rails db:create
+):
+  
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:81:in `rescue in new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:77:in `new_client'
+activerecord (7.0.4) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `public_send'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:656:in `new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:700:in `checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:679:in `try_to_checkout_new_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:640:in `acquire_connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:341:in `checkout'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:181:in `connection'
+activerecord (7.0.4) lib/active_record/connection_adapters/abstract/connection_handler.rb:211:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:313:in `retrieve_connection'
+activerecord (7.0.4) lib/active_record/connection_handling.rb:280:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:613:in `connection'
+activerecord (7.0.4) lib/active_record/migration.rb:608:in `build_watcher'
+activerecord (7.0.4) lib/active_record/migration.rb:590:in `block in call'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `synchronize'
+activerecord (7.0.4) lib/active_record/migration.rb:589:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+web-console (4.2.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/method_override.rb:24:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/home" for 127.0.0.1 at 2022-11-25 09:43:06 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 30.7ms | Allocations: 34323)
+  Rendered layout layouts/application.html.erb (Duration: 133.6ms | Allocations: 64099)
+Completed 200 OK in 193ms (Views: 136.0ms | ActiveRecord: 6.5ms | Allocations: 114962)
+
+
+Started POST "/home" for 127.0.0.1 at 2022-11-25 09:43:26 +0200
+Processing by HomeController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "time_record"=>{"start_date"=>"2022-11-26T10:43", "end_date"=>"2022-11-26T11:43", "comment"=>"bug fixed", "time_type"=>"done"}, "commit"=>"Save"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/home_controller.rb:5:in `create'
+  [1m[36mTimeRecord Create (0.6ms)[0m  [1m[32mINSERT INTO "time_records" ("comment", "time_type", "start_date", "end_date", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["comment", "bug fixed"], ["time_type", "done"], ["start_date", "2022-11-26 10:43:00"], ["end_date", "2022-11-26 11:43:00"], ["created_at", "2022-11-25 07:43:26.291716"], ["updated_at", "2022-11-25 07:43:26.291716"], ["user_id", 1]]
+  ↳ app/controllers/home_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (30.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/home_controller.rb:5:in `create'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 52ms (ActiveRecord: 32.3ms | Allocations: 5185)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 09:43:26 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:50
+  Rendered home/new.html.haml within layouts/application (Duration: 6.6ms | Allocations: 2918)
+  Rendered layout layouts/application.html.erb (Duration: 9.0ms | Allocations: 4594)
+Completed 200 OK in 14ms (Views: 9.3ms | ActiveRecord: 0.5ms | Allocations: 6136)
+
+

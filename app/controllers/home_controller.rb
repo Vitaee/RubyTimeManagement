@@ -11,11 +11,19 @@ class HomeController < ApplicationController
         end
     end
 
+    def destroy
+        @user = current_user
+        @timerecord = @user.time_records.delete(params[:id])
+        redirect_to "/home"
+    end
+
     def new
         @user = current_user
         @timerecord = TimeRecord.new
         @user_time_records = User.find(current_user.id).time_records
     end
+
+    
 
     private
 

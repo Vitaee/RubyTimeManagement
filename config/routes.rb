@@ -13,4 +13,5 @@ Rails.application.routes.draw do
 
   get "home", to: "home#new"
   post "home", to: "home#create"
+  delete "home", to: "home#destroy"
 end
