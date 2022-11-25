@@ -19217,3 +19217,1721 @@ Processing by HomeController#new as HTML
 Completed 200 OK in 11ms (Views: 8.1ms | ActiveRecord: 0.5ms | Allocations: 5011)
 
 
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:15:36 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (44.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (11.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (24.9ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:41
+  Rendered home/new.html.haml within layouts/application (Duration: 171.1ms | Allocations: 33433)
+  Rendered layout layouts/application.html.haml (Duration: 189.0ms | Allocations: 38321)
+Completed 200 OK in 460ms (Views: 188.3ms | ActiveRecord: 78.6ms | Allocations: 89185)
+
+
+Started POST "/logout" for 127.0.0.1 at 2022-11-25 19:15:53 +0200
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+Redirected to http://127.0.0.1:3000/login
+Completed 302 Found in 8ms (ActiveRecord: 1.4ms | Allocations: 1381)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-11-25 19:15:54 +0200
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 133.1ms | Allocations: 11639)
+  Rendered layout layouts/application.html.haml (Duration: 134.4ms | Allocations: 11851)
+Completed 200 OK in 139ms (Views: 136.3ms | ActiveRecord: 0.0ms | Allocations: 13027)
+
+
+Started GET "/sign_up" for 127.0.0.1 at 2022-11-25 19:16:10 +0200
+Processing by UserController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering user/new.html.haml within layouts/application
+  Rendered user/new.html.haml within layouts/application (Duration: 33.9ms | Allocations: 13398)
+  Rendered layout layouts/application.html.haml (Duration: 35.2ms | Allocations: 13599)
+Completed 200 OK in 42ms (Views: 38.7ms | ActiveRecord: 0.0ms | Allocations: 15008)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-11-25 19:16:31 +0200
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 0.8ms | Allocations: 564)
+  Rendered layout layouts/application.html.haml (Duration: 1.2ms | Allocations: 739)
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.0ms | Allocations: 1321)
+
+
+Started POST "/login" for 127.0.0.1 at 2022-11-25 19:16:39 +0200
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"can@gmail.com", "password"=>"[FILTERED]"}, "button"=>""}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "can@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:5:in `create'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 240ms (ActiveRecord: 0.3ms | Allocations: 1275)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:16:39 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:41
+  Rendered home/new.html.haml within layouts/application (Duration: 4.4ms | Allocations: 3013)
+  Rendered layout layouts/application.html.haml (Duration: 4.7ms | Allocations: 3188)
+Completed 200 OK in 8ms (Views: 4.8ms | ActiveRecord: 0.5ms | Allocations: 4674)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:17:09 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.7ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:41
+  Rendered home/new.html.haml within layouts/application (Duration: 62.7ms | Allocations: 20961)
+  Rendered layout layouts/application.html.haml (Duration: 74.7ms | Allocations: 25682)
+Completed 200 OK in 88ms (Views: 78.8ms | ActiveRecord: 1.4ms | Allocations: 27992)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:17:25 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:41
+  Rendered home/new.html.haml within layouts/application (Duration: 27.1ms | Allocations: 20942)
+  Rendered layout layouts/application.html.haml (Duration: 35.7ms | Allocations: 25661)
+Completed 200 OK in 55ms (Views: 46.0ms | ActiveRecord: 1.0ms | Allocations: 28056)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:17:38 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (1.7ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:41
+  Rendered home/new.html.haml within layouts/application (Duration: 51.7ms | Allocations: 20940)
+  Rendered layout layouts/application.html.haml (Duration: 65.5ms | Allocations: 25653)
+Completed 200 OK in 80ms (Views: 69.1ms | ActiveRecord: 2.5ms | Allocations: 28010)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:18:05 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:41
+  Rendered home/new.html.haml within layouts/application (Duration: 26.9ms | Allocations: 20802)
+  Rendered layout layouts/application.html.haml (Duration: 34.2ms | Allocations: 25516)
+Completed 200 OK in 46ms (Views: 37.5ms | ActiveRecord: 0.9ms | Allocations: 27920)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:18:24 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:42
+  Rendered home/new.html.haml within layouts/application (Duration: 27.0ms | Allocations: 21016)
+  Rendered layout layouts/application.html.haml (Duration: 33.9ms | Allocations: 25729)
+Completed 200 OK in 47ms (Views: 37.4ms | ActiveRecord: 1.0ms | Allocations: 28119)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:18:34 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:42
+  Rendered home/new.html.haml within layouts/application (Duration: 27.3ms | Allocations: 21055)
+  Rendered layout layouts/application.html.haml (Duration: 39.1ms | Allocations: 25768)
+Completed 200 OK in 53ms (Views: 43.0ms | ActiveRecord: 0.8ms | Allocations: 28146)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:19:13 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:44
+  Rendered home/new.html.haml within layouts/application (Duration: 33.3ms | Allocations: 21589)
+  Rendered layout layouts/application.html.haml (Duration: 40.4ms | Allocations: 26325)
+Completed 200 OK in 62ms (Views: 45.9ms | ActiveRecord: 0.9ms | Allocations: 28710)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:19:47 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:44
+  Rendered home/new.html.haml within layouts/application (Duration: 25.1ms | Allocations: 21356)
+  Rendered layout layouts/application.html.haml (Duration: 32.0ms | Allocations: 26072)
+Completed 200 OK in 53ms (Views: 43.8ms | ActiveRecord: 0.8ms | Allocations: 28453)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:20:06 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:44
+  Rendered home/new.html.haml within layouts/application (Duration: 26.9ms | Allocations: 21362)
+  Rendered layout layouts/application.html.haml (Duration: 31.7ms | Allocations: 26083)
+Completed 200 OK in 52ms (Views: 37.3ms | ActiveRecord: 0.9ms | Allocations: 28483)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:20:28 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.6ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:44
+  Rendered home/new.html.haml within layouts/application (Duration: 68.6ms | Allocations: 21220)
+  Rendered layout layouts/application.html.haml (Duration: 86.7ms | Allocations: 25938)
+Completed 200 OK in 100ms (Views: 89.9ms | ActiveRecord: 1.3ms | Allocations: 28328)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:20:57 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.7ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:45
+  Rendered home/new.html.haml within layouts/application (Duration: 65.1ms | Allocations: 21725)
+  Rendered layout layouts/application.html.haml (Duration: 77.2ms | Allocations: 26438)
+Completed 200 OK in 89ms (Views: 80.5ms | ActiveRecord: 1.2ms | Allocations: 28807)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:21:05 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.5ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:45
+  Rendered home/new.html.haml within layouts/application (Duration: 47.9ms | Allocations: 21722)
+  Rendered layout layouts/application.html.haml (Duration: 61.9ms | Allocations: 26435)
+Completed 200 OK in 74ms (Views: 65.1ms | ActiveRecord: 1.1ms | Allocations: 28816)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:21:46 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:46
+  Rendered home/new.html.haml within layouts/application (Duration: 27.3ms | Allocations: 22230)
+  Rendered layout layouts/application.html.haml (Duration: 32.1ms | Allocations: 26944)
+Completed 200 OK in 45ms (Views: 36.0ms | ActiveRecord: 0.8ms | Allocations: 29325)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:22:02 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:46
+  Rendered home/new.html.haml within layouts/application (Duration: 19.9ms | Allocations: 22242)
+  Rendered layout layouts/application.html.haml (Duration: 25.4ms | Allocations: 26973)
+Completed 200 OK in 31ms (Views: 27.2ms | ActiveRecord: 0.4ms | Allocations: 29364)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:22:15 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (1.0ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:47
+  Rendered home/new.html.haml within layouts/application (Duration: 60.5ms | Allocations: 22379)
+  Rendered layout layouts/application.html.haml (Duration: 78.8ms | Allocations: 27107)
+Completed 200 OK in 92ms (Views: 82.1ms | ActiveRecord: 1.6ms | Allocations: 29507)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:41:17 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.5ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 30.2ms | Allocations: 21542)
+  Rendered layout layouts/application.html.haml (Duration: 45.5ms | Allocations: 26264)
+Completed 200 OK in 64ms (Views: 46.4ms | ActiveRecord: 5.9ms | Allocations: 31633)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:42:21 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 21.5ms | Allocations: 21735)
+  Rendered layout layouts/application.html.haml (Duration: 27.6ms | Allocations: 26454)
+Completed 200 OK in 47ms (Views: 29.5ms | ActiveRecord: 0.9ms | Allocations: 28841)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:42:56 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.7ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 55.4ms | Allocations: 21736)
+  Rendered layout layouts/application.html.haml (Duration: 67.4ms | Allocations: 26450)
+Completed 200 OK in 87ms (Views: 78.5ms | ActiveRecord: 1.4ms | Allocations: 28816)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:43:22 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 32.1ms | Allocations: 21736)
+  Rendered layout layouts/application.html.haml (Duration: 41.7ms | Allocations: 26450)
+Completed 200 OK in 58ms (Views: 45.2ms | ActiveRecord: 1.2ms | Allocations: 28819)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:43:40 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.6ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 45.5ms | Allocations: 21736)
+  Rendered layout layouts/application.html.haml (Duration: 58.0ms | Allocations: 26450)
+Completed 200 OK in 79ms (Views: 63.6ms | ActiveRecord: 1.1ms | Allocations: 28825)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:44:30 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.7ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 42.2ms | Allocations: 21662)
+  Rendered layout layouts/application.html.haml (Duration: 48.1ms | Allocations: 26394)
+Completed 200 OK in 61ms (Views: 50.5ms | ActiveRecord: 1.5ms | Allocations: 28779)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:45:18 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.6ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 65.1ms | Allocations: 22140)
+  Rendered layout layouts/application.html.haml (Duration: 76.9ms | Allocations: 26868)
+Completed 200 OK in 91ms (Views: 81.6ms | ActiveRecord: 1.2ms | Allocations: 29247)
+
+
+Started POST "/home" for 127.0.0.1 at 2022-11-25 19:45:47 +0200
+Processing by HomeController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "time_record"=>{"start_date"=>"2022-11-24T19:45", "end_date"=>"2022-11-25T20:45", "comment"=>"saat deneme", "time_type"=>"feature"}, "commit"=>"Save"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/home_controller.rb:5:in `create'
+  [1m[36mTimeRecord Create (101.4ms)[0m  [1m[32mINSERT INTO "time_records" ("comment", "time_type", "start_date", "end_date", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["comment", "saat deneme"], ["time_type", "feature"], ["start_date", "2022-11-24 19:45:00"], ["end_date", "2022-11-25 20:45:00"], ["created_at", "2022-11-25 17:45:47.720668"], ["updated_at", "2022-11-25 17:45:47.720668"], ["user_id", 1]]
+  ↳ app/controllers/home_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (7.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/home_controller.rb:5:in `create'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 124ms (ActiveRecord: 110.5ms | Allocations: 4897)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:45:47 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 5.7ms | Allocations: 3210)
+  Rendered layout layouts/application.html.haml (Duration: 6.1ms | Allocations: 3385)
+Completed 200 OK in 9ms (Views: 6.2ms | ActiveRecord: 0.6ms | Allocations: 4877)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:46:19 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 18.6ms | Allocations: 22357)
+  Rendered layout layouts/application.html.haml (Duration: 23.1ms | Allocations: 27079)
+Completed 200 OK in 28ms (Views: 24.2ms | ActiveRecord: 0.5ms | Allocations: 29370)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:47:51 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  Rendered home/new.html.haml within layouts/application (Duration: 65.0ms | Allocations: 23998)
+  Rendered layout layouts/application.html.haml (Duration: 65.6ms | Allocations: 24092)
+Completed 500 Internal Server Error in 77ms (ActiveRecord: 0.6ms | Allocations: 26468)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check %script{:src => "https://code.jquery.com/jquery-3.3.1.min.js"  }
+%link{:href => "https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" }
+%script{:src => "https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js", :type => "text/javascript" }
+
+%body{:style => "background-color: #eee;"}
+  %div.jumbotron.text-center
+    %h1
+      Hello,
+      %strong #{ @user.username } 
+  
+    %p
+      Today is 
+      %strong #{Time.now.strftime("%A")} 
+
+  %div.container
+    %h3= "Enter Your Time Record"
+    = form_with model: @timerecord, class: 'row gy-2 gx-3 align-items-center', url: home_path do |form|
+      .col-auto
+        =form.label "Start Time", class: 'form-label'
+        =form.datetime_local_field :start_date, required: true, class: 'form-control'
+      .col-auto
+        =form.label "End Time", class: 'form-label'
+        =form.datetime_local_field :end_date,  class: 'form-control'
+      .col-auto
+        =form.label "Comment", class: 'form-label'
+        =form.text_field :comment, class: 'form-control'
+      .col-auto
+        =form.label "Type", class: 'form-label'
+        =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+      %div
+        =form.submit "Save", class: 'btn btn-info'
+
+    %br
+    %br
+    %div.container
+      %h4= "Your Time Records"  
+
+      - if @user_time_records.length >= 1
+        %table.table
+          %tbody
+            %tr
+              %td Start Date:
+              %td End Date:
+              %td Comment:
+              %td Type
+              %td Actions
+            - @user_time_records.each do |object|
+              %tr
+                %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+                %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
+                %td= object.comment
+                %td= object.time_type
+                %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete
+      - else
+        %p="You do not have any time record."
+      
+      %br 
+
+      = button_to "Logout", action: "destroy", controller: "sessions", {}, { :class => 'btn btn-danger' }
+
+
+
+  :javascript
+    console.log('This is inline <script>');
+
+    //$('#datepicker').datetimepicker();
+    
+
+):
+1:    %script{:src => "https://code.jquery.com/jquery-3.3.1.min.js"  }
+2:    %link{:href => "https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" }
+3:    %script{:src => "https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js", :type => "text/javascript" }
+4:    
+5:    %body{:style => "background-color: #eee;"}
+6:      %div.jumbotron.text-center
+7:        %h1
+8:          Hello,
+9:          %strong #{ @user.username } 
+10:      
+11:        %p
+12:          Today is 
+13:          %strong #{Time.now.strftime("%A")} 
+14:    
+15:      %div.container
+16:        %h3= "Enter Your Time Record"
+17:        = form_with model: @timerecord, class: 'row gy-2 gx-3 align-items-center', url: home_path do |form|
+18:          .col-auto
+19:            =form.label "Start Time", class: 'form-label'
+20:            =form.datetime_local_field :start_date, required: true, class: 'form-control'
+21:          .col-auto
+22:            =form.label "End Time", class: 'form-label'
+23:            =form.datetime_local_field :end_date,  class: 'form-control'
+24:          .col-auto
+25:            =form.label "Comment", class: 'form-label'
+26:            =form.text_field :comment, class: 'form-control'
+27:          .col-auto
+28:            =form.label "Type", class: 'form-label'
+29:            =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+30:          %div
+31:            =form.submit "Save", class: 'btn btn-info'
+32:    
+33:        %br
+34:        %br
+35:        %div.container
+36:          %h4= "Your Time Records"  
+37:    
+38:          - if @user_time_records.length >= 1
+39:            %table.table
+40:              %tbody
+41:                %tr
+42:                  %td Start Date:
+43:                  %td End Date:
+44:                  %td Comment:
+45:                  %td Type
+46:                  %td Actions
+47:                - @user_time_records.each do |object|
+48:                  %tr
+49:                    %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+50:                    %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
+51:                    %td= object.comment
+52:                    %td= object.time_type
+53:                    %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete
+54:          - else
+55:            %p="You do not have any time record."
+56:          
+57:          %br 
+58:    
+59:          = button_to "Logout", action: "destroy", controller: "sessions", {}, { :class => 'btn btn-danger' }
+60:    
+61:    
+62:    
+63:      :javascript
+64:        console.log('This is inline <script>');
+65:    
+66:        //$('#datepicker').datetimepicker();
+67:        
+  
+app/views/home/new.html.haml:59: syntax error, unexpected ',', expecting =>
+app/views/home/new.html.haml:59: syntax error, unexpected ',', expecting =>
+app/views/home/new.html.haml:59: syntax error, unexpected ',', expecting =>
+app/views/home/new.html.haml:59: syntax error, unexpected ',', expecting =>
+app/views/home/new.html.haml:59: syntax error, unexpected ',', expecting =>
+app/views/home/new.html.haml:59: syntax error, unexpected ',', expecting =>
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:48:03 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  Rendered home/new.html.haml within layouts/application (Duration: 12.9ms | Allocations: 20449)
+  Rendered layout layouts/application.html.haml (Duration: 13.1ms | Allocations: 20534)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.2ms | Allocations: 22956)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check %script{:src => "https://code.jquery.com/jquery-3.3.1.min.js"  }
+%link{:href => "https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" }
+%script{:src => "https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js", :type => "text/javascript" }
+
+%body{:style => "background-color: #eee;"}
+  %div.jumbotron.text-center
+    %h1
+      Hello,
+      %strong #{ @user.username } 
+  
+    %p
+      Today is 
+      %strong #{Time.now.strftime("%A")} 
+
+  %div.container
+    %h3= "Enter Your Time Record"
+    = form_with model: @timerecord, class: 'row gy-2 gx-3 align-items-center', url: home_path do |form|
+      .col-auto
+        =form.label "Start Time", class: 'form-label'
+        =form.datetime_local_field :start_date, required: true, class: 'form-control'
+      .col-auto
+        =form.label "End Time", class: 'form-label'
+        =form.datetime_local_field :end_date,  class: 'form-control'
+      .col-auto
+        =form.label "Comment", class: 'form-label'
+        =form.text_field :comment, class: 'form-control'
+      .col-auto
+        =form.label "Type", class: 'form-label'
+        =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+      %div
+        =form.submit "Save", class: 'btn btn-info'
+
+    %br
+    %br
+    %div.container
+      %h4= "Your Time Records"  
+
+      - if @user_time_records.length >= 1
+        %table.table
+          %tbody
+            %tr
+              %td Start Date:
+              %td End Date:
+              %td Comment:
+              %td Type
+              %td Actions
+            - @user_time_records.each do |object|
+              %tr
+                %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+                %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
+                %td= object.comment
+                %td= object.time_type
+                %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete
+      - else
+        %p="You do not have any time record."
+      
+      %br 
+
+      = button_to "Logout", action: "destroy", controller: "sessions", { :class => 'btn btn-danger' }
+
+
+
+  :javascript
+    console.log('This is inline <script>');
+
+    //$('#datepicker').datetimepicker();
+    
+
+):
+1:    %script{:src => "https://code.jquery.com/jquery-3.3.1.min.js"  }
+2:    %link{:href => "https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" }
+3:    %script{:src => "https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js", :type => "text/javascript" }
+4:    
+5:    %body{:style => "background-color: #eee;"}
+6:      %div.jumbotron.text-center
+7:        %h1
+8:          Hello,
+9:          %strong #{ @user.username } 
+10:      
+11:        %p
+12:          Today is 
+13:          %strong #{Time.now.strftime("%A")} 
+14:    
+15:      %div.container
+16:        %h3= "Enter Your Time Record"
+17:        = form_with model: @timerecord, class: 'row gy-2 gx-3 align-items-center', url: home_path do |form|
+18:          .col-auto
+19:            =form.label "Start Time", class: 'form-label'
+20:            =form.datetime_local_field :start_date, required: true, class: 'form-control'
+21:          .col-auto
+22:            =form.label "End Time", class: 'form-label'
+23:            =form.datetime_local_field :end_date,  class: 'form-control'
+24:          .col-auto
+25:            =form.label "Comment", class: 'form-label'
+26:            =form.text_field :comment, class: 'form-control'
+27:          .col-auto
+28:            =form.label "Type", class: 'form-label'
+29:            =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+30:          %div
+31:            =form.submit "Save", class: 'btn btn-info'
+32:    
+33:        %br
+34:        %br
+35:        %div.container
+36:          %h4= "Your Time Records"  
+37:    
+38:          - if @user_time_records.length >= 1
+39:            %table.table
+40:              %tbody
+41:                %tr
+42:                  %td Start Date:
+43:                  %td End Date:
+44:                  %td Comment:
+45:                  %td Type
+46:                  %td Actions
+47:                - @user_time_records.each do |object|
+48:                  %tr
+49:                    %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+50:                    %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
+51:                    %td= object.comment
+52:                    %td= object.time_type
+53:                    %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete
+54:          - else
+55:            %p="You do not have any time record."
+56:          
+57:          %br 
+58:    
+59:          = button_to "Logout", action: "destroy", controller: "sessions", { :class => 'btn btn-danger' }
+60:    
+61:    
+62:    
+63:      :javascript
+64:        console.log('This is inline <script>');
+65:    
+66:        //$('#datepicker').datetimepicker();
+67:        
+  
+app/views/home/new.html.haml:59: syntax error, unexpected ';', expecting =>
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:59: syntax error, unexpected ';', expecting =>
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:59: syntax error, unexpected ';', expecting =>
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:59: syntax error, unexpected ';', expecting =>
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:59: syntax error, unexpected ';', expecting =>
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:59: syntax error, unexpected ';', expecting =>
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:49:11 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 17.6ms | Allocations: 22554)
+  Rendered layout layouts/application.html.haml (Duration: 22.2ms | Allocations: 27276)
+Completed 200 OK in 27ms (Views: 23.3ms | ActiveRecord: 0.5ms | Allocations: 29718)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:50:10 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  Rendered home/new.html.haml within layouts/application (Duration: 17.2ms | Allocations: 20782)
+  Rendered layout layouts/application.html.haml (Duration: 17.5ms | Allocations: 20867)
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.3ms | Allocations: 23223)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check %script{:src => "https://code.jquery.com/jquery-3.3.1.min.js"  }
+%link{:href => "https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" }
+%script{:src => "https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js", :type => "text/javascript" }
+
+%body{:style => "background-color: #eee;"}
+  %div.jumbotron.text-center
+    %h1
+      Hello,
+      %strong #{ @user.username } 
+  
+    %p
+      Today is 
+      %strong #{Time.now.strftime("%A")} 
+
+  %div.container
+    %h3= "Enter Your Time Record"
+    = form_with model: @timerecord, class: 'row gy-2 gx-3 align-items-center', url: home_path do |form|
+      .col-auto
+        =form.label "Start Time", class: 'form-label'
+        =form.datetime_local_field :start_date, required: true, class: 'form-control'
+      .col-auto
+        =form.label "End Time", class: 'form-label'
+        =form.datetime_local_field :end_date,  class: 'form-control'
+      .col-auto
+        =form.label "Comment", class: 'form-label'
+        =form.text_field :comment, class: 'form-control'
+      .col-auto
+        =form.label "Type", class: 'form-label'
+        =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+      %div
+        =form.submit "Save", class: 'btn btn-info'
+
+    %br
+    %br
+    %div.container
+      %h4= "Your Time Records"  
+
+      - if @user_time_records.length >= 1
+        %table.table
+          %tbody
+            %tr
+              %td Start Date:
+              %td End Date:
+              %td Comment:
+              %td Type
+              %td Actions
+            - @user_time_records.each do |object|
+              %tr
+                %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+                %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
+                %td= object.comment
+                %td= object.time_type
+                %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete, { class: 'btn btn-danger' }
+      - else
+        %p="You do not have any time record."
+      
+      %br 
+
+      = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
+
+
+
+  :javascript
+    console.log('This is inline <script>');
+
+    //$('#datepicker').datetimepicker();
+    
+
+):
+1:    %script{:src => "https://code.jquery.com/jquery-3.3.1.min.js"  }
+2:    %link{:href => "https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" }
+3:    %script{:src => "https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js", :type => "text/javascript" }
+4:    
+5:    %body{:style => "background-color: #eee;"}
+6:      %div.jumbotron.text-center
+7:        %h1
+8:          Hello,
+9:          %strong #{ @user.username } 
+10:      
+11:        %p
+12:          Today is 
+13:          %strong #{Time.now.strftime("%A")} 
+14:    
+15:      %div.container
+16:        %h3= "Enter Your Time Record"
+17:        = form_with model: @timerecord, class: 'row gy-2 gx-3 align-items-center', url: home_path do |form|
+18:          .col-auto
+19:            =form.label "Start Time", class: 'form-label'
+20:            =form.datetime_local_field :start_date, required: true, class: 'form-control'
+21:          .col-auto
+22:            =form.label "End Time", class: 'form-label'
+23:            =form.datetime_local_field :end_date,  class: 'form-control'
+24:          .col-auto
+25:            =form.label "Comment", class: 'form-label'
+26:            =form.text_field :comment, class: 'form-control'
+27:          .col-auto
+28:            =form.label "Type", class: 'form-label'
+29:            =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+30:          %div
+31:            =form.submit "Save", class: 'btn btn-info'
+32:    
+33:        %br
+34:        %br
+35:        %div.container
+36:          %h4= "Your Time Records"  
+37:    
+38:          - if @user_time_records.length >= 1
+39:            %table.table
+40:              %tbody
+41:                %tr
+42:                  %td Start Date:
+43:                  %td End Date:
+44:                  %td Comment:
+45:                  %td Type
+46:                  %td Actions
+47:                - @user_time_records.each do |object|
+48:                  %tr
+49:                    %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+50:                    %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
+51:                    %td= object.comment
+52:                    %td= object.time_type
+53:                    %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete, { class: 'btn btn-danger' }
+54:          - else
+55:            %p="You do not have any time record."
+56:          
+57:          %br 
+58:    
+59:          = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
+60:    
+61:    
+62:    
+63:      :javascript
+64:        console.log('This is inline <script>');
+65:    
+66:        //$('#datepicker').datetimepicker();
+67:        
+  
+app/views/home/new.html.haml:53: syntax error, unexpected ';', expecting =>
+app/views/home/new.html.haml:54: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:54: syntax error, unexpected `else', expecting ')'
+app/views/home/new.html.haml:56: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:53: syntax error, unexpected ';', expecting =>
+app/views/home/new.html.haml:54: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:54: syntax error, unexpected `else', expecting ')'
+app/views/home/new.html.haml:56: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:53: syntax error, unexpected ';', expecting =>
+app/views/home/new.html.haml:54: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:54: syntax error, unexpected `else', expecting ')'
+app/views/home/new.html.haml:56: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:53: syntax error, unexpected ';', expecting =>
+app/views/home/new.html.haml:54: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:54: syntax error, unexpected `else', expecting ')'
+app/views/home/new.html.haml:56: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:53: syntax error, unexpected ';', expecting =>
+app/views/home/new.html.haml:54: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:54: syntax error, unexpected `else', expecting ')'
+app/views/home/new.html.haml:56: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:53: syntax error, unexpected ';', expecting =>
+app/views/home/new.html.haml:54: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:54: syntax error, unexpected `else', expecting ')'
+app/views/home/new.html.haml:56: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:50:18 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 38.9ms | Allocations: 22672)
+  Rendered layout layouts/application.html.haml (Duration: 44.6ms | Allocations: 27394)
+Completed 200 OK in 58ms (Views: 47.8ms | ActiveRecord: 1.0ms | Allocations: 29833)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:51:09 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  Rendered home/new.html.haml within layouts/application (Duration: 26.5ms | Allocations: 21295)
+  Rendered layout layouts/application.html.haml (Duration: 26.9ms | Allocations: 21380)
+Completed 500 Internal Server Error in 40ms (ActiveRecord: 0.5ms | Allocations: 23733)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check %script{:src => "https://code.jquery.com/jquery-3.3.1.min.js"  }
+%link{:href => "https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" }
+%script{:src => "https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js", :type => "text/javascript" }
+
+%body{:style => "background-color: #eee;"}
+  %div.jumbotron.text-center
+    %h1
+      Hello,
+      %strong #{ @user.username } 
+  
+    %p
+      Today is 
+      %strong #{Time.now.strftime("%A")} 
+
+  %div.container
+    %h3= "Enter Your Time Record"
+    = form_with model: @timerecord, class: 'row gy-2 gx-3 align-items-center', url: home_path do |form|
+      .col-auto
+        =form.label "Start Time", class: 'form-label'
+        =form.datetime_local_field :start_date, required: true, class: 'form-control'
+      .col-auto
+        =form.label "End Time", class: 'form-label'
+        =form.datetime_local_field :end_date,  class: 'form-control'
+      .col-auto
+        =form.label "Comment", class: 'form-label'
+        =form.text_field :comment, class: 'form-control'
+      .col-auto
+        =form.label "Type", class: 'form-label'
+        =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+      %div
+        =form.submit "Save", class: 'btn btn-info'
+
+    %br
+    %br
+    %div.container
+      %h4= "Your Time Records"  
+
+      - if @user_time_records.length >= 1
+        %table.table
+          %tbody
+            %tr
+              %td Start Date:
+              %td End Date:
+              %td Comment:
+              %td Type
+              %td Actions
+            - @user_time_records.each do |object|
+              %tr
+                %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+                %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
+                %td= object.comment
+                %td= object.time_type, { style: "bg-color:red;"}
+                %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete,  class: 'btn btn-danger' 
+      - else
+        %p="You do not have any time record."
+      
+      %br 
+
+      = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
+
+
+
+  :javascript
+    console.log('This is inline <script>');
+
+    //$('#datepicker').datetimepicker();
+    
+
+):
+1:    %script{:src => "https://code.jquery.com/jquery-3.3.1.min.js"  }
+2:    %link{:href => "https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" }
+3:    %script{:src => "https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js", :type => "text/javascript" }
+4:    
+5:    %body{:style => "background-color: #eee;"}
+6:      %div.jumbotron.text-center
+7:        %h1
+8:          Hello,
+9:          %strong #{ @user.username } 
+10:      
+11:        %p
+12:          Today is 
+13:          %strong #{Time.now.strftime("%A")} 
+14:    
+15:      %div.container
+16:        %h3= "Enter Your Time Record"
+17:        = form_with model: @timerecord, class: 'row gy-2 gx-3 align-items-center', url: home_path do |form|
+18:          .col-auto
+19:            =form.label "Start Time", class: 'form-label'
+20:            =form.datetime_local_field :start_date, required: true, class: 'form-control'
+21:          .col-auto
+22:            =form.label "End Time", class: 'form-label'
+23:            =form.datetime_local_field :end_date,  class: 'form-control'
+24:          .col-auto
+25:            =form.label "Comment", class: 'form-label'
+26:            =form.text_field :comment, class: 'form-control'
+27:          .col-auto
+28:            =form.label "Type", class: 'form-label'
+29:            =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+30:          %div
+31:            =form.submit "Save", class: 'btn btn-info'
+32:    
+33:        %br
+34:        %br
+35:        %div.container
+36:          %h4= "Your Time Records"  
+37:    
+38:          - if @user_time_records.length >= 1
+39:            %table.table
+40:              %tbody
+41:                %tr
+42:                  %td Start Date:
+43:                  %td End Date:
+44:                  %td Comment:
+45:                  %td Type
+46:                  %td Actions
+47:                - @user_time_records.each do |object|
+48:                  %tr
+49:                    %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+50:                    %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
+51:                    %td= object.comment
+52:                    %td= object.time_type, { style: "bg-color:red;"}
+53:                    %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete,  class: 'btn btn-danger' 
+54:          - else
+55:            %p="You do not have any time record."
+56:          
+57:          %br 
+58:    
+59:          = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
+60:    
+61:    
+62:    
+63:      :javascript
+64:        console.log('This is inline <script>');
+65:    
+66:        //$('#datepicker').datetimepicker();
+67:        
+  
+app/views/home/new.html.haml:52: syntax error, unexpected ';', expecting '.' or &. or :: or '['
+app/views/home/new.html.haml:54: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:54: syntax error, unexpected `else', expecting ')'
+app/views/home/new.html.haml:56: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:52: syntax error, unexpected ';', expecting '.' or &. or :: or '['
+app/views/home/new.html.haml:54: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:54: syntax error, unexpected `else', expecting ')'
+app/views/home/new.html.haml:56: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:52: syntax error, unexpected ';', expecting '.' or &. or :: or '['
+app/views/home/new.html.haml:54: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:54: syntax error, unexpected `else', expecting ')'
+app/views/home/new.html.haml:56: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:52: syntax error, unexpected ';', expecting '.' or &. or :: or '['
+app/views/home/new.html.haml:54: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:54: syntax error, unexpected `else', expecting ')'
+app/views/home/new.html.haml:56: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:52: syntax error, unexpected ';', expecting '.' or &. or :: or '['
+app/views/home/new.html.haml:54: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:54: syntax error, unexpected `else', expecting ')'
+app/views/home/new.html.haml:56: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:52: syntax error, unexpected ';', expecting '.' or &. or :: or '['
+app/views/home/new.html.haml:54: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:54: syntax error, unexpected `else', expecting ')'
+app/views/home/new.html.haml:56: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:51:23 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  Rendered home/new.html.haml within layouts/application (Duration: 24.1ms | Allocations: 21323)
+  Rendered layout layouts/application.html.haml (Duration: 24.5ms | Allocations: 21408)
+Completed 500 Internal Server Error in 37ms (ActiveRecord: 0.9ms | Allocations: 23816)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check %script{:src => "https://code.jquery.com/jquery-3.3.1.min.js"  }
+%link{:href => "https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" }
+%script{:src => "https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js", :type => "text/javascript" }
+
+%body{:style => "background-color: #eee;"}
+  %div.jumbotron.text-center
+    %h1
+      Hello,
+      %strong #{ @user.username } 
+  
+    %p
+      Today is 
+      %strong #{Time.now.strftime("%A")} 
+
+  %div.container
+    %h3= "Enter Your Time Record"
+    = form_with model: @timerecord, class: 'row gy-2 gx-3 align-items-center', url: home_path do |form|
+      .col-auto
+        =form.label "Start Time", class: 'form-label'
+        =form.datetime_local_field :start_date, required: true, class: 'form-control'
+      .col-auto
+        =form.label "End Time", class: 'form-label'
+        =form.datetime_local_field :end_date,  class: 'form-control'
+      .col-auto
+        =form.label "Comment", class: 'form-label'
+        =form.text_field :comment, class: 'form-control'
+      .col-auto
+        =form.label "Type", class: 'form-label'
+        =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+      %div
+        =form.submit "Save", class: 'btn btn-info'
+
+    %br
+    %br
+    %div.container
+      %h4= "Your Time Records"  
+
+      - if @user_time_records.length >= 1
+        %table.table
+          %tbody
+            %tr
+              %td Start Date:
+              %td End Date:
+              %td Comment:
+              %td Type
+              %td Actions
+            - @user_time_records.each do |object|
+              %tr
+                %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+                %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
+                %td= object.comment
+                %td= object.time_type, { :style => "bg-color:red;"}
+                %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete,  class: 'btn btn-danger' 
+      - else
+        %p="You do not have any time record."
+      
+      %br 
+
+      = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
+
+
+
+  :javascript
+    console.log('This is inline <script>');
+
+    //$('#datepicker').datetimepicker();
+    
+
+):
+1:    %script{:src => "https://code.jquery.com/jquery-3.3.1.min.js"  }
+2:    %link{:href => "https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" }
+3:    %script{:src => "https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js", :type => "text/javascript" }
+4:    
+5:    %body{:style => "background-color: #eee;"}
+6:      %div.jumbotron.text-center
+7:        %h1
+8:          Hello,
+9:          %strong #{ @user.username } 
+10:      
+11:        %p
+12:          Today is 
+13:          %strong #{Time.now.strftime("%A")} 
+14:    
+15:      %div.container
+16:        %h3= "Enter Your Time Record"
+17:        = form_with model: @timerecord, class: 'row gy-2 gx-3 align-items-center', url: home_path do |form|
+18:          .col-auto
+19:            =form.label "Start Time", class: 'form-label'
+20:            =form.datetime_local_field :start_date, required: true, class: 'form-control'
+21:          .col-auto
+22:            =form.label "End Time", class: 'form-label'
+23:            =form.datetime_local_field :end_date,  class: 'form-control'
+24:          .col-auto
+25:            =form.label "Comment", class: 'form-label'
+26:            =form.text_field :comment, class: 'form-control'
+27:          .col-auto
+28:            =form.label "Type", class: 'form-label'
+29:            =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+30:          %div
+31:            =form.submit "Save", class: 'btn btn-info'
+32:    
+33:        %br
+34:        %br
+35:        %div.container
+36:          %h4= "Your Time Records"  
+37:    
+38:          - if @user_time_records.length >= 1
+39:            %table.table
+40:              %tbody
+41:                %tr
+42:                  %td Start Date:
+43:                  %td End Date:
+44:                  %td Comment:
+45:                  %td Type
+46:                  %td Actions
+47:                - @user_time_records.each do |object|
+48:                  %tr
+49:                    %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+50:                    %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
+51:                    %td= object.comment
+52:                    %td= object.time_type, { :style => "bg-color:red;"}
+53:                    %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete,  class: 'btn btn-danger' 
+54:          - else
+55:            %p="You do not have any time record."
+56:          
+57:          %br 
+58:    
+59:          = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
+60:    
+61:    
+62:    
+63:      :javascript
+64:        console.log('This is inline <script>');
+65:    
+66:        //$('#datepicker').datetimepicker();
+67:        
+  
+app/views/home/new.html.haml:52: syntax error, unexpected ';', expecting '.' or &. or :: or '['
+app/views/home/new.html.haml:54: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:54: syntax error, unexpected `else', expecting ')'
+app/views/home/new.html.haml:56: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:52: syntax error, unexpected ';', expecting '.' or &. or :: or '['
+app/views/home/new.html.haml:54: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:54: syntax error, unexpected `else', expecting ')'
+app/views/home/new.html.haml:56: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:52: syntax error, unexpected ';', expecting '.' or &. or :: or '['
+app/views/home/new.html.haml:54: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:54: syntax error, unexpected `else', expecting ')'
+app/views/home/new.html.haml:56: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:52: syntax error, unexpected ';', expecting '.' or &. or :: or '['
+app/views/home/new.html.haml:54: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:54: syntax error, unexpected `else', expecting ')'
+app/views/home/new.html.haml:56: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:52: syntax error, unexpected ';', expecting '.' or &. or :: or '['
+app/views/home/new.html.haml:54: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:54: syntax error, unexpected `else', expecting ')'
+app/views/home/new.html.haml:56: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:52: syntax error, unexpected ';', expecting '.' or &. or :: or '['
+app/views/home/new.html.haml:54: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:54: syntax error, unexpected `else', expecting ')'
+app/views/home/new.html.haml:56: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:67: syntax error, unexpected `end', expecting ')'
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:56:25 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  Rendered home/new.html.haml within layouts/application (Duration: 38.0ms | Allocations: 21292)
+  Rendered layout layouts/application.html.haml (Duration: 38.4ms | Allocations: 21377)
+Completed 500 Internal Server Error in 51ms (ActiveRecord: 0.7ms | Allocations: 23785)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check %script{:src => "https://code.jquery.com/jquery-3.3.1.min.js"  }
+%link{:href => "https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" }
+%script{:src => "https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js", :type => "text/javascript" }
+
+%body{:style => "background-color: #eee;"}
+  %div.jumbotron.text-center
+    %h1
+      Hello,
+      %strong #{ @user.username } 
+  
+    %p
+      Today is 
+      %strong #{Time.now.strftime("%A")} 
+
+  %div.container
+    %h3= "Enter Your Time Record"
+    = form_with model: @timerecord, class: 'row gy-2 gx-3 align-items-center', url: home_path do |form|
+      .col-auto
+        =form.label "Start Time", class: 'form-label'
+        =form.datetime_local_field :start_date, required: true, class: 'form-control'
+      .col-auto
+        =form.label "End Time", class: 'form-label'
+        =form.datetime_local_field :end_date,  class: 'form-control'
+      .col-auto
+        =form.label "Comment", class: 'form-label'
+        =form.text_field :comment, class: 'form-control'
+      .col-auto
+        =form.label "Type", class: 'form-label'
+        =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+      %div
+        =form.submit "Save", class: 'btn btn-info'
+
+    %br
+    %br
+    %div.container
+      %h4= "Your Time Records"  
+
+      - if @user_time_records.length >= 1
+        %table.table
+          %tbody
+            %tr
+              %td Start Date:
+              %td End Date:
+              %td Comment:
+              %td Type
+              %td Actions
+            - @user_time_records.each do |object|
+              %tr
+                %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+                %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
+                %td= object.comment
+                %td= object.time_type, style: "bg-color:red;"
+                %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete,  class: 'btn btn-danger' 
+      - else
+        %p="You do not have any time record."
+      
+      %br 
+
+      = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
+
+
+
+  :javascript
+    console.log('This is inline <script>');
+
+    //$('#datepicker').datetimepicker();
+    
+
+):
+1:    %script{:src => "https://code.jquery.com/jquery-3.3.1.min.js"  }
+2:    %link{:href => "https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" }
+3:    %script{:src => "https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js", :type => "text/javascript" }
+4:    
+5:    %body{:style => "background-color: #eee;"}
+6:      %div.jumbotron.text-center
+7:        %h1
+8:          Hello,
+9:          %strong #{ @user.username } 
+10:      
+11:        %p
+12:          Today is 
+13:          %strong #{Time.now.strftime("%A")} 
+14:    
+15:      %div.container
+16:        %h3= "Enter Your Time Record"
+17:        = form_with model: @timerecord, class: 'row gy-2 gx-3 align-items-center', url: home_path do |form|
+18:          .col-auto
+19:            =form.label "Start Time", class: 'form-label'
+20:            =form.datetime_local_field :start_date, required: true, class: 'form-control'
+21:          .col-auto
+22:            =form.label "End Time", class: 'form-label'
+23:            =form.datetime_local_field :end_date,  class: 'form-control'
+24:          .col-auto
+25:            =form.label "Comment", class: 'form-label'
+26:            =form.text_field :comment, class: 'form-control'
+27:          .col-auto
+28:            =form.label "Type", class: 'form-label'
+29:            =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+30:          %div
+31:            =form.submit "Save", class: 'btn btn-info'
+32:    
+33:        %br
+34:        %br
+35:        %div.container
+36:          %h4= "Your Time Records"  
+37:    
+38:          - if @user_time_records.length >= 1
+39:            %table.table
+40:              %tbody
+41:                %tr
+42:                  %td Start Date:
+43:                  %td End Date:
+44:                  %td Comment:
+45:                  %td Type
+46:                  %td Actions
+47:                - @user_time_records.each do |object|
+48:                  %tr
+49:                    %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+50:                    %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
+51:                    %td= object.comment
+52:                    %td= object.time_type, style: "bg-color:red;"
+53:                    %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete,  class: 'btn btn-danger' 
+54:          - else
+55:            %p="You do not have any time record."
+56:          
+57:          %br 
+58:    
+59:          = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
+60:    
+61:    
+62:    
+63:      :javascript
+64:        console.log('This is inline <script>');
+65:    
+66:        //$('#datepicker').datetimepicker();
+67:        
+  
+app/views/home/new.html.haml:52: syntax error, unexpected label, expecting '='
+app/views/home/new.html.haml:52: syntax error, unexpected label, expecting '='
+app/views/home/new.html.haml:52: syntax error, unexpected label, expecting '='
+app/views/home/new.html.haml:52: syntax error, unexpected label, expecting '='
+app/views/home/new.html.haml:52: syntax error, unexpected label, expecting '='
+app/views/home/new.html.haml:52: syntax error, unexpected label, expecting '='
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:56:26 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  Rendered home/new.html.haml within layouts/application (Duration: 30.3ms | Allocations: 21142)
+  Rendered layout layouts/application.html.haml (Duration: 30.8ms | Allocations: 21218)
+Completed 500 Internal Server Error in 40ms (ActiveRecord: 0.6ms | Allocations: 22816)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check %script{:src => "https://code.jquery.com/jquery-3.3.1.min.js"  }
+%link{:href => "https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" }
+%script{:src => "https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js", :type => "text/javascript" }
+
+%body{:style => "background-color: #eee;"}
+  %div.jumbotron.text-center
+    %h1
+      Hello,
+      %strong #{ @user.username } 
+  
+    %p
+      Today is 
+      %strong #{Time.now.strftime("%A")} 
+
+  %div.container
+    %h3= "Enter Your Time Record"
+    = form_with model: @timerecord, class: 'row gy-2 gx-3 align-items-center', url: home_path do |form|
+      .col-auto
+        =form.label "Start Time", class: 'form-label'
+        =form.datetime_local_field :start_date, required: true, class: 'form-control'
+      .col-auto
+        =form.label "End Time", class: 'form-label'
+        =form.datetime_local_field :end_date,  class: 'form-control'
+      .col-auto
+        =form.label "Comment", class: 'form-label'
+        =form.text_field :comment, class: 'form-control'
+      .col-auto
+        =form.label "Type", class: 'form-label'
+        =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+      %div
+        =form.submit "Save", class: 'btn btn-info'
+
+    %br
+    %br
+    %div.container
+      %h4= "Your Time Records"  
+
+      - if @user_time_records.length >= 1
+        %table.table
+          %tbody
+            %tr
+              %td Start Date:
+              %td End Date:
+              %td Comment:
+              %td Type
+              %td Actions
+            - @user_time_records.each do |object|
+              %tr
+                %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+                %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
+                %td= object.comment
+                %td= object.time_type, style: "bg-color:red;"
+                %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete,  class: 'btn btn-danger' 
+      - else
+        %p="You do not have any time record."
+      
+      %br 
+
+      = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
+
+
+
+  :javascript
+    console.log('This is inline <script>');
+
+    //$('#datepicker').datetimepicker();
+    
+
+):
+1:    %script{:src => "https://code.jquery.com/jquery-3.3.1.min.js"  }
+2:    %link{:href => "https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" }
+3:    %script{:src => "https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js", :type => "text/javascript" }
+4:    
+5:    %body{:style => "background-color: #eee;"}
+6:      %div.jumbotron.text-center
+7:        %h1
+8:          Hello,
+9:          %strong #{ @user.username } 
+10:      
+11:        %p
+12:          Today is 
+13:          %strong #{Time.now.strftime("%A")} 
+14:    
+15:      %div.container
+16:        %h3= "Enter Your Time Record"
+17:        = form_with model: @timerecord, class: 'row gy-2 gx-3 align-items-center', url: home_path do |form|
+18:          .col-auto
+19:            =form.label "Start Time", class: 'form-label'
+20:            =form.datetime_local_field :start_date, required: true, class: 'form-control'
+21:          .col-auto
+22:            =form.label "End Time", class: 'form-label'
+23:            =form.datetime_local_field :end_date,  class: 'form-control'
+24:          .col-auto
+25:            =form.label "Comment", class: 'form-label'
+26:            =form.text_field :comment, class: 'form-control'
+27:          .col-auto
+28:            =form.label "Type", class: 'form-label'
+29:            =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+30:          %div
+31:            =form.submit "Save", class: 'btn btn-info'
+32:    
+33:        %br
+34:        %br
+35:        %div.container
+36:          %h4= "Your Time Records"  
+37:    
+38:          - if @user_time_records.length >= 1
+39:            %table.table
+40:              %tbody
+41:                %tr
+42:                  %td Start Date:
+43:                  %td End Date:
+44:                  %td Comment:
+45:                  %td Type
+46:                  %td Actions
+47:                - @user_time_records.each do |object|
+48:                  %tr
+49:                    %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+50:                    %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
+51:                    %td= object.comment
+52:                    %td= object.time_type, style: "bg-color:red;"
+53:                    %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete,  class: 'btn btn-danger' 
+54:          - else
+55:            %p="You do not have any time record."
+56:          
+57:          %br 
+58:    
+59:          = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
+60:    
+61:    
+62:    
+63:      :javascript
+64:        console.log('This is inline <script>');
+65:    
+66:        //$('#datepicker').datetimepicker();
+67:        
+  
+app/views/home/new.html.haml:52: syntax error, unexpected label, expecting '='
+app/views/home/new.html.haml:52: syntax error, unexpected label, expecting '='
+app/views/home/new.html.haml:52: syntax error, unexpected label, expecting '='
+app/views/home/new.html.haml:52: syntax error, unexpected label, expecting '='
+app/views/home/new.html.haml:52: syntax error, unexpected label, expecting '='
+app/views/home/new.html.haml:52: syntax error, unexpected label, expecting '='
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:58:03 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 17.7ms | Allocations: 22673)
+  Rendered layout layouts/application.html.haml (Duration: 22.3ms | Allocations: 27395)
+Completed 200 OK in 28ms (Views: 23.3ms | ActiveRecord: 0.6ms | Allocations: 29689)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:59:19 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 18.3ms | Allocations: 23269)
+  Rendered layout layouts/application.html.haml (Duration: 22.7ms | Allocations: 27991)
+Completed 200 OK in 31ms (Views: 24.2ms | ActiveRecord: 0.5ms | Allocations: 30389)
+
+
+Started POST "/home" for 127.0.0.1 at 2022-11-25 19:59:38 +0200
+Processing by HomeController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "time_record"=>{"start_date"=>"2022-11-25T19:59", "end_date"=>"", "comment"=>"tarih denmee", "time_type"=>"issue"}, "commit"=>"Save"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/home_controller.rb:5:in `create'
+  [1m[36mTimeRecord Create (0.5ms)[0m  [1m[32mINSERT INTO "time_records" ("comment", "time_type", "start_date", "end_date", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["comment", "tarih denmee"], ["time_type", "issue"], ["start_date", "2022-11-25 19:59:00"], ["end_date", nil], ["created_at", "2022-11-25 17:59:38.260293"], ["updated_at", "2022-11-25 17:59:38.260293"], ["user_id", 1]]
+  ↳ app/controllers/home_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (47.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/home_controller.rb:5:in `create'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 64ms (ActiveRecord: 49.1ms | Allocations: 3607)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-25 19:59:38 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:26:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 7.4ms | Allocations: 3568)
+  Rendered layout layouts/application.html.haml (Duration: 7.9ms | Allocations: 3743)
+Completed 200 OK in 16ms (Views: 8.5ms | ActiveRecord: 0.9ms | Allocations: 5247)
+
+

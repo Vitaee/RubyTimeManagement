@@ -2,68 +2,69 @@
 %link{:href => "https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" }
 %script{:src => "https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js", :type => "text/javascript" }
 
-
-%div.jumbotron.text-center
-  %h1
-    Hello,
-    %strong #{ @user.username } 
- 
-  %p
-    Today is 
-    %strong #{Time.now.strftime("%A")} 
-
- 
-
-
-%div.container
-  %h3= "Enter Your Time Record"
-%div.container
-  = form_with model: @timerecord, class: 'row g-2', url: home_path do |form|
-    =form.label "Start Time", class: ''
-    =form.datetime_local_field :start_date, required: true, class: 'col-lg-2'
-    
-    =form.label "End Time", class: ''
-    =form.datetime_local_field :end_date,  class: 'col-lg-2'
-    
-    =form.label "Comment", class: ''
-    =form.text_field :comment, class: 'col-lg-2'
-
-    =form.label "Type", class: ''
-    =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class => 'col-sm-2' }
-    
-    =form.submit "Save", class: 'btn btn-info ml-10', style:"width:100px;"
-
-  %br
-  %br
-  %div.container
-    %h4= "Your Time Records"  
-
-    - if @user_time_records.length >= 1
-      %table.table
-        %tbody
-          %tr
-            %td Start Date:
-            %td End Date:
-            %td Comment:
-            %td Type
-            %td Actions
-          - @user_time_records.each do |object|
-            %tr
-              %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
-              %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
-              %td= object.comment
-              %td= object.time_type
-              %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete
-    - else
-      %p="You do not have any time record."
-    %br 
-
-    = button_to "Logout", action: "destroy", controller: "sessions"
-
-
-
-:javascript
-  console.log('This is inline <script>');
-
-  //$('#datepicker').datetimepicker();
+%body{:style => "background-color: #eee;"}
+  %div.jumbotron.text-center
+    %h1
+      Hello,
+      %strong #{ @user.username } 
   
+    %p
+      Today is 
+      %strong #{Time.now.strftime("%A")} 
+
+  %div.container
+    %h3= "Enter Your Time Record"
+    = form_with model: @timerecord, class: 'row gy-2 gx-3 align-items-center', url: home_path do |form|
+      .col-auto
+        =form.label "Start Time", class: 'form-label'
+        =form.datetime_local_field :start_date, required: true, class: 'form-control'
+      .col-auto
+        =form.label "End Time", class: 'form-label'
+        =form.datetime_local_field :end_date,  class: 'form-control'
+      .col-auto
+        =form.label "Comment", class: 'form-label'
+        =form.text_field :comment, class: 'form-control'
+      .col-auto
+        =form.label "Type", class: 'form-label'
+        =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+      %div
+        =form.submit "Save", class: 'btn btn-info'
+
+    %br
+    %br
+    %div.container
+      %h4= "Your Time Records"  
+
+      - if @user_time_records.length >= 1
+        %table.table
+          %tbody
+            %tr
+              %td Start Date:
+              %td End Date:
+              %td Comment:
+              %td Type
+              %td Actions
+            - @user_time_records.each do |object|
+              %tr
+                %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+                - if object.end_date
+                  %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
+                - else
+                  %td= "Put End Date"
+                %td= object.comment
+                %td= object.time_type
+                %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete,  class: 'btn btn-danger' 
+      - else
+        %p="You do not have any time record."
+      
+      %br 
+
+      = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
+
+
+
+  :javascript
+    console.log('This is inline <script>');
+
+    //$('#datepicker').datetimepicker();
+    
