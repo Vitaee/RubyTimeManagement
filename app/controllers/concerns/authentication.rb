@@ -38,5 +38,9 @@ module Authentication
     def user_signed_in?
       Current.user.present?
     end
+
+    def redirect_if_not_admin
+      redirect_to "/home" unless current_user.is_admin
+    end
   
 end

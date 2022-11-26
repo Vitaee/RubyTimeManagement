@@ -1,12 +1,21 @@
 .jumbotron.text-center
   %h4= "Welcome Admin!"
-
+  %p
+    We have  
+    %strong #{ @user_count.count }
+    registered users
 
 
 .container.col-lg-6
-  = form_with model: @timerecord, class: 'gy-2 gx-3 align-items-center', url: "/admin", method: "get" do |form|
-    = form.text_field :username 
-    = form.submit "Search"
+  = form_with model: @timerecord, class: 'row', url: "/admin", method: "get" do |form|
+    .col-sm-3 
+      = form.label "Enter Username"
+      = form.text_field :username , class: "form-control"
+    .col-sm-3 
+      = form.label "Select Type"
+      = form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+    .col-12.mt-2
+      = form.submit "Search", class: "btn btn-info"
   %table.table
     %thead
       %tr

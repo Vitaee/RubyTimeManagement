@@ -29016,3 +29016,2243 @@ Processing by SessionsController#new as HTML
 Completed 200 OK in 23ms (Views: 21.8ms | ActiveRecord: 0.0ms | Allocations: 15948)
 
 
+Started GET "/sign_up" for 127.0.0.1 at 2022-11-26 14:59:57 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UserController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering user/new.html.haml within layouts/application
+  Rendered user/new.html.haml within layouts/application (Duration: 24.3ms | Allocations: 23160)
+  Rendered layout layouts/application.html.haml (Duration: 29.4ms | Allocations: 28070)
+Completed 200 OK in 70ms (Views: 34.7ms | ActiveRecord: 4.1ms | Allocations: 55404)
+
+
+Started POST "/sign_up" for 127.0.0.1 at 2022-11-26 15:00:06 +0200
+Processing by UserController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"hanifi@gmail.com", "username"=>"Hanifi", "password"=>"[FILTERED]"}, "button"=>""}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/user_controller.rb:7:in `create'
+  [1m[36mUser Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hanifi@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/user_controller.rb:7:in `create'
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "username", "password", "created_at", "updated_at", "confirmed_at", "password_digest", "is_admin") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["email", "hanifi@gmail.com"], ["username", "Hanifi"], ["password", "[FILTERED]"], ["created_at", "2022-11-26 15:00:06.864964"], ["updated_at", "2022-11-26 15:00:06.864964"], ["confirmed_at", nil], ["password_digest", "[FILTERED]"], ["is_admin", nil]]
+  ↳ app/controllers/user_controller.rb:7:in `create'
+  [1m[36mTRANSACTION (11.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/user_controller.rb:7:in `create'
+Redirected to http://127.0.0.1:3000/login
+Completed 302 Found in 263ms (ActiveRecord: 12.8ms | Allocations: 7538)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-11-26 15:00:06 +0200
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 10.6ms | Allocations: 13824)
+  Rendered layout layouts/application.html.haml (Duration: 11.1ms | Allocations: 14025)
+Completed 200 OK in 14ms (Views: 12.7ms | ActiveRecord: 0.0ms | Allocations: 15702)
+
+
+Started POST "/login" for 127.0.0.1 at 2022-11-26 15:00:10 +0200
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"hanifi@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hanifi@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:6:in `create'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 257ms (ActiveRecord: 1.2ms | Allocations: 1887)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-26 15:00:11 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 20.6ms | Allocations: 25851)
+  Rendered layout layouts/application.html.haml (Duration: 21.2ms | Allocations: 26054)
+Completed 200 OK in 57ms (Views: 22.6ms | ActiveRecord: 3.2ms | Allocations: 50122)
+
+
+Started POST "/home" for 127.0.0.1 at 2022-11-26 15:00:22 +0200
+Processing by HomeController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "time_record"=>{"start_date"=>"2022-11-26T15:00", "end_date"=>"", "comment"=>"tasks1", "time_type"=>"issue"}, "commit"=>"Save"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/home_controller.rb:4:in `create'
+  [1m[36mTimeRecord Create (0.4ms)[0m  [1m[32mINSERT INTO "time_records" ("comment", "time_type", "start_date", "end_date", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["comment", "tasks1"], ["time_type", "issue"], ["start_date", "2022-11-26 15:00:00"], ["end_date", nil], ["created_at", "2022-11-26 15:00:22.233134"], ["updated_at", "2022-11-26 15:00:22.233134"], ["user_id", 4]]
+  ↳ app/controllers/home_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (29.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/home_controller.rb:4:in `create'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 46ms (ActiveRecord: 32.9ms | Allocations: 5114)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-26 15:00:22 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 8.2ms | Allocations: 2916)
+  Rendered layout layouts/application.html.haml (Duration: 9.8ms | Allocations: 3098)
+Completed 200 OK in 17ms (Views: 11.0ms | ActiveRecord: 0.6ms | Allocations: 4720)
+
+
+Started POST "/home" for 127.0.0.1 at 2022-11-26 15:00:36 +0200
+Processing by HomeController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "time_record"=>{"start_date"=>"2022-11-26T13:00", "end_date"=>"2022-11-26T14:00", "comment"=>"taskks done", "time_type"=>"done"}, "commit"=>"Save"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/home_controller.rb:4:in `create'
+  [1m[36mTimeRecord Create (0.3ms)[0m  [1m[32mINSERT INTO "time_records" ("comment", "time_type", "start_date", "end_date", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["comment", "taskks done"], ["time_type", "done"], ["start_date", "2022-11-26 13:00:00"], ["end_date", "2022-11-26 14:00:00"], ["created_at", "2022-11-26 15:00:36.794249"], ["updated_at", "2022-11-26 15:00:36.794249"], ["user_id", 4]]
+  ↳ app/controllers/home_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (15.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/home_controller.rb:4:in `create'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 28ms (ActiveRecord: 16.6ms | Allocations: 3378)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-26 15:00:36 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 3.9ms | Allocations: 2961)
+  Rendered layout layouts/application.html.haml (Duration: 4.5ms | Allocations: 3136)
+Completed 200 OK in 8ms (Views: 4.9ms | ActiveRecord: 0.5ms | Allocations: 4621)
+
+
+Started POST "/logout" for 127.0.0.1 at 2022-11-26 15:00:39 +0200
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/login
+Completed 302 Found in 5ms (ActiveRecord: 0.5ms | Allocations: 938)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-11-26 15:00:40 +0200
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 0.9ms | Allocations: 622)
+  Rendered layout layouts/application.html.haml (Duration: 1.3ms | Allocations: 797)
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.0ms | Allocations: 1664)
+
+
+Started POST "/login" for 127.0.0.1 at 2022-11-26 15:00:43 +0200
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"admin@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:6:in `create'
+Redirected to http://127.0.0.1:3000/admin
+Completed 302 Found in 259ms (ActiveRecord: 0.6ms | Allocations: 1269)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:00:43 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:18
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:28
+  Rendered admin/index.html.haml within layouts/application (Duration: 24.9ms | Allocations: 15614)
+  Rendered layout layouts/application.html.haml (Duration: 25.2ms | Allocations: 15811)
+Completed 200 OK in 31ms (Views: 25.6ms | ActiveRecord: 1.3ms | Allocations: 18471)
+
+
+Started GET "/admin/2" for 127.0.0.1 at 2022-11-26 15:00:47 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (1.8ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 2]]
+  ↳ app/views/admin/index.html.haml:18
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:28
+  Rendered admin/index.html.haml within layouts/application (Duration: 11.4ms | Allocations: 4356)
+  Rendered layout layouts/application.html.haml (Duration: 12.2ms | Allocations: 4531)
+Completed 200 OK in 19ms (Views: 10.3ms | ActiveRecord: 3.6ms | Allocations: 6324)
+
+
+Started GET "/admin/3" for 127.0.0.1 at 2022-11-26 15:00:48 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"page"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.5ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 4]]
+  ↳ app/views/admin/index.html.haml:18
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:28
+  Rendered admin/index.html.haml within layouts/application (Duration: 8.2ms | Allocations: 4199)
+  Rendered layout layouts/application.html.haml (Duration: 8.6ms | Allocations: 4375)
+Completed 200 OK in 23ms (Views: 8.0ms | ActiveRecord: 2.2ms | Allocations: 6121)
+
+
+Started GET "/admin/1" for 127.0.0.1 at 2022-11-26 15:00:50 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"page"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (3.1ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:18
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:28
+  Rendered admin/index.html.haml within layouts/application (Duration: 13.5ms | Allocations: 4199)
+  Rendered layout layouts/application.html.haml (Duration: 14.0ms | Allocations: 4374)
+Completed 200 OK in 25ms (Views: 11.1ms | ActiveRecord: 4.6ms | Allocations: 6076)
+
+
+Started GET "/admin?username=Hanifi&commit=Search" for 127.0.0.1 at 2022-11-26 15:00:54 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "commit"=>"Search"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Hanifi"], ["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 4], ["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:18
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mTimeRecord Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/views/admin/index.html.haml:28
+  Rendered admin/index.html.haml within layouts/application (Duration: 8.7ms | Allocations: 3812)
+  Rendered layout layouts/application.html.haml (Duration: 9.4ms | Allocations: 3987)
+Completed 200 OK in 17ms (Views: 8.9ms | ActiveRecord: 1.5ms | Allocations: 5693)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:01:03 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:18
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:28
+  Rendered admin/index.html.haml within layouts/application (Duration: 13.7ms | Allocations: 4183)
+  Rendered layout layouts/application.html.haml (Duration: 14.6ms | Allocations: 4358)
+Completed 200 OK in 21ms (Views: 14.7ms | ActiveRecord: 1.7ms | Allocations: 6067)
+
+
+Started GET "/admin/2" for 127.0.0.1 at 2022-11-26 15:01:36 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 2]]
+  ↳ app/views/admin/index.html.haml:18
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mTimeRecord Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:28
+  Rendered admin/index.html.haml within layouts/application (Duration: 8.2ms | Allocations: 4356)
+  Rendered layout layouts/application.html.haml (Duration: 8.6ms | Allocations: 4531)
+Completed 200 OK in 25ms (Views: 8.2ms | ActiveRecord: 2.4ms | Allocations: 6235)
+
+
+Started GET "/admin/3" for 127.0.0.1 at 2022-11-26 15:01:36 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"page"=>"3"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (10.9ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 4]]
+  ↳ app/views/admin/index.html.haml:18
+  [1m[36mUser Load (4.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mTimeRecord Count (1.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:28
+  Rendered admin/index.html.haml within layouts/application (Duration: 47.5ms | Allocations: 4195)
+  Rendered layout layouts/application.html.haml (Duration: 50.0ms | Allocations: 4370)
+Completed 200 OK in 64ms (Views: 35.7ms | ActiveRecord: 19.0ms | Allocations: 6071)
+
+
+Started GET "/admin/1" for 127.0.0.1 at 2022-11-26 15:01:37 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"page"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.7ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:18
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mTimeRecord Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:28
+  Rendered admin/index.html.haml within layouts/application (Duration: 99.0ms | Allocations: 4200)
+  Rendered layout layouts/application.html.haml (Duration: 100.6ms | Allocations: 4375)
+Completed 200 OK in 112ms (Views: 100.9ms | ActiveRecord: 2.8ms | Allocations: 6080)
+
+
+Started GET "/admin?username=Hanifi&commit=Search" for 127.0.0.1 at 2022-11-26 15:01:45 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "commit"=>"Search"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "Hanifi"], ["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1 LIMIT $2 OFFSET $3[0m  [["user_id", 4], ["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:18
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/views/admin/index.html.haml:28
+  Rendered admin/index.html.haml within layouts/application (Duration: 7.7ms | Allocations: 3805)
+  Rendered layout layouts/application.html.haml (Duration: 8.5ms | Allocations: 3980)
+Completed 200 OK in 45ms (Views: 8.7ms | ActiveRecord: 1.5ms | Allocations: 5585)
+
+
+Started GET "/home/20" for 127.0.0.1 at 2022-11-26 15:01:48 +0200
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1 AND "time_records"."id" = $2 LIMIT $3[0m  [["user_id", 3], ["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:33:in `show'
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:35:in `rescue in show'
+  Rendering layout layouts/application.html.haml
+  Rendering home/show.html.haml within layouts/application
+  Rendered home/show.html.haml within layouts/application (Duration: 15.3ms | Allocations: 9793)
+  Rendered layout layouts/application.html.haml (Duration: 15.9ms | Allocations: 9968)
+Completed 200 OK in 23ms (Views: 16.4ms | ActiveRecord: 0.7ms | Allocations: 13285)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:02:23 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:18
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:28
+  Rendered admin/index.html.haml within layouts/application (Duration: 12.1ms | Allocations: 4184)
+  Rendered layout layouts/application.html.haml (Duration: 14.3ms | Allocations: 4359)
+Completed 200 OK in 22ms (Views: 16.8ms | ActiveRecord: 1.2ms | Allocations: 6067)
+
+
+Started POST "/logout" for 127.0.0.1 at 2022-11-26 15:02:34 +0200
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/login
+Completed 302 Found in 8ms (ActiveRecord: 0.5ms | Allocations: 942)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-11-26 15:02:34 +0200
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 1.0ms | Allocations: 630)
+  Rendered layout layouts/application.html.haml (Duration: 2.6ms | Allocations: 805)
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.0ms | Allocations: 1649)
+
+
+Started POST "/login" for 127.0.0.1 at 2022-11-26 15:02:39 +0200
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"hanifi@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "hanifi@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:6:in `create'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 245ms (ActiveRecord: 0.2ms | Allocations: 1277)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-26 15:02:39 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 3.9ms | Allocations: 3005)
+  Rendered layout layouts/application.html.haml (Duration: 4.2ms | Allocations: 3180)
+Completed 200 OK in 8ms (Views: 4.3ms | ActiveRecord: 0.5ms | Allocations: 4669)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:02:54 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:3:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:18
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mTimeRecord Count (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:28
+  Rendered admin/index.html.haml within layouts/application (Duration: 11.4ms | Allocations: 4183)
+  Rendered layout layouts/application.html.haml (Duration: 13.3ms | Allocations: 4358)
+Completed 200 OK in 23ms (Views: 13.4ms | ActiveRecord: 2.2ms | Allocations: 6090)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-26 15:03:51 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 4.9ms | Allocations: 2959)
+  Rendered layout layouts/application.html.haml (Duration: 6.8ms | Allocations: 3134)
+Completed 200 OK in 12ms (Views: 7.8ms | ActiveRecord: 0.9ms | Allocations: 4620)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-26 15:07:00 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 7.5ms | Allocations: 5335)
+  Rendered layout layouts/application.html.haml (Duration: 8.4ms | Allocations: 5532)
+Completed 200 OK in 36ms (Views: 9.8ms | ActiveRecord: 5.3ms | Allocations: 17984)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:05 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms | Allocations: 1119)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:05 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms | Allocations: 888)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:05 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 870)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:05 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms | Allocations: 873)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:05 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 873)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:05 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 876)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:05 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.2ms | Allocations: 897)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:05 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.1ms | Allocations: 873)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:05 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms | Allocations: 873)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:05 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms | Allocations: 894)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:05 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms | Allocations: 874)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:05 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms | Allocations: 876)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:05 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms | Allocations: 876)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:05 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms | Allocations: 894)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:05 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.1ms | Allocations: 873)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:05 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 870)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:05 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms | Allocations: 873)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:06 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms | Allocations: 885)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:06 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms | Allocations: 882)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:06 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms | Allocations: 873)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:07 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.4ms | Allocations: 873)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:07 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms | Allocations: 894)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:07 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 885)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:07 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms | Allocations: 873)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:07 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.1ms | Allocations: 882)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:07 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 894)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:07 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms | Allocations: 876)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:07 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms | Allocations: 864)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:07 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.2ms | Allocations: 882)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:07 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 864)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:07 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms | Allocations: 891)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:07 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms | Allocations: 879)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:07 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 861)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:07 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.1ms | Allocations: 867)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:07 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms | Allocations: 891)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:07 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.2ms | Allocations: 879)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:07 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms | Allocations: 882)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:07 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.2ms | Allocations: 864)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:07 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 879)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:07 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms | Allocations: 885)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms | Allocations: 885)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms | Allocations: 882)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms | Allocations: 867)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms | Allocations: 879)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms | Allocations: 873)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 867)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms | Allocations: 897)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms | Allocations: 885)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms | Allocations: 885)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms | Allocations: 882)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 897)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms | Allocations: 894)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms | Allocations: 891)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms | Allocations: 870)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms | Allocations: 894)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms | Allocations: 912)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms | Allocations: 861)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.1ms | Allocations: 879)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms | Allocations: 867)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:07:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms | Allocations: 894)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:08:05 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/home
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 29ms (ActiveRecord: 4.0ms | Allocations: 26852)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-26 15:08:05 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 41.6ms | Allocations: 36103)
+  Rendered layout layouts/application.html.haml (Duration: 47.5ms | Allocations: 40999)
+Completed 200 OK in 74ms (Views: 50.1ms | ActiveRecord: 2.6ms | Allocations: 66855)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:08:08 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/home
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 7ms (ActiveRecord: 0.3ms | Allocations: 1024)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-26 15:08:08 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 5.0ms | Allocations: 3089)
+  Rendered layout layouts/application.html.haml (Duration: 5.4ms | Allocations: 3266)
+Completed 200 OK in 9ms (Views: 5.8ms | ActiveRecord: 0.5ms | Allocations: 4829)
+
+
+Started POST "/logout" for 127.0.0.1 at 2022-11-26 15:08:13 +0200
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/login
+Completed 302 Found in 4ms (ActiveRecord: 0.4ms | Allocations: 1340)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-11-26 15:08:13 +0200
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 16.0ms | Allocations: 14200)
+  Rendered layout layouts/application.html.haml (Duration: 16.5ms | Allocations: 14412)
+Completed 200 OK in 19ms (Views: 17.8ms | ActiveRecord: 0.0ms | Allocations: 15954)
+
+
+Started POST "/login" for 127.0.0.1 at 2022-11-26 15:08:16 +0200
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"admin@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:6:in `create'
+Redirected to http://127.0.0.1:3000/admin
+Completed 302 Found in 241ms (ActiveRecord: 0.3ms | Allocations: 1641)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:08:17 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.6ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:18
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mTimeRecord Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:28
+  Rendered admin/index.html.haml within layouts/application (Duration: 17.7ms | Allocations: 15678)
+  Rendered layout layouts/application.html.haml (Duration: 18.0ms | Allocations: 15876)
+Completed 200 OK in 24ms (Views: 17.8ms | ActiveRecord: 1.9ms | Allocations: 18316)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-26 15:08:20 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 6.1ms | Allocations: 2325)
+  Rendered layout layouts/application.html.haml (Duration: 6.5ms | Allocations: 2500)
+Completed 200 OK in 10ms (Views: 6.8ms | ActiveRecord: 0.5ms | Allocations: 4067)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:08:22 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:18
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:28
+  Rendered admin/index.html.haml within layouts/application (Duration: 7.4ms | Allocations: 4187)
+  Rendered layout layouts/application.html.haml (Duration: 7.7ms | Allocations: 4363)
+Completed 200 OK in 13ms (Views: 7.5ms | ActiveRecord: 1.7ms | Allocations: 6080)
+
+
+Started GET "/home/14" for 127.0.0.1 at 2022-11-26 15:08:27 +0200
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"14"}
+  [1m[36mUser Load (3.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1 AND "time_records"."id" = $2 LIMIT $3[0m  [["user_id", 3], ["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:33:in `show'
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:35:in `rescue in show'
+  Rendering layout layouts/application.html.haml
+  Rendering home/show.html.haml within layouts/application
+  Rendered home/show.html.haml within layouts/application (Duration: 14.7ms | Allocations: 9760)
+  Rendered layout layouts/application.html.haml (Duration: 15.6ms | Allocations: 9935)
+Completed 200 OK in 31ms (Views: 17.0ms | ActiveRecord: 4.1ms | Allocations: 13238)
+
+
+Started POST "/logout" for 127.0.0.1 at 2022-11-26 15:08:30 +0200
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/login
+Completed 302 Found in 6ms (ActiveRecord: 0.5ms | Allocations: 946)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-11-26 15:08:30 +0200
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 1.3ms | Allocations: 619)
+  Rendered layout layouts/application.html.haml (Duration: 1.7ms | Allocations: 794)
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.0ms | Allocations: 1644)
+
+
+Started POST "/login" for 127.0.0.1 at 2022-11-26 15:08:33 +0200
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"sedat@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "sedat@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:6:in `create'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 237ms (ActiveRecord: 0.3ms | Allocations: 1284)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-26 15:08:33 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 5.0ms | Allocations: 2584)
+  Rendered layout layouts/application.html.haml (Duration: 5.9ms | Allocations: 2759)
+Completed 200 OK in 12ms (Views: 6.6ms | ActiveRecord: 0.4ms | Allocations: 4240)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:08:35 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/home
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 880)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-26 15:08:35 +0200
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (1.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 13.5ms | Allocations: 2572)
+  Rendered layout layouts/application.html.haml (Duration: 16.2ms | Allocations: 2747)
+Completed 200 OK in 26ms (Views: 17.6ms | ActiveRecord: 1.7ms | Allocations: 4253)
+
+
+Started POST "/logout" for 127.0.0.1 at 2022-11-26 15:08:40 +0200
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/login
+Completed 302 Found in 9ms (ActiveRecord: 0.5ms | Allocations: 944)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-11-26 15:08:40 +0200
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 1.1ms | Allocations: 609)
+  Rendered layout layouts/application.html.haml (Duration: 1.5ms | Allocations: 784)
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.0ms | Allocations: 1626)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-11-26 15:10:21 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 31.1ms | Allocations: 22322)
+  Rendered layout layouts/application.html.haml (Duration: 37.6ms | Allocations: 27217)
+Completed 200 OK in 53ms (Views: 40.6ms | ActiveRecord: 0.0ms | Allocations: 34933)
+
+
+Started POST "/login" for 127.0.0.1 at 2022-11-26 15:10:26 +0200
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"admin@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:6:in `create'
+Redirected to http://127.0.0.1:3000/admin
+Completed 302 Found in 279ms (ActiveRecord: 5.5ms | Allocations: 23124)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:10:26 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."id" != $1[0m  [["id", 3]]
+  ↳ app/controllers/admin_controller.rb:9:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:18
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mTimeRecord Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:28
+  Rendered admin/index.html.haml within layouts/application (Duration: 94.2ms | Allocations: 34787)
+  Rendered layout layouts/application.html.haml (Duration: 95.2ms | Allocations: 34990)
+Completed 200 OK in 106ms (Views: 93.4ms | ActiveRecord: 4.2ms | Allocations: 41140)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:11:23 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."id" != $1[0m  [["id", 3]]
+  ↳ app/controllers/admin_controller.rb:9:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  Rendered admin/index.html.haml within layouts/application (Duration: 9.3ms | Allocations: 6562)
+  Rendered layout layouts/application.html.haml (Duration: 9.5ms | Allocations: 6656)
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 1.0ms | Allocations: 9853)
+
+
+  
+ActionView::Template::Error (Illegal element: classes and ids must have values.):
+    3:   %p
+    4:     Total 
+    5:     %strong#{ @users_count }
+    6:     registered users.
+    7: 
+    8: 
+    9: 
+  
+app/views/admin/index.html.haml:6
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:11:30 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."id" != $1[0m  [["id", 3]]
+  ↳ app/controllers/admin_controller.rb:9:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  Rendered admin/index.html.haml within layouts/application (Duration: 2.8ms | Allocations: 3031)
+  Rendered layout layouts/application.html.haml (Duration: 3.3ms | Allocations: 3116)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 1.0ms | Allocations: 6407)
+
+
+  
+ActionView::Template::Error (Illegal element: classes and ids must have values.):
+    3:   %p
+    4:     Total 
+    5:     %strong#{ @users_count }
+    6:     registered users
+    7: 
+    8: 
+    9: 
+  
+app/views/admin/index.html.haml:6
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:12:00 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."id" != $1[0m  [["id", 3]]
+  ↳ app/controllers/admin_controller.rb:9:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  Rendered admin/index.html.haml within layouts/application (Duration: 2.7ms | Allocations: 3030)
+  Rendered layout layouts/application.html.haml (Duration: 3.3ms | Allocations: 3114)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 1.0ms | Allocations: 6371)
+
+
+  
+ActionView::Template::Error (Illegal element: classes and ids must have values.):
+    3:   %p
+    4:     Total 
+    5:     %strong#{ @users_count }
+    6:     users
+    7: 
+    8: 
+    9: 
+  
+app/views/admin/index.html.haml:6
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:12:07 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  [1m[36mUser Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."id" != $1[0m  [["id", 3]]
+  ↳ app/controllers/admin_controller.rb:9:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  Rendered admin/index.html.haml within layouts/application (Duration: 3.6ms | Allocations: 3025)
+  Rendered layout layouts/application.html.haml (Duration: 3.9ms | Allocations: 3109)
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 2.3ms | Allocations: 6366)
+
+
+  
+ActionView::Template::Error (Illegal element: classes and ids must have values.):
+    3:   %p
+    4:     Total 
+    5:     %strong#{ @users_count } users
+    6: 
+    7: 
+    8: 
+    9: .container.col-lg-6
+  
+app/views/admin/index.html.haml:6
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:12:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  [1m[36mUser Count (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."id" != $1[0m  [["id", 3]]
+  ↳ app/controllers/admin_controller.rb:9:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  Rendered admin/index.html.haml within layouts/application (Duration: 5.6ms | Allocations: 3025)
+  Rendered layout layouts/application.html.haml (Duration: 7.6ms | Allocations: 3109)
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 2.3ms | Allocations: 6366)
+
+
+  
+ActionView::Template::Error (Illegal element: classes and ids must have values.):
+    3:   %p
+    4:     Total 
+    5:     %strong#{ @users_count }
+    6: 
+    7: 
+    8: 
+    9: .container.col-lg-6
+  
+app/views/admin/index.html.haml:6
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:12:21 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."id" != $1[0m  [["id", 3]]
+  ↳ app/controllers/admin_controller.rb:9:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:22
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:30
+  Rendered admin/index.html.haml within layouts/application (Duration: 24.9ms | Allocations: 15708)
+  Rendered layout layouts/application.html.haml (Duration: 29.6ms | Allocations: 20427)
+Completed 200 OK in 40ms (Views: 31.8ms | ActiveRecord: 1.9ms | Allocations: 23713)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:12:36 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."id" != $1[0m  [["id", 3]]
+  ↳ app/controllers/admin_controller.rb:9:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:22
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:30
+  Rendered admin/index.html.haml within layouts/application (Duration: 26.3ms | Allocations: 15660)
+  Rendered layout layouts/application.html.haml (Duration: 34.2ms | Allocations: 20372)
+Completed 200 OK in 52ms (Views: 43.1ms | ActiveRecord: 1.6ms | Allocations: 23587)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:12:44 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  [1m[36mUser Count (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE "users"."id" != $1[0m  [["id", 3]]
+  ↳ app/controllers/admin_controller.rb:9:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:22
+  [1m[36mTimeRecord Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:30
+  Rendered admin/index.html.haml within layouts/application (Duration: 23.6ms | Allocations: 15189)
+  Rendered layout layouts/application.html.haml (Duration: 29.1ms | Allocations: 19900)
+Completed 200 OK in 52ms (Views: 36.4ms | ActiveRecord: 3.6ms | Allocations: 23076)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:13:05 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:22
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:30
+  Rendered admin/index.html.haml within layouts/application (Duration: 21.0ms | Allocations: 19211)
+  Rendered layout layouts/application.html.haml (Duration: 27.3ms | Allocations: 23922)
+Completed 200 OK in 47ms (Views: 27.0ms | ActiveRecord: 6.1ms | Allocations: 33770)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:13:13 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:22
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:30
+  Rendered admin/index.html.haml within layouts/application (Duration: 40.9ms | Allocations: 15195)
+  Rendered layout layouts/application.html.haml (Duration: 47.6ms | Allocations: 19917)
+Completed 200 OK in 54ms (Views: 48.4ms | ActiveRecord: 1.5ms | Allocations: 22582)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:13:21 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.5ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:22
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:30
+  Rendered admin/index.html.haml within layouts/application (Duration: 31.1ms | Allocations: 15146)
+  Rendered layout layouts/application.html.haml (Duration: 38.6ms | Allocations: 19857)
+Completed 200 OK in 45ms (Views: 39.0ms | ActiveRecord: 1.5ms | Allocations: 22515)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:14:53 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.6ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:22
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:30
+  Rendered admin/index.html.haml within layouts/application (Duration: 43.6ms | Allocations: 42116)
+  Rendered layout layouts/application.html.haml (Duration: 49.0ms | Allocations: 46996)
+Completed 200 OK in 92ms (Views: 47.8ms | ActiveRecord: 9.3ms | Allocations: 79793)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:16:24 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:22
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:30
+  Rendered admin/index.html.haml within layouts/application (Duration: 20.6ms | Allocations: 8569)
+  Rendered layout layouts/application.html.haml (Duration: 21.1ms | Allocations: 8767)
+Completed 200 OK in 39ms (Views: 19.3ms | ActiveRecord: 6.3ms | Allocations: 18298)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:16:57 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/controllers/admin_controller.rb:11:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:22
+  [1m[36mTimeRecord Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:30
+  Rendered admin/index.html.haml within layouts/application (Duration: 27.7ms | Allocations: 8573)
+  Rendered layout layouts/application.html.haml (Duration: 29.5ms | Allocations: 8771)
+Completed 200 OK in 49ms (Views: 29.4ms | ActiveRecord: 7.1ms | Allocations: 18851)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:17:22 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  Rendered admin/index.html.haml within layouts/application (Duration: 10.9ms | Allocations: 12826)
+  Rendered layout layouts/application.html.haml (Duration: 11.2ms | Allocations: 12920)
+Completed 500 Internal Server Error in 32ms (ActiveRecord: 2.7ms | Allocations: 22807)
+
+
+  
+ActionView::Template::Error (undefined method `count' for nil:NilClass):
+    2:   %h4= "Welcome Admin!"
+    3:   %p
+    4:     We have  
+    5:     #{ @users_count.count }
+    6: 
+    7: 
+    8: .container.col-lg-6
+  
+app/views/admin/index.html.haml:5
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:17:36 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:20
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:22
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:22
+  [1m[36mTimeRecord Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:30
+  Rendered admin/index.html.haml within layouts/application (Duration: 37.7ms | Allocations: 19935)
+  Rendered layout layouts/application.html.haml (Duration: 43.1ms | Allocations: 24667)
+Completed 200 OK in 53ms (Views: 43.8ms | ActiveRecord: 4.8ms | Allocations: 27475)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:18:02 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:21
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:23
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:23
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:31
+  Rendered admin/index.html.haml within layouts/application (Duration: 21.3ms | Allocations: 16334)
+  Rendered layout layouts/application.html.haml (Duration: 27.7ms | Allocations: 21045)
+Completed 200 OK in 41ms (Views: 34.4ms | ActiveRecord: 1.9ms | Allocations: 23700)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:18:54 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:24
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:26
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:26
+  [1m[36mTimeRecord Count (2.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:34
+  Rendered admin/index.html.haml within layouts/application (Duration: 43.4ms | Allocations: 23174)
+  Rendered layout layouts/application.html.haml (Duration: 48.2ms | Allocations: 28010)
+Completed 200 OK in 61ms (Views: 48.0ms | ActiveRecord: 4.6ms | Allocations: 30665)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:19:08 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:24
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:26
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:26
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:34
+  Rendered admin/index.html.haml within layouts/application (Duration: 26.6ms | Allocations: 18534)
+  Rendered layout layouts/application.html.haml (Duration: 35.0ms | Allocations: 23265)
+Completed 200 OK in 50ms (Views: 36.7ms | ActiveRecord: 2.3ms | Allocations: 25963)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:19:36 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.8ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:23
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:25
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:25
+  [1m[36mTimeRecord Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:33
+  Rendered admin/index.html.haml within layouts/application (Duration: 24.7ms | Allocations: 17729)
+  Rendered layout layouts/application.html.haml (Duration: 29.7ms | Allocations: 22448)
+Completed 200 OK in 53ms (Views: 38.7ms | ActiveRecord: 4.1ms | Allocations: 25098)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:19:52 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:23
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:25
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:25
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:33
+  Rendered admin/index.html.haml within layouts/application (Duration: 17.8ms | Allocations: 17839)
+  Rendered layout layouts/application.html.haml (Duration: 22.5ms | Allocations: 22550)
+Completed 200 OK in 34ms (Views: 28.0ms | ActiveRecord: 1.9ms | Allocations: 25198)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:20:06 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:23
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:25
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:25
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:33
+  Rendered admin/index.html.haml within layouts/application (Duration: 20.7ms | Allocations: 17831)
+  Rendered layout layouts/application.html.haml (Duration: 25.4ms | Allocations: 22549)
+Completed 200 OK in 41ms (Views: 34.9ms | ActiveRecord: 1.6ms | Allocations: 25222)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:20:15 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:23
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:25
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:25
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:33
+  Rendered admin/index.html.haml within layouts/application (Duration: 22.0ms | Allocations: 17856)
+  Rendered layout layouts/application.html.haml (Duration: 26.8ms | Allocations: 22580)
+Completed 200 OK in 48ms (Views: 30.6ms | ActiveRecord: 2.3ms | Allocations: 25236)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:20:21 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:23
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:25
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:25
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:33
+  Rendered admin/index.html.haml within layouts/application (Duration: 27.5ms | Allocations: 17838)
+  Rendered layout layouts/application.html.haml (Duration: 34.9ms | Allocations: 22557)
+Completed 200 OK in 41ms (Views: 35.1ms | ActiveRecord: 1.8ms | Allocations: 25200)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:21:05 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:26
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:28
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:28
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:36
+  Rendered admin/index.html.haml within layouts/application (Duration: 27.2ms | Allocations: 19532)
+  Rendered layout layouts/application.html.haml (Duration: 66.5ms | Allocations: 24251)
+Completed 200 OK in 90ms (Views: 70.2ms | ActiveRecord: 2.4ms | Allocations: 26893)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:21:36 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:26
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:28
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:28
+  [1m[36mTimeRecord Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:36
+  Rendered admin/index.html.haml within layouts/application (Duration: 21.8ms | Allocations: 19650)
+  Rendered layout layouts/application.html.haml (Duration: 26.1ms | Allocations: 24374)
+Completed 200 OK in 44ms (Views: 26.8ms | ActiveRecord: 1.7ms | Allocations: 27042)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:21:44 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:26
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:28
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:28
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:36
+  Rendered admin/index.html.haml within layouts/application (Duration: 16.4ms | Allocations: 19725)
+  Rendered layout layouts/application.html.haml (Duration: 22.0ms | Allocations: 24437)
+Completed 200 OK in 29ms (Views: 22.8ms | ActiveRecord: 1.5ms | Allocations: 27110)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:21:52 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:26
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:28
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:28
+  [1m[36mTimeRecord Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:36
+  Rendered admin/index.html.haml within layouts/application (Duration: 25.9ms | Allocations: 19819)
+  Rendered layout layouts/application.html.haml (Duration: 30.4ms | Allocations: 24530)
+Completed 200 OK in 37ms (Views: 30.3ms | ActiveRecord: 2.1ms | Allocations: 27188)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:22:01 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:26
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:28
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:28
+  [1m[36mTimeRecord Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:36
+  Rendered admin/index.html.haml within layouts/application (Duration: 35.8ms | Allocations: 19846)
+  Rendered layout layouts/application.html.haml (Duration: 41.7ms | Allocations: 24576)
+Completed 200 OK in 63ms (Views: 42.7ms | ActiveRecord: 2.7ms | Allocations: 27228)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:22:12 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:26
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:28
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:28
+  [1m[36mTimeRecord Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:36
+  Rendered admin/index.html.haml within layouts/application (Duration: 19.1ms | Allocations: 19829)
+  Rendered layout layouts/application.html.haml (Duration: 26.6ms | Allocations: 24547)
+Completed 200 OK in 32ms (Views: 26.4ms | ActiveRecord: 2.0ms | Allocations: 27208)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:23:25 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:27
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:29
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:29
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:37
+  Rendered admin/index.html.haml within layouts/application (Duration: 16.6ms | Allocations: 20147)
+  Rendered layout layouts/application.html.haml (Duration: 22.8ms | Allocations: 24859)
+Completed 200 OK in 29ms (Views: 23.3ms | ActiveRecord: 1.6ms | Allocations: 27517)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:23:39 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:27
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:29
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:29
+  [1m[36mTimeRecord Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:37
+  Rendered admin/index.html.haml within layouts/application (Duration: 47.1ms | Allocations: 20416)
+  Rendered layout layouts/application.html.haml (Duration: 55.9ms | Allocations: 25145)
+Completed 200 OK in 77ms (Views: 62.5ms | ActiveRecord: 3.1ms | Allocations: 27797)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:23:49 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:27
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:29
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:29
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:37
+  Rendered admin/index.html.haml within layouts/application (Duration: 19.6ms | Allocations: 20398)
+  Rendered layout layouts/application.html.haml (Duration: 24.4ms | Allocations: 25116)
+Completed 200 OK in 33ms (Views: 27.7ms | ActiveRecord: 1.6ms | Allocations: 27765)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:23:54 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:27
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:29
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:29
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:37
+  Rendered admin/index.html.haml within layouts/application (Duration: 25.9ms | Allocations: 20389)
+  Rendered layout layouts/application.html.haml (Duration: 32.3ms | Allocations: 25101)
+Completed 200 OK in 53ms (Views: 33.3ms | ActiveRecord: 2.8ms | Allocations: 27771)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:24:05 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  Rendered admin/index.html.haml within layouts/application (Duration: 20.2ms | Allocations: 20761)
+  Rendered layout layouts/application.html.haml (Duration: 21.0ms | Allocations: 20842)
+Completed 500 Internal Server Error in 42ms (ActiveRecord: 1.7ms | Allocations: 23463)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `form' for #<ActionView::Base:0x0000000001c930>
+Did you mean?  for
+               fork):
+    15:       = form.label "Select Type"
+    16:       = form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+    17:     
+    18:   = form.submit "Search", class: "form-submit btn btn-info"
+    19:   %table.table
+    20:     %thead
+    21:       %tr
+  
+app/views/admin/index.html.haml:18
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:24:10 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:27
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:29
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:29
+  [1m[36mTimeRecord Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:37
+  Rendered admin/index.html.haml within layouts/application (Duration: 25.1ms | Allocations: 20156)
+  Rendered layout layouts/application.html.haml (Duration: 30.2ms | Allocations: 24875)
+Completed 200 OK in 49ms (Views: 32.2ms | ActiveRecord: 2.4ms | Allocations: 27596)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:24:28 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:27
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:29
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:29
+  [1m[36mTimeRecord Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:37
+  Rendered admin/index.html.haml within layouts/application (Duration: 26.0ms | Allocations: 20137)
+  Rendered layout layouts/application.html.haml (Duration: 32.8ms | Allocations: 24848)
+Completed 200 OK in 48ms (Views: 35.8ms | ActiveRecord: 2.2ms | Allocations: 27487)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:25:18 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (1.9ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:27
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:29
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:29
+  [1m[36mTimeRecord Count (1.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:37
+  Rendered admin/index.html.haml within layouts/application (Duration: 42.0ms | Allocations: 20345)
+  Rendered layout layouts/application.html.haml (Duration: 47.5ms | Allocations: 25056)
+Completed 200 OK in 56ms (Views: 45.1ms | ActiveRecord: 6.1ms | Allocations: 27722)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:25:40 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.6ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:27
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:29
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:29
+  [1m[36mTimeRecord Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:37
+  Rendered admin/index.html.haml within layouts/application (Duration: 68.1ms | Allocations: 20383)
+  Rendered layout layouts/application.html.haml (Duration: 79.2ms | Allocations: 25094)
+Completed 200 OK in 102ms (Views: 87.8ms | ActiveRecord: 4.0ms | Allocations: 27742)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-26 15:25:50 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/admin_controller.rb:4:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" LIMIT $1 OFFSET $2[0m  [["LIMIT", 2], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:27
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:29
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:29
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/views/admin/index.html.haml:37
+  Rendered admin/index.html.haml within layouts/application (Duration: 31.0ms | Allocations: 20391)
+  Rendered layout layouts/application.html.haml (Duration: 36.2ms | Allocations: 25122)
+Completed 200 OK in 51ms (Views: 37.8ms | ActiveRecord: 2.4ms | Allocations: 27777)
+
+
