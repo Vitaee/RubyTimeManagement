@@ -13,13 +13,14 @@
       = form.text_field :username , class: "form-control"
     .col-sm-3 
       = form.label "Select Type"
-      = form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+      = form.select :time_type, ['', 'bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
     .col-12.mt-2
       = form.submit "Search", class: "btn btn-info"
   %table.table
     %thead
       %tr
       %th{:scope => "col"} Name
+      %th{:scope => "col"} Start Date
       %th{:scope => "col"} Time Comment
       %th{:scope => "col"} Time Type
       %th{:scope => "col"} Actions
@@ -27,6 +28,7 @@
       - @all_users.each do |item|
         %tr
         %td= item.user.username
+        %td= item.start_date.strftime('%Y-%m-%d %H:%M:%S')
         %td= item.comment
         %td= item.time_type
         %td= link_to "Details", {:controller => "home", :action => "show", :id => item.id}, {:target => "_blank"}
