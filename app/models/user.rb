@@ -4,6 +4,8 @@ class User < ApplicationRecord
     validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, presence: true, uniqueness: true
     validates :password, length: { minimum: 6 }
     has_secure_password
+
+    
     private
     
     def downcase_email

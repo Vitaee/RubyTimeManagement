@@ -1,0 +1,30 @@
+.jumbotron.text-center
+  %h4= "Welcome Admin!"
+
+
+
+.container.col-lg-6
+  = form_with model: @timerecord, class: 'gy-2 gx-3 align-items-center', url: "/admin", method: "get" do |form|
+    = form.text_field :username 
+    = form.submit "Search"
+  %table.table
+    %thead
+      %tr
+      %th{:scope => "col"} Name
+      %th{:scope => "col"} Time Comment
+      %th{:scope => "col"} Time Type
+      %th{:scope => "col"} Actions
+    %tbody
+      - @all_users.each do |item|
+        %tr
+        %td= item.user.username
+        %td= item.comment
+        %td= item.time_type
+        %td= link_to "Details", {:controller => "home", :action => "show", :id => item.id}, {:target => "_blank"}
+
+ 
+  %nav{"aria-label" => "Page navigation example"} 
+    %ul.pagination
+      #{ will_paginate @all_users, list_classes: %w(pagination justify-content-end) }
+
+  = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }

@@ -28,10 +28,13 @@ class HomeController < ApplicationController
     end
 
     def show
-        @user = current_user
-        @timerecord = @user.time_records.find(params[:id])
+        begin
+            @user = current_user
+            @timerecord = @user.time_records.find(params[:id])
+        rescue
+            @timerecord = TimeRecord.find(params[:id])
+        end
     end
-
     
 
     private

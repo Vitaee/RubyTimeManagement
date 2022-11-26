@@ -1,10 +1,8 @@
 %div.container
   %h4= "Your Time Record" 
   %p 
-    Hours Passed: 
-    Maybe later
-    -#{ time_ago_in_words(@timerecord.start_date) }
-    -#{ Time.at( (Time.now - @timerecord.start_date).abs  ).localtime.strftime("%H:%M:%S") }
+    Time Passed: 
+    #{ time_ago_in_words(@timerecord.start_date) }
   %table.table
     %tbody
       %tr
@@ -22,6 +20,7 @@
 
   %br
   %h4= button_to "Click to Finish", {:controller => "home",  :action => "update", :id => @timerecord.id}, :method => :put, class: 'btn btn-info'
+  %h4= link_to "Go back", :back
 
   = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
 

@@ -17,7 +17,16 @@ module Authentication
     end
   
     def redirect_if_authenticated
-      redirect_to "/home", alert: "You are already logged in." if user_signed_in?
+      begin
+        if current_user.is_admin
+          redirect_to "/admin", alert: "You are already logged in." if user_signed_in?
+        else
+          redirect_to "/home", alert: "You are already logged in." if user_signed_in?
+        end
+          
+      rescue
+        redirect_to "/home" if user_signed_in? 
+      end
     end
   
     private

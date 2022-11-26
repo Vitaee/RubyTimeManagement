@@ -5,9 +5,13 @@ class SessionsController < ApplicationController
         begin
             @user = User.find_by(email: params[:user][:email].downcase)
             if @user.authenticate(params[:user][:password])
-                login @user
-                redirect_to "/home", notice: "Signed in."
-        
+                if @user.is_admin
+                    login @user
+                    redirect_to "/admin"
+                else
+                    login @user
+                    redirect_to "/home", notice: "Signed in."
+                end
             else
                 flash.now[:alert] = "Incorrect email or password."
                 render :new, status: :unprocessable_entity

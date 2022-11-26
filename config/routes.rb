@@ -16,4 +16,10 @@ Rails.application.routes.draw do
   delete "home", to: "home#destroy"
   get "home/:id", to: "home#show"
   put "home/:id", to: "home#update"
+
+  #get "/admin(/:page)", to: "admin#new", as: :admin
+
+  resources :admin do
+    get '/:page', action: :index, on: :collection
+  end
 end

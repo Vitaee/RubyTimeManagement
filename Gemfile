@@ -43,6 +43,8 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 gem "haml"
+gem "will_paginate"
+gem 'will_paginate-bootstrap-style'
 
 gem 'bootstrap', '~> 5.2.2'
 gem 'jquery-rails'
