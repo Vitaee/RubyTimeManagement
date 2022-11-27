@@ -13,7 +13,16 @@
       = form.text_field :username , class: "form-control"
     .col-sm-3 
       = form.label "Select Type"
-      = form.select :time_type, ['', 'bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+      = form.select :time_type, ['---', 'bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+    .col-sm-3
+      = form.label "Start Date"
+      = form.date_field :start_date, class: 'form-control', onChange: 'disableGroupBy(this)'
+    .col-sm-3 
+      = form.label "End Date"
+      = form.date_field :end_date, class: 'form-control'
+    .col-sm-3
+      = form.label "Group By"
+      = form.select :group_by, ['---', 'weekly', 'monthly'], {}, { :class =>'form-select' , :onChange => 'disableDatePickers(this)' }
     .col-12.mt-2
       = form.submit "Search", class: "btn btn-info"
   %table.table
@@ -39,3 +48,13 @@
       #{ will_paginate @all_users, list_classes: %w(pagination justify-content-end) }
 
   = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
+
+:javascript
+  function disableGroupBy(e){
+   document.getElementById('group_by').setAttribute("disabled", "disabled");
+  }
+
+  function disableDatePickers(e){
+    document.getElementById('start_date').setAttribute("disabled", "disabled");
+    document.getElementById('end_date').setAttribute("disabled", "disabled");
+  }

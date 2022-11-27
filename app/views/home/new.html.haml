@@ -2,69 +2,69 @@
 %link{:href => "https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" }
 %script{:src => "https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js", :type => "text/javascript" }
 
-%body{:style => "background-color: #eee;"}
-  %div.jumbotron.text-center
-    %h1
-      Hello,
-      %strong #{ @user.username } 
-  
-    %p
-      Today is 
-      %strong #{Time.now.strftime("%A")} 
 
+%div.jumbotron.text-center
+  %h1
+    Hello,
+    %strong #{ @user.username } 
+
+  %p
+    Today is 
+    %strong #{Time.now.strftime("%A")} 
+
+%div.container
+  %h3= "Enter Your Time Record"
+  = form_with model: @timerecord, class: 'row gy-2 gx-3 align-items-center', url: home_path do |form|
+    .col-auto
+      =form.label "Start Time", class: 'form-label'
+      =form.datetime_local_field :start_date, required: true, class: 'form-control'
+    .col-auto
+      =form.label "End Time", class: 'form-label'
+      =form.datetime_local_field :end_date,  class: 'form-control'
+    .col-auto
+      =form.label "Comment", class: 'form-label'
+      =form.text_field :comment, class: 'form-control'
+    .col-auto
+      =form.label "Type", class: 'form-label'
+      =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+    %div
+      =form.submit "Save", class: 'btn btn-info'
+
+  %br
+  %br
   %div.container
-    %h3= "Enter Your Time Record"
-    = form_with model: @timerecord, class: 'row gy-2 gx-3 align-items-center', url: home_path do |form|
-      .col-auto
-        =form.label "Start Time", class: 'form-label'
-        =form.datetime_local_field :start_date, required: true, class: 'form-control'
-      .col-auto
-        =form.label "End Time", class: 'form-label'
-        =form.datetime_local_field :end_date,  class: 'form-control'
-      .col-auto
-        =form.label "Comment", class: 'form-label'
-        =form.text_field :comment, class: 'form-control'
-      .col-auto
-        =form.label "Type", class: 'form-label'
-        =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
-      %div
-        =form.submit "Save", class: 'btn btn-info'
+    %h4= "Your Time Records"  
 
-    %br
-    %br
-    %div.container
-      %h4= "Your Time Records"  
-
-      - if @user_time_records.length >= 1
-        %table.table
-          %tbody
+    - if @user_time_records.length >= 1
+      %table.table
+        %tbody
+          %tr
+            %td Start Date:
+            %td End Date:
+            %td Comment:
+            %td Type
+            %td Actions
+          - @user_time_records.each do |object|
             %tr
-              %td Start Date:
-              %td End Date:
-              %td Comment:
-              %td Type
-              %td Actions
-            - @user_time_records.each do |object|
-              %tr
-                %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
-                - if object.end_date
-                  %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
-                - else
-                  %td= link_to "Click to Update", {:controller => "home", :action => "show", :id => object.id}
-                %td= object.comment
-                %td= object.time_type
-                %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete,  class: 'btn btn-danger' 
-      - else
-        %p="You do not have any time record."
-      
-      %br 
+              %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+              - if object.end_date
+                %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
+              - else
+                %td= link_to "Click to Update", {:controller => "home", :action => "show", :id => object.id}
+              %td= object.comment
+              %td= object.time_type
+              %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete,  class: 'btn btn-danger' 
+    - else
+      %p="You do not have any time record."
+    
+    %br 
 
-      = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
+    = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
 
 
 
-  :javascript
-    console.log('This is inline <script>');
+:javascript
+  console.log('This is inline <script>');
 
-    //$('#datepicker').datetimepicker();
+  //$('#datepicker').datetimepicker();
     
