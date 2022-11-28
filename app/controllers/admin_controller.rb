@@ -73,23 +73,26 @@ class AdminController < ApplicationController
                 
 
             elsif param['time_type'] && @all_user.blank?
-                @all_users = TimeRecord.where(time_type: params[:time_type] ).paginate(:page => params[:page], :per_page => 5)  
+                @all_users = TimeRecord.where(time_type: params[:time_type] ).order(start_date: :desc)
+                .paginate(:page => params[:page], :per_page => 5)  
             
             elsif param['username'] &&  @all_users.blank?
                 @user = User.lower_username(param['username'].downcase)
-                @all_users = TimeRecord.where(user_id: @user ).paginate(:page => params[:page], :per_page => 5) 
+                
+                @all_users = TimeRecord.where(user_id: @user ).order(start_date: :desc)
+                .paginate(:page => params[:page], :per_page => 5) 
 
             elsif param['group_by'] && @all_users.blank?
 
-                @all_users = TimeRecord.where(q)
+                @all_users = TimeRecord.where(q).order(start_date: :desc)
                 .paginate(:page => params[:page], :per_page => 5)
 
             else
-                @all_users = TimeRecord.all.paginate(:page => params[:page], :per_page => 5)
+                @all_users = TimeRecord.all.order(start_date: :desc).paginate(:page => params[:page], :per_page => 5)
             end
         else
             if @all_user.blank?
-                @all_users = TimeRecord.all.paginate(:page => params[:page], :per_page => 5)
+                @all_users = TimeRecord.all.order(start_date: :desc).paginate(:page => params[:page], :per_page => 5)
             end
     
         end

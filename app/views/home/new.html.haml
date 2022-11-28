@@ -34,7 +34,6 @@
   %br
   %div.container
     %h4= "Your Time Records" 
-    %button= "Download"#{ class: 'btn btn-success', onClick: "ExportSkillsToExcel()" }
 
     - if @user_time_records.length >= 1
       %table.table#table-id

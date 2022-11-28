@@ -25,6 +25,12 @@
       = form.select :group_by, ['---', 'weekly', 'monthly'], {}, { :class =>'form-select' , :onChange => 'disableDatePickers(this)' }
     .col-12.mt-2
       = form.submit "Search", class: "btn btn-info"
+  
+  .container
+    .row
+      .col-auto
+        %h4= "All Time Records"
+  %hr
   %table.table
     %thead
       %tr
