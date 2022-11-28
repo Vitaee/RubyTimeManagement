@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-    before_action :redirect_if_authenticated, only: [:create, :new]
+    before_action :redirect_if_authenticated, only: [ :new]
     
     def create
         begin

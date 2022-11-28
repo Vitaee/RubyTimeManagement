@@ -16,9 +16,14 @@ class HomeController < ApplicationController
     end
 
     def new
-        @user = current_user
-        @timerecord = TimeRecord.new
-        @user_time_records = User.find(current_user.id).time_records
+        begin
+
+            @user = current_user
+            @timerecord = TimeRecord.new
+            @user_time_records = User.find(current_user.id).time_records
+        rescue
+            redirect_to "/login"
+        end
     end
 
     def update

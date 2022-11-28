@@ -40751,3 +40751,866 @@ Processing by AdminController#index as HTML
 Completed 200 OK in 34ms (Views: 21.7ms | ActiveRecord: 2.4ms | Allocations: 13149)
 
 
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:31:35 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 30.3ms | Allocations: 36080)
+  Rendered layout layouts/application.html.haml (Duration: 34.7ms | Allocations: 41173)
+Completed 200 OK in 84ms (Views: 36.7ms | ActiveRecord: 5.9ms | Allocations: 92734)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-28 15:31:40 +0300
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/home
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms | Allocations: 1217)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:31:40 +0300
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 4.6ms | Allocations: 3350)
+  Rendered layout layouts/application.html.haml (Duration: 4.9ms | Allocations: 3529)
+Completed 200 OK in 9ms (Views: 5.4ms | ActiveRecord: 0.5ms | Allocations: 5058)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-11-28 15:31:43 +0300
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/home
+Filter chain halted as :redirect_if_authenticated rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 1228)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:31:43 +0300
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:21:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 5.2ms | Allocations: 3350)
+  Rendered layout layouts/application.html.haml (Duration: 5.8ms | Allocations: 3529)
+Completed 200 OK in 10ms (Views: 6.1ms | ActiveRecord: 0.5ms | Allocations: 5056)
+
+
+Started POST "/logout" for 127.0.0.1 at 2022-11-28 15:31:48 +0300
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/login
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 1236)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-11-28 15:31:48 +0300
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 11.1ms | Allocations: 13879)
+  Rendered layout layouts/application.html.haml (Duration: 11.8ms | Allocations: 14088)
+Completed 200 OK in 14ms (Views: 13.3ms | ActiveRecord: 0.0ms | Allocations: 15642)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:31:51 +0300
+Processing by HomeController#new as HTML
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1322)
+
+
+  
+NoMethodError (undefined method `id' for nil:NilClass):
+  
+app/controllers/home_controller.rb:21:in `new'
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:32:48 +0300
+Processing by HomeController#new as HTML
+Redirected to http://127.0.0.1:3000/login
+Completed 302 Found in 10ms (ActiveRecord: 1.9ms | Allocations: 6878)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-11-28 15:32:48 +0300
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 5.8ms | Allocations: 762)
+  Rendered layout layouts/application.html.haml (Duration: 6.3ms | Allocations: 959)
+Completed 200 OK in 20ms (Views: 11.0ms | ActiveRecord: 0.0ms | Allocations: 2533)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-28 15:32:51 +0300
+Processing by AdminController#index as HTML
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.0ms | Allocations: 1335)
+
+
+  
+NoMethodError (undefined method `is_admin' for nil:NilClass):
+  
+app/controllers/concerns/authentication.rb:43:in `redirect_if_not_admin'
+Started GET "/admin" for 127.0.0.1 at 2022-11-28 15:33:23 +0300
+Processing by AdminController#index as HTML
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1710)
+
+
+  
+NoMethodError (undefined method `is_admin' for nil:NilClass):
+  
+app/controllers/concerns/authentication.rb:43:in `redirect_if_not_admin'
+Started GET "/admin" for 127.0.0.1 at 2022-11-28 15:34:03 +0300
+Processing by AdminController#index as HTML
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms | Allocations: 1033)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-11-28 15:34:03 +0300
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 3.1ms | Allocations: 762)
+  Rendered layout layouts/application.html.haml (Duration: 3.7ms | Allocations: 959)
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.0ms | Allocations: 2527)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:34:13 +0300
+Processing by HomeController#new as HTML
+Redirected to http://127.0.0.1:3000/login
+Completed 302 Found in 14ms (ActiveRecord: 2.8ms | Allocations: 6779)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-11-28 15:34:13 +0300
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 1.6ms | Allocations: 684)
+  Rendered layout layouts/application.html.haml (Duration: 2.1ms | Allocations: 862)
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.0ms | Allocations: 1818)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-28 15:34:15 +0300
+Processing by AdminController#index as HTML
+Redirected to http://127.0.0.1:3000/login
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms | Allocations: 718)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-11-28 15:34:15 +0300
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 0.9ms | Allocations: 603)
+  Rendered layout layouts/application.html.haml (Duration: 1.3ms | Allocations: 775)
+Completed 200 OK in 3ms (Views: 1.8ms | ActiveRecord: 0.0ms | Allocations: 1651)
+
+
+Started POST "/login" for 127.0.0.1 at 2022-11-28 15:34:21 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"can@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "can@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:6:in `create'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 216ms (ActiveRecord: 2.7ms | Allocations: 4030)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:34:22 +0300
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 5.3ms | Allocations: 5501)
+  Rendered layout layouts/application.html.haml (Duration: 5.8ms | Allocations: 5695)
+Completed 200 OK in 11ms (Views: 6.6ms | ActiveRecord: 0.5ms | Allocations: 9119)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-11-28 15:34:24 +0300
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/home
+Filter chain halted as :redirect_if_not_admin rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 946)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:34:24 +0300
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 6.0ms | Allocations: 3165)
+  Rendered layout layouts/application.html.haml (Duration: 6.4ms | Allocations: 3337)
+Completed 200 OK in 9ms (Views: 6.5ms | ActiveRecord: 0.5ms | Allocations: 4831)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-11-28 15:34:27 +0300
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/home
+Filter chain halted as :redirect_if_authenticated rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.2ms | Allocations: 912)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:34:27 +0300
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 4.0ms | Allocations: 3163)
+  Rendered layout layouts/application.html.haml (Duration: 4.3ms | Allocations: 3335)
+Completed 200 OK in 7ms (Views: 4.4ms | ActiveRecord: 0.4ms | Allocations: 4809)
+
+
+Started POST "/home" for 127.0.0.1 at 2022-11-28 15:37:05 +0300
+Processing by HomeController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "time_record"=>{"start_date"=>"2022-11-28T14:36", "end_date"=>"", "comment"=>"saat deneme", "time_type"=>"feature"}, "commit"=>"Save"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/home_controller.rb:4:in `create'
+  [1m[36mTimeRecord Create (1.3ms)[0m  [1m[32mINSERT INTO "time_records" ("comment", "time_type", "start_date", "end_date", "created_at", "updated_at", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["comment", "saat deneme"], ["time_type", "feature"], ["start_date", "2022-11-28 14:36:00"], ["end_date", nil], ["created_at", "2022-11-28 15:37:05.094453"], ["updated_at", "2022-11-28 15:37:05.094453"], ["user_id", 1]]
+  ↳ app/controllers/home_controller.rb:4:in `create'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/home_controller.rb:4:in `create'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 12ms (ActiveRecord: 2.9ms | Allocations: 4460)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:37:05 +0300
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 6.9ms | Allocations: 3583)
+  Rendered layout layouts/application.html.haml (Duration: 7.4ms | Allocations: 3755)
+Completed 200 OK in 11ms (Views: 7.7ms | ActiveRecord: 0.5ms | Allocations: 5221)
+
+
+Started GET "/home/4" for 127.0.0.1 at 2022-11-28 15:37:06 +0300
+Processing by HomeController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1 AND "time_records"."id" = $2 LIMIT $3[0m  [["user_id", 1], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:38:in `show'
+  Rendering layout layouts/application.html.haml
+  Rendering home/show.html.haml within layouts/application
+  Rendered home/show.html.haml within layouts/application (Duration: 8.5ms | Allocations: 9874)
+  Rendered layout layouts/application.html.haml (Duration: 8.9ms | Allocations: 10046)
+Completed 200 OK in 14ms (Views: 9.4ms | ActiveRecord: 0.4ms | Allocations: 11994)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:37:09 +0300
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 5.3ms | Allocations: 3552)
+  Rendered layout layouts/application.html.haml (Duration: 5.8ms | Allocations: 3724)
+Completed 200 OK in 10ms (Views: 6.1ms | ActiveRecord: 0.4ms | Allocations: 5204)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:41:58 +0300
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 13.9ms | Allocations: 24351)
+  Rendered layout layouts/application.html.haml (Duration: 17.9ms | Allocations: 29278)
+Completed 200 OK in 22ms (Views: 18.9ms | ActiveRecord: 0.4ms | Allocations: 31556)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:41:59 +0300
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 6.1ms | Allocations: 3552)
+  Rendered layout layouts/application.html.haml (Duration: 6.6ms | Allocations: 3724)
+Completed 200 OK in 11ms (Views: 6.9ms | ActiveRecord: 0.5ms | Allocations: 5277)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:44:06 +0300
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 13.3ms | Allocations: 24438)
+  Rendered layout layouts/application.html.haml (Duration: 18.0ms | Allocations: 29356)
+Completed 200 OK in 23ms (Views: 19.4ms | ActiveRecord: 0.4ms | Allocations: 31632)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:44:41 +0300
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 18.5ms | Allocations: 24527)
+  Rendered layout layouts/application.html.haml (Duration: 22.5ms | Allocations: 29455)
+Completed 200 OK in 29ms (Views: 24.0ms | ActiveRecord: 0.5ms | Allocations: 31828)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:45:53 +0300
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:39
+  Rendered home/new.html.haml within layouts/application (Duration: 16.1ms | Allocations: 25388)
+  Rendered layout layouts/application.html.haml (Duration: 19.8ms | Allocations: 30305)
+Completed 200 OK in 25ms (Views: 21.1ms | ActiveRecord: 0.4ms | Allocations: 32682)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:47:13 +0300
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:39
+  Rendered home/new.html.haml within layouts/application (Duration: 19.7ms | Allocations: 25309)
+  Rendered layout layouts/application.html.haml (Duration: 24.6ms | Allocations: 30226)
+Completed 200 OK in 30ms (Views: 25.8ms | ActiveRecord: 0.6ms | Allocations: 32592)
+
+
+Started POST "/home" for 127.0.0.1 at 2022-11-28 15:47:17 +0300
+Processing by HomeController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.1ms | Allocations: 1413)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: time_record):
+  
+app/controllers/home_controller.rb:48:in `timerecord_params'
+app/controllers/home_controller.rb:4:in `create'
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:47:27 +0300
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:39
+  Rendered home/new.html.haml within layouts/application (Duration: 6.2ms | Allocations: 3781)
+  Rendered layout layouts/application.html.haml (Duration: 6.6ms | Allocations: 3953)
+Completed 200 OK in 11ms (Views: 7.0ms | ActiveRecord: 0.5ms | Allocations: 5440)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:47:57 +0300
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  Rendered home/new.html.haml within layouts/application (Duration: 21.1ms | Allocations: 26620)
+  Rendered layout layouts/application.html.haml (Duration: 21.3ms | Allocations: 26700)
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.3ms | Allocations: 28939)
+
+
+  
+ActionView::Template::Error (undefined method `button' for #<ActionView::Base:0x0000000001cdb8>
+Did you mean?  button_to):
+    34:   %br
+    35:   %div.container
+    36:     %h4= "Your Time Records" 
+    37:     = button "Download", { class: 'btn btn-success', onClick: "ExportSkillsToExcel()" }
+    38: 
+    39:     - if @user_time_records.length >= 1
+    40:       %table.table#table-id
+  
+app/views/home/new.html.haml:37
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:48:18 +0300
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:39
+  Rendered home/new.html.haml within layouts/application (Duration: 19.7ms | Allocations: 25114)
+  Rendered layout layouts/application.html.haml (Duration: 24.8ms | Allocations: 30045)
+Completed 200 OK in 30ms (Views: 26.1ms | ActiveRecord: 0.4ms | Allocations: 32458)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:48:40 +0300
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  Rendered home/new.html.haml within layouts/application (Duration: 18.3ms | Allocations: 22657)
+  Rendered layout layouts/application.html.haml (Duration: 18.5ms | Allocations: 22738)
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 0.2ms | Allocations: 25083)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check %script{:src => "https://code.jquery.com/jquery-3.3.1.min.js"  }
+%link{:href => "https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" }
+%script{:src => "https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js", :type => "text/javascript" }
+
+
+%div.jumbotron.text-center
+  %h1
+    Hello,
+    %strong #{ @user.username } 
+
+  %p
+    Today is 
+    %strong #{Time.now.strftime("%A")} 
+
+%div.container
+  %h3= "Enter Your Time Record"
+  = form_with model: @timerecord, class: 'row gy-2 gx-3 align-items-center', url: home_path do |form|
+    .col-auto
+      =form.label "Start Time", class: 'form-label'
+      =form.datetime_local_field :start_date, required: true, class: 'form-control'
+    .col-auto
+      =form.label "End Time", class: 'form-label'
+      =form.datetime_local_field :end_date,  class: 'form-control'
+    .col-auto
+      =form.label "Comment", class: 'form-label'
+      =form.text_field :comment, class: 'form-control'
+    .col-auto
+      =form.label "Type", class: 'form-label'
+      =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+    %div
+      =form.submit "Save", class: 'btn btn-info'
+
+  %br
+  %br
+  %div.container
+    %h4= "Your Time Records" 
+    %button= "Download", { class: 'btn btn-success', onClick: "ExportSkillsToExcel()" }
+
+    - if @user_time_records.length >= 1
+      %table.table#table-id
+        %tbody
+          %tr
+            %td Start Date:
+            %td End Date:
+            %td Comment:
+            %td Type
+            %td Actions
+          - @user_time_records.each do |object|
+            %tr
+              %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+              - if object.end_date
+                %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
+              - else
+                %td= link_to "Click to Update", {:controller => "home", :action => "show", :id => object.id}
+              %td= object.comment
+              %td= object.time_type
+              %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete,  class: 'btn btn-danger' 
+    - else
+      %p="You do not have any time record."
+    
+    %br 
+
+    = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
+
+
+%script{:src =>"https://unpkg.com/xlsx@0.18.1/dist/xlsx.full.min.js"}
+:javascript
+  console.log('This is inline <script>');
+
+
+  function ExportSkillsToExcel(type, fn, dl){
+   var elt = document.getElementById('table-id');
+   var wb = XLSX.utils.table_to_book(elt, { sheet: "skills" });
+   return dl ?
+     XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+     XLSX.writeFile(wb, fn || ('Skills.' + (type || 'xlsx')));
+  }
+  
+
+  //$('#datepicker').datetimepicker();
+    
+
+):
+1:    %script{:src => "https://code.jquery.com/jquery-3.3.1.min.js"  }
+2:    %link{:href => "https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" }
+3:    %script{:src => "https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js", :type => "text/javascript" }
+4:    
+5:    
+6:    %div.jumbotron.text-center
+7:      %h1
+8:        Hello,
+9:        %strong #{ @user.username } 
+10:    
+11:      %p
+12:        Today is 
+13:        %strong #{Time.now.strftime("%A")} 
+14:    
+15:    %div.container
+16:      %h3= "Enter Your Time Record"
+17:      = form_with model: @timerecord, class: 'row gy-2 gx-3 align-items-center', url: home_path do |form|
+18:        .col-auto
+19:          =form.label "Start Time", class: 'form-label'
+20:          =form.datetime_local_field :start_date, required: true, class: 'form-control'
+21:        .col-auto
+22:          =form.label "End Time", class: 'form-label'
+23:          =form.datetime_local_field :end_date,  class: 'form-control'
+24:        .col-auto
+25:          =form.label "Comment", class: 'form-label'
+26:          =form.text_field :comment, class: 'form-control'
+27:        .col-auto
+28:          =form.label "Type", class: 'form-label'
+29:          =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+30:        %div
+31:          =form.submit "Save", class: 'btn btn-info'
+32:    
+33:      %br
+34:      %br
+35:      %div.container
+36:        %h4= "Your Time Records" 
+37:        %button= "Download", { class: 'btn btn-success', onClick: "ExportSkillsToExcel()" }
+38:    
+39:        - if @user_time_records.length >= 1
+40:          %table.table#table-id
+41:            %tbody
+42:              %tr
+43:                %td Start Date:
+44:                %td End Date:
+45:                %td Comment:
+46:                %td Type
+47:                %td Actions
+48:              - @user_time_records.each do |object|
+49:                %tr
+50:                  %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+51:                  - if object.end_date
+52:                    %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
+53:                  - else
+54:                    %td= link_to "Click to Update", {:controller => "home", :action => "show", :id => object.id}
+55:                  %td= object.comment
+56:                  %td= object.time_type
+57:                  %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete,  class: 'btn btn-danger' 
+58:        - else
+59:          %p="You do not have any time record."
+60:        
+61:        %br 
+62:    
+63:        = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
+64:    
+65:    
+66:    %script{:src =>"https://unpkg.com/xlsx@0.18.1/dist/xlsx.full.min.js"}
+67:    :javascript
+68:      console.log('This is inline <script>');
+69:    
+70:    
+71:      function ExportSkillsToExcel(type, fn, dl){
+72:       var elt = document.getElementById('table-id');
+73:       var wb = XLSX.utils.table_to_book(elt, { sheet: "skills" });
+74:       return dl ?
+75:         XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+76:         XLSX.writeFile(wb, fn || ('Skills.' + (type || 'xlsx')));
+77:      }
+78:      
+79:    
+80:      //$('#datepicker').datetimepicker();
+81:        
+  
+app/views/home/new.html.haml:37: syntax error, unexpected ',', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected ',', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected ',', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected ',', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected ',', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected ',', expecting ')'
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:49:02 +0300
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:39
+  Rendered home/new.html.haml within layouts/application (Duration: 17.3ms | Allocations: 24853)
+  Rendered layout layouts/application.html.haml (Duration: 22.0ms | Allocations: 29780)
+Completed 200 OK in 28ms (Views: 23.3ms | ActiveRecord: 0.5ms | Allocations: 32204)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-11-28 15:49:11 +0300
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:23:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  Rendered home/new.html.haml within layouts/application (Duration: 13.8ms | Allocations: 22619)
+  Rendered layout layouts/application.html.haml (Duration: 14.0ms | Allocations: 22700)
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.2ms | Allocations: 25037)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check %script{:src => "https://code.jquery.com/jquery-3.3.1.min.js"  }
+%link{:href => "https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" }
+%script{:src => "https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js", :type => "text/javascript" }
+
+
+%div.jumbotron.text-center
+  %h1
+    Hello,
+    %strong #{ @user.username } 
+
+  %p
+    Today is 
+    %strong #{Time.now.strftime("%A")} 
+
+%div.container
+  %h3= "Enter Your Time Record"
+  = form_with model: @timerecord, class: 'row gy-2 gx-3 align-items-center', url: home_path do |form|
+    .col-auto
+      =form.label "Start Time", class: 'form-label'
+      =form.datetime_local_field :start_date, required: true, class: 'form-control'
+    .col-auto
+      =form.label "End Time", class: 'form-label'
+      =form.datetime_local_field :end_date,  class: 'form-control'
+    .col-auto
+      =form.label "Comment", class: 'form-label'
+      =form.text_field :comment, class: 'form-control'
+    .col-auto
+      =form.label "Type", class: 'form-label'
+      =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+    %div
+      =form.submit "Save", class: 'btn btn-info'
+
+  %br
+  %br
+  %div.container
+    %h4= "Your Time Records" 
+    %button= "Download"{ class: 'btn btn-success', onClick: "ExportSkillsToExcel()" }
+
+    - if @user_time_records.length >= 1
+      %table.table#table-id
+        %tbody
+          %tr
+            %td Start Date:
+            %td End Date:
+            %td Comment:
+            %td Type
+            %td Actions
+          - @user_time_records.each do |object|
+            %tr
+              %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+              - if object.end_date
+                %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
+              - else
+                %td= link_to "Click to Update", {:controller => "home", :action => "show", :id => object.id}
+              %td= object.comment
+              %td= object.time_type
+              %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete,  class: 'btn btn-danger' 
+    - else
+      %p="You do not have any time record."
+    
+    %br 
+
+    = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
+
+
+%script{:src =>"https://unpkg.com/xlsx@0.18.1/dist/xlsx.full.min.js"}
+:javascript
+  console.log('This is inline <script>');
+
+
+  function ExportSkillsToExcel(type, fn, dl){
+   var elt = document.getElementById('table-id');
+   var wb = XLSX.utils.table_to_book(elt, { sheet: "skills" });
+   return dl ?
+     XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+     XLSX.writeFile(wb, fn || ('Skills.' + (type || 'xlsx')));
+  }
+  
+
+  //$('#datepicker').datetimepicker();
+    
+
+):
+1:    %script{:src => "https://code.jquery.com/jquery-3.3.1.min.js"  }
+2:    %link{:href => "https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" }
+3:    %script{:src => "https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js", :type => "text/javascript" }
+4:    
+5:    
+6:    %div.jumbotron.text-center
+7:      %h1
+8:        Hello,
+9:        %strong #{ @user.username } 
+10:    
+11:      %p
+12:        Today is 
+13:        %strong #{Time.now.strftime("%A")} 
+14:    
+15:    %div.container
+16:      %h3= "Enter Your Time Record"
+17:      = form_with model: @timerecord, class: 'row gy-2 gx-3 align-items-center', url: home_path do |form|
+18:        .col-auto
+19:          =form.label "Start Time", class: 'form-label'
+20:          =form.datetime_local_field :start_date, required: true, class: 'form-control'
+21:        .col-auto
+22:          =form.label "End Time", class: 'form-label'
+23:          =form.datetime_local_field :end_date,  class: 'form-control'
+24:        .col-auto
+25:          =form.label "Comment", class: 'form-label'
+26:          =form.text_field :comment, class: 'form-control'
+27:        .col-auto
+28:          =form.label "Type", class: 'form-label'
+29:          =form.select :time_type, ['bug', 'issue', 'feature', 'done'], {}, { :class =>'form-select' }
+30:        %div
+31:          =form.submit "Save", class: 'btn btn-info'
+32:    
+33:      %br
+34:      %br
+35:      %div.container
+36:        %h4= "Your Time Records" 
+37:        %button= "Download"{ class: 'btn btn-success', onClick: "ExportSkillsToExcel()" }
+38:    
+39:        - if @user_time_records.length >= 1
+40:          %table.table#table-id
+41:            %tbody
+42:              %tr
+43:                %td Start Date:
+44:                %td End Date:
+45:                %td Comment:
+46:                %td Type
+47:                %td Actions
+48:              - @user_time_records.each do |object|
+49:                %tr
+50:                  %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+51:                  - if object.end_date
+52:                    %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
+53:                  - else
+54:                    %td= link_to "Click to Update", {:controller => "home", :action => "show", :id => object.id}
+55:                  %td= object.comment
+56:                  %td= object.time_type
+57:                  %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete,  class: 'btn btn-danger' 
+58:        - else
+59:          %p="You do not have any time record."
+60:        
+61:        %br 
+62:    
+63:        = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
+64:    
+65:    
+66:    %script{:src =>"https://unpkg.com/xlsx@0.18.1/dist/xlsx.full.min.js"}
+67:    :javascript
+68:      console.log('This is inline <script>');
+69:    
+70:    
+71:      function ExportSkillsToExcel(type, fn, dl){
+72:       var elt = document.getElementById('table-id');
+73:       var wb = XLSX.utils.table_to_book(elt, { sheet: "skills" });
+74:       return dl ?
+75:         XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+76:         XLSX.writeFile(wb, fn || ('Skills.' + (type || 'xlsx')));
+77:      }
+78:      
+79:    
+80:      //$('#datepicker').datetimepicker();
+81:        
+  
+app/views/home/new.html.haml:37: syntax error, unexpected '{', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected ',', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected '}', expecting ')'
+app/views/home/new.html.haml:81: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected '{', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected ',', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected '}', expecting ')'
+app/views/home/new.html.haml:81: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected '{', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected ',', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected '}', expecting ')'
+app/views/home/new.html.haml:81: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected '{', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected ',', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected '}', expecting ')'
+app/views/home/new.html.haml:81: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected '{', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected ',', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected '}', expecting ')'
+app/views/home/new.html.haml:81: syntax error, unexpected `end', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected '{', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected ',', expecting ')'
+app/views/home/new.html.haml:37: syntax error, unexpected '}', expecting ')'
+app/views/home/new.html.haml:81: syntax error, unexpected `end', expecting ')'

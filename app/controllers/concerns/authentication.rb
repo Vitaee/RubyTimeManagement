@@ -40,7 +40,11 @@ module Authentication
     end
 
     def redirect_if_not_admin
-      redirect_to "/home" unless current_user.is_admin
+      begin
+        redirect_to "/home" unless current_user.is_admin
+      rescue
+        redirect_to "/login"
+      end
     end
   
 end
