@@ -3,11 +3,12 @@ class HomeController < ApplicationController
     def create
         @timerecord = current_user.time_records.create(timerecord_params)
 
-        if @timerecord.save
-            redirect_to "/home"
-        else
+        unless @timerecord.save
             redirect_to "/home"
         end
+
+        redirect_to "/home"
+
     end
 
     def destroy

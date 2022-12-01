@@ -23,8 +23,8 @@ class AdminController < ApplicationController
                 start_date = Date.strptime(param['start_date'], "%Y-%m-%d")
                 end_date = Date.strptime(param['end_date'],"%Y-%m-%d")
 
-                @all_users = TimeRecord.where(start_date: start_date.beginning_of_day..end_date.end_of_day, user_id:@user,
-                time_type:param['time_type'])
+                @all_users = TimeRecord.by_user_type_dates(start_date.beginning_of_day..end_date.end_of_day, 
+                @user, param['time_type'])
                 .paginate(:page => params[:page], :per_page => 5)
 
             elsif param['username'] && param['time_type'] && param['group_by'] && @all_user.blank?
