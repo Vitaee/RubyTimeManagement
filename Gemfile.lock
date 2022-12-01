@@ -100,6 +100,9 @@ GEM
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
       railties (>= 3.2)
+    dotiw (5.3.3)
+      activesupport
+      i18n
     erubi (1.11.0)
     execjs (2.8.1)
     ffi (1.15.5)
@@ -251,6 +254,7 @@ DEPENDENCIES
   cssbundling-rails (~> 1.1)
   debug
   dotenv-rails
+  dotiw
   haml
   importmap-rails
   jbuilder

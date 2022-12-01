@@ -1,8 +1,10 @@
 %div.container
   %h4= "Your Time Record" 
-  %p 
-    Time Passed: 
-    #{ time_ago_in_words(@timerecord.start_date) }
+  - if @timerecord.end_date
+    %p 
+      Time Passed: 
+      #{ distance_of_time_in_words(@timerecord.end_date, @timerecord.start_date, false) }
+      
   %table.table
     %tbody
       %tr
@@ -12,14 +14,20 @@
         %td Type
         %td Actions
       %tr
-        %td= @timerecord.start_date.strftime('%Y-%m-%d %H:%M:%S')
-        %td= "Not yet!"
+        %td= @timerecord.start_date.in_time_zone("Europe/Istanbul").strftime('%Y-%m-%d %H:%M:%S')
+        - if @timerecord.end_date
+          %td= @timerecord.end_date.in_time_zone("Europe/Istanbul").strftime('%Y-%m-%d %H:%M:%S')
+        - else
+          %td= "Not yet!"
         %td= @timerecord.comment
         %td= @timerecord.time_type
         %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => @timerecord.id}, :method => :delete,  class: 'btn btn-danger' 
 
   %br
-  %h4= button_to "Click to Finish", {:controller => "home",  :action => "update", :id => @timerecord.id}, :method => :put, class: 'btn btn-info'
+  - if current_user.is_admin
+  - else
+    %h4= button_to "Click to Finish", {:controller => "home",  :action => "update", :id => @timerecord.id}, :method => :put, class: 'btn btn-info'
+  
   %h4= link_to "Go back", :back
 
   = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }

@@ -17,8 +17,12 @@ class HomeController < ApplicationController
 
     def new
         begin
-
-            @user = current_user
+            if current_user
+                if current_user.is_admin
+                    redirect_to "/admin"
+                end
+            end
+                
             @timerecord = TimeRecord.new
             @user_time_records = User.find(current_user.id).time_records
         rescue

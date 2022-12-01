@@ -6,7 +6,7 @@
 %div.jumbotron.text-center
   %h1
     Hello,
-    %strong #{ @user.username } 
+    %strong #{ current_user.username } 
 
   %p
     Today is 
@@ -46,9 +46,9 @@
             %td Actions
           - @user_time_records.each do |object|
             %tr
-              %td= object.start_date.strftime('%Y-%m-%d %H:%M:%S')
+              %td= object.start_date.in_time_zone("Europe/Istanbul").strftime('%Y-%m-%d %H:%M:%S')
               - if object.end_date
-                %td= object.end_date.strftime('%Y-%m-%d %H:%M:%S')
+                %td= object.end_date.in_time_zone("Europe/Istanbul").strftime('%Y-%m-%d %H:%M:%S')
               - else
                 %td= link_to "Click to Update", {:controller => "home", :action => "show", :id => object.id}
               %td= object.comment
