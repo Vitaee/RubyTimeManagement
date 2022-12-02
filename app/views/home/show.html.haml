@@ -21,7 +21,10 @@
           %td= "Not yet!"
         %td= @timerecord.comment
         %td= @timerecord.time_type
-        %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => @timerecord.id}, :method => :delete,  class: 'btn btn-danger' 
+        - if current_user.is_admin
+          %td= "Admin has no action"
+        - else
+          %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => @timerecord.id}, :method => :delete,  class: 'btn btn-danger' 
 
   %br
   - if current_user.is_admin

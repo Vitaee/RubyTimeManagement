@@ -24,10 +24,10 @@ default: &default
 development:
   <<: *default
   database: <%= ENV['DB_NAME'] %>
-  username: postgres
-  password: 123456
-  host: 172.17.0.2
-  port: 5432
+  username:  <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  host: <%= ENV['DB_HOST'] %>
+  port: <%= ENV['DB_PORT'] %>
 
   # Schema search path. The server defaults to $user,public
   #schema_search_path: myapp,sharedapp,public
