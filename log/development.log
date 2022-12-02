@@ -49932,3 +49932,1071 @@ app/models/time_record.rb:7: syntax error, unexpected ')', expecting =>
 app/models/time_record.rb:7: syntax error, unexpected ')', expecting =>
 app/models/time_record.rb:7: syntax error, unexpected ')', expecting =>
 app/controllers/admin_controller.rb:95:in `index'
+Started GET "/home" for 127.0.0.1 at 2022-12-02 10:10:01 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Redirected to http://127.0.0.1:3000/admin
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:28:in `new'
+Completed 302 Found in 58ms (ActiveRecord: 7.5ms | Allocations: 49408)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-12-02 10:10:01 +0300
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.9ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 59.9ms | Allocations: 47401)
+  Rendered layout layouts/application.html.haml (Duration: 67.2ms | Allocations: 52484)
+Completed 200 OK in 77ms (Views: 68.9ms | ActiveRecord: 2.5ms | Allocations: 56980)
+
+
+Started GET "/admin?username=cano&time_type=---&start_date=2022-11-27&end_date=2022-12-02&commit=Search" for 127.0.0.1 at 2022-12-02 10:10:28 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"cano", "time_type"=>"---", "start_date"=>"2022-11-27", "end_date"=>"2022-12-02", "commit"=>"Search"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (1.0ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%cano%')) AND "time_records"."start_date" BETWEEN $1 AND $2 LIMIT $3 OFFSET $4[0m  [["start_date", "2022-11-27 03:00:00"], ["start_date", "2022-12-03 02:59:59.999999"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 16.2ms | Allocations: 9584)
+  Rendered layout layouts/application.html.haml (Duration: 16.5ms | Allocations: 9758)
+Completed 200 OK in 21ms (Views: 14.9ms | ActiveRecord: 2.3ms | Allocations: 11533)
+
+
+Started GET "/admin?username=&time_type=issue&start_date=2022-11-30&end_date=2022-12-02&commit=Search" for 127.0.0.1 at 2022-12-02 10:10:53 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"issue", "start_date"=>"2022-11-30", "end_date"=>"2022-12-02", "commit"=>"Search"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."time_type" BETWEEN $1 AND $2 AND "time_records"."start_date" = $3 LIMIT $4 OFFSET $5[0m  [["time_type", "2022-11-30 03:00:00"], ["time_type", "2022-12-03 02:59:59.999999"], ["start_date", nil], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  Rendered admin/index.html.haml within layouts/application (Duration: 8.2ms | Allocations: 6634)
+  Rendered layout layouts/application.html.haml (Duration: 8.5ms | Allocations: 6806)
+Completed 200 OK in 13ms (Views: 8.3ms | ActiveRecord: 1.1ms | Allocations: 8123)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-12-02 10:11:20 +0300
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 17.7ms | Allocations: 9417)
+  Rendered layout layouts/application.html.haml (Duration: 18.3ms | Allocations: 9590)
+Completed 200 OK in 22ms (Views: 17.6ms | ActiveRecord: 1.6ms | Allocations: 10788)
+
+
+Started GET "/admin?username=&time_type=bug&start_date=2022-11-27&end_date=2022-11-28&commit=Search" for 127.0.0.1 at 2022-12-02 10:11:54 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"bug", "start_date"=>"2022-11-27", "end_date"=>"2022-11-28", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."time_type" BETWEEN $1 AND $2 AND "time_records"."start_date" = $3 LIMIT $4 OFFSET $5[0m  [["time_type", "2022-11-27 03:00:00"], ["time_type", "2022-11-29 02:59:59.999999"], ["start_date", nil], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  Rendered admin/index.html.haml within layouts/application (Duration: 6.7ms | Allocations: 6590)
+  Rendered layout layouts/application.html.haml (Duration: 7.2ms | Allocations: 6762)
+Completed 200 OK in 11ms (Views: 7.3ms | ActiveRecord: 0.9ms | Allocations: 8062)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-12-02 10:12:09 +0300
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 17.1ms | Allocations: 9412)
+  Rendered layout layouts/application.html.haml (Duration: 17.8ms | Allocations: 9584)
+Completed 200 OK in 21ms (Views: 17.2ms | ActiveRecord: 1.4ms | Allocations: 10749)
+
+
+Started GET "/admin?username=&time_type=bug&start_date=2022-11-26&end_date=2022-11-28&commit=Search" for 127.0.0.1 at 2022-12-02 10:12:23 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"bug", "start_date"=>"2022-11-26", "end_date"=>"2022-11-28", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."time_type" BETWEEN $1 AND $2 AND "time_records"."start_date" = $3 LIMIT $4 OFFSET $5[0m  [["time_type", "2022-11-26 03:00:00"], ["time_type", "2022-11-29 02:59:59.999999"], ["start_date", nil], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  Rendered admin/index.html.haml within layouts/application (Duration: 7.7ms | Allocations: 6593)
+  Rendered layout layouts/application.html.haml (Duration: 8.0ms | Allocations: 6766)
+Completed 200 OK in 12ms (Views: 7.9ms | ActiveRecord: 1.1ms | Allocations: 8079)
+
+
+Started GET "/admin?username=&time_type=bug&start_date=2022-11-26&end_date=2022-11-28&commit=Search" for 127.0.0.1 at 2022-12-02 10:13:23 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"bug", "start_date"=>"2022-11-26", "end_date"=>"2022-11-28", "commit"=>"Search"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."start_date" = $1 AND "time_records"."time_type" BETWEEN $2 AND $3 LIMIT $4 OFFSET $5[0m  [["start_date", nil], ["time_type", "2022-11-26 03:00:00"], ["time_type", "2022-11-29 02:59:59.999999"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  Rendered admin/index.html.haml within layouts/application (Duration: 5.9ms | Allocations: 7397)
+  Rendered layout layouts/application.html.haml (Duration: 6.5ms | Allocations: 7591)
+Completed 200 OK in 25ms (Views: 7.0ms | ActiveRecord: 4.0ms | Allocations: 18218)
+
+
+Started GET "/admin?username=&time_type=bug&start_date=2022-11-26&end_date=2022-11-28&commit=Search" for 127.0.0.1 at 2022-12-02 10:13:24 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"bug", "start_date"=>"2022-11-26", "end_date"=>"2022-11-28", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."start_date" = $1 AND "time_records"."time_type" BETWEEN $2 AND $3 LIMIT $4 OFFSET $5[0m  [["start_date", nil], ["time_type", "2022-11-26 03:00:00"], ["time_type", "2022-11-29 02:59:59.999999"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  Rendered admin/index.html.haml within layouts/application (Duration: 6.9ms | Allocations: 6590)
+  Rendered layout layouts/application.html.haml (Duration: 7.2ms | Allocations: 6762)
+Completed 200 OK in 11ms (Views: 6.9ms | ActiveRecord: 0.9ms | Allocations: 8203)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-12-02 10:13:43 +0300
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 21.2ms | Allocations: 12531)
+  Rendered layout layouts/application.html.haml (Duration: 21.6ms | Allocations: 12703)
+Completed 200 OK in 25ms (Views: 18.7ms | ActiveRecord: 3.6ms | Allocations: 13911)
+
+
+Started GET "/admin?username=&time_type=done&start_date=2022-11-27&end_date=2022-11-28&commit=Search" for 127.0.0.1 at 2022-12-02 10:14:05 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"done", "start_date"=>"2022-11-27", "end_date"=>"2022-11-28", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."start_date" = $1 AND "time_records"."time_type" BETWEEN $2 AND $3 LIMIT $4 OFFSET $5[0m  [["start_date", nil], ["time_type", "2022-11-27 03:00:00"], ["time_type", "2022-11-29 02:59:59.999999"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  Rendered admin/index.html.haml within layouts/application (Duration: 7.5ms | Allocations: 6590)
+  Rendered layout layouts/application.html.haml (Duration: 8.2ms | Allocations: 6762)
+Completed 200 OK in 12ms (Views: 8.3ms | ActiveRecord: 0.9ms | Allocations: 8064)
+
+
+Started GET "/admin?username=&time_type=done&start_date=2022-11-27&end_date=2022-11-28&commit=Search" for 127.0.0.1 at 2022-12-02 10:16:02 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"done", "start_date"=>"2022-11-27", "end_date"=>"2022-11-28", "commit"=>"Search"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 3.2ms | Allocations: 10563)
+
+
+  
+NoMethodError (undefined method `beginning_of_day' for "done":String):
+  
+app/models/time_record.rb:11:in `block in <class:TimeRecord>'
+app/controllers/admin_controller.rb:61:in `index'
+Started GET "/admin?username=&time_type=done&start_date=2022-11-27&end_date=2022-11-28&commit=Search" for 127.0.0.1 at 2022-12-02 10:17:14 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"done", "start_date"=>"2022-11-27", "end_date"=>"2022-11-28", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."start_date" BETWEEN $1 AND $2 AND "time_records"."time_type" = $3 LIMIT $4 OFFSET $5[0m  [["start_date", "2022-11-27 03:00:00"], ["start_date", "2022-11-29 02:59:59.999999"], ["time_type", "done"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 16.8ms | Allocations: 11335)
+  Rendered layout layouts/application.html.haml (Duration: 17.1ms | Allocations: 11529)
+Completed 200 OK in 41ms (Views: 15.5ms | ActiveRecord: 6.0ms | Allocations: 21940)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-12-02 10:17:18 +0300
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 14.6ms | Allocations: 9414)
+  Rendered layout layouts/application.html.haml (Duration: 15.0ms | Allocations: 9586)
+Completed 200 OK in 19ms (Views: 14.5ms | ActiveRecord: 1.4ms | Allocations: 10871)
+
+
+Started GET "/admin?username=cano&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-02 10:18:03 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"cano", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.8ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%cano%')) AND "time_records"."time_type" = $1 LIMIT $2 OFFSET $3[0m  [["time_type", "bug"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 29.3ms | Allocations: 7329)
+  Rendered layout layouts/application.html.haml (Duration: 34.7ms | Allocations: 7501)
+Completed 200 OK in 38ms (Views: 33.9ms | ActiveRecord: 1.7ms | Allocations: 8904)
+
+
+Started GET "/admin?username=&time_type=---&group_by=weekly&commit=Search" for 127.0.0.1 at 2022-12-02 10:18:15 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"---", "group_by"=>"weekly", "commit"=>"Search"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE (created_at BETWEEN '2022-11-28 00:00:00' AND '2022-12-04 23:59:59.999999') ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 42.4ms | Allocations: 9417)
+  Rendered layout layouts/application.html.haml (Duration: 43.6ms | Allocations: 9589)
+Completed 200 OK in 51ms (Views: 43.1ms | ActiveRecord: 1.4ms | Allocations: 11054)
+
+
+Started GET "/admin?username=&time_type=---&group_by=monthly&commit=Search" for 127.0.0.1 at 2022-12-02 10:18:20 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"---", "group_by"=>"monthly", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.5ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE (created_at BETWEEN '2022-12-01 00:00:00' AND '2022-12-31 23:59:59.999999') ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 14.4ms | Allocations: 8716)
+  Rendered layout layouts/application.html.haml (Duration: 15.0ms | Allocations: 8888)
+Completed 200 OK in 18ms (Views: 14.4ms | ActiveRecord: 1.3ms | Allocations: 10280)
+
+
+Started GET "/admin?username=&time_type=---&group_by=monthly&commit=Search" for 127.0.0.1 at 2022-12-02 10:19:06 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"---", "group_by"=>"monthly", "commit"=>"Search"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.8ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE (start_date BETWEEN '2022-12-01 00:00:00' AND '2022-12-31 23:59:59.999999') ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 16.8ms | Allocations: 11286)
+  Rendered layout layouts/application.html.haml (Duration: 17.3ms | Allocations: 11480)
+Completed 200 OK in 36ms (Views: 15.3ms | ActiveRecord: 7.7ms | Allocations: 21914)
+
+
+Started GET "/admin?username=&time_type=---&group_by=monthly&commit=Search" for 127.0.0.1 at 2022-12-02 10:19:07 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"---", "group_by"=>"monthly", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.6ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE (start_date BETWEEN '2022-12-01 00:00:00' AND '2022-12-31 23:59:59.999999') ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 11.5ms | Allocations: 7316)
+  Rendered layout layouts/application.html.haml (Duration: 12.3ms | Allocations: 7488)
+Completed 200 OK in 16ms (Views: 11.6ms | ActiveRecord: 1.5ms | Allocations: 8985)
+
+
+Started GET "/admin?username=&time_type=---&group_by=weekly&commit=Search" for 127.0.0.1 at 2022-12-02 10:19:12 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"---", "group_by"=>"weekly", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE (start_date BETWEEN '2022-11-28 00:00:00' AND '2022-12-04 23:59:59.999999') ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 13.6ms | Allocations: 8717)
+  Rendered layout layouts/application.html.haml (Duration: 14.2ms | Allocations: 8889)
+Completed 200 OK in 18ms (Views: 13.6ms | ActiveRecord: 1.4ms | Allocations: 10276)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-12-02 10:19:19 +0300
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 18.4ms | Allocations: 9412)
+  Rendered layout layouts/application.html.haml (Duration: 19.0ms | Allocations: 9584)
+Completed 200 OK in 22ms (Views: 18.2ms | ActiveRecord: 1.7ms | Allocations: 10756)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-12-02 10:33:10 +0300
+Processing by HomeController#new as HTML
+Redirected to http://127.0.0.1:3000/login
+Completed 302 Found in 1ms (Allocations: 674)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-12-02 10:33:10 +0300
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.haml
+  Rendering sessions/new.html.haml within layouts/application
+  Rendered sessions/new.html.haml within layouts/application (Duration: 14.1ms | Allocations: 13923)
+  Rendered layout layouts/application.html.haml (Duration: 20.8ms | Allocations: 18980)
+Completed 200 OK in 24ms (Views: 23.2ms | Allocations: 20694)
+
+
+Started POST "/login" for 127.0.0.1 at 2022-12-02 10:33:15 +0300
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"can@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Login"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "can@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:6:in `create'
+Redirected to http://127.0.0.1:3000/home
+Completed 302 Found in 224ms (ActiveRecord: 3.6ms | Allocations: 4436)
+
+
+Started GET "/home" for 127.0.0.1 at 2022-12-02 10:33:15 +0300
+Processing by HomeController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/home_controller.rb:28:in `new'
+  Rendering layout layouts/application.html.haml
+  Rendering home/new.html.haml within layouts/application
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/home/new.html.haml:38
+  Rendered home/new.html.haml within layouts/application (Duration: 22.3ms | Allocations: 26153)
+  Rendered layout layouts/application.html.haml (Duration: 23.0ms | Allocations: 26352)
+Completed 200 OK in 29ms (Views: 24.2ms | ActiveRecord: 0.6ms | Allocations: 29343)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-12-02 10:38:46 +0300
+  
+SyntaxError (/home/vitae/Desktop/Sprojects/RubyTimeManagement/app/controllers/admin_controller.rb:112: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/admin_controller.rb:112: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/admin_controller.rb:112: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/admin_controller.rb:112: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/admin" for 127.0.0.1 at 2022-12-02 10:38:55 +0300
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 34.2ms | Allocations: 33582)
+  Rendered layout layouts/application.html.haml (Duration: 41.0ms | Allocations: 38506)
+Completed 200 OK in 65ms (Views: 39.1ms | ActiveRecord: 7.9ms | Allocations: 49220)
+
+
+Started GET "/admin?username=cano&time_type=bug&start_date=2022-11-27&end_date=2022-11-28&commit=Search" for 127.0.0.1 at 2022-12-02 10:39:28 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"cano", "time_type"=>"bug", "start_date"=>"2022-11-27", "end_date"=>"2022-11-28", "commit"=>"Search"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.3ms | Allocations: 4001)
+
+
+  
+NameError (undefined local variable or method `param' for #<AdminController:0x00000000029ce8>
+Did you mean?  params
+               params=
+               @_params):
+  
+app/controllers/admin_controller.rb:108:in `give_me_filter_params'
+app/controllers/admin_controller.rb:7:in `index'
+Started GET "/admin?username=cano&time_type=bug&start_date=2022-11-27&end_date=2022-11-28&commit=Search" for 127.0.0.1 at 2022-12-02 10:39:43 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"cano", "time_type"=>"bug", "start_date"=>"2022-11-27", "end_date"=>"2022-11-28", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (1.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."start_date" BETWEEN $1 AND $2 AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%cano%')) AND "time_records"."time_type" = $3 LIMIT $4 OFFSET $5[0m  [["start_date", "2022-11-27 03:00:00"], ["start_date", "2022-11-29 02:59:59.999999"], ["time_type", "bug"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 23.0ms | Allocations: 11359)
+  Rendered layout layouts/application.html.haml (Duration: 23.6ms | Allocations: 11553)
+Completed 200 OK in 40ms (Views: 22.1ms | ActiveRecord: 6.4ms | Allocations: 22124)
+
+
+Started GET "/admin?username=cano&time_type=bug&start_date=2022-11-27&end_date=2022-11-28&commit=Search" for 127.0.0.1 at 2022-12-02 10:39:45 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"cano", "time_type"=>"bug", "start_date"=>"2022-11-27", "end_date"=>"2022-11-28", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.7ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."start_date" BETWEEN $1 AND $2 AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%cano%')) AND "time_records"."time_type" = $3 LIMIT $4 OFFSET $5[0m  [["start_date", "2022-11-27 03:00:00"], ["start_date", "2022-11-29 02:59:59.999999"], ["time_type", "bug"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 10.8ms | Allocations: 7361)
+  Rendered layout layouts/application.html.haml (Duration: 11.1ms | Allocations: 7533)
+Completed 200 OK in 15ms (Views: 10.1ms | ActiveRecord: 1.7ms | Allocations: 9106)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-12-02 10:39:48 +0300
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.6ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 17.2ms | Allocations: 9414)
+  Rendered layout layouts/application.html.haml (Duration: 17.5ms | Allocations: 9586)
+Completed 200 OK in 20ms (Views: 16.6ms | ActiveRecord: 1.4ms | Allocations: 10786)
+
+
+Started GET "/admin?username=cano&time_type=---&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-02 10:39:54 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"cano", "time_type"=>"---", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.8ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%cano%')) ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 14.6ms | Allocations: 9420)
+  Rendered layout layouts/application.html.haml (Duration: 14.9ms | Allocations: 9592)
+Completed 200 OK in 19ms (Views: 13.9ms | ActiveRecord: 1.7ms | Allocations: 10973)
+
+
+Started GET "/admin?username=cano&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-02 10:39:59 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"cano", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.8ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%cano%')) AND "time_records"."time_type" = $1 LIMIT $2 OFFSET $3[0m  [["time_type", "bug"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 12.7ms | Allocations: 7327)
+  Rendered layout layouts/application.html.haml (Duration: 13.2ms | Allocations: 7499)
+Completed 200 OK in 17ms (Views: 12.3ms | ActiveRecord: 1.7ms | Allocations: 8892)
+
+
+Started GET "/admin?username=&time_type=---&group_by=monthly&commit=Search" for 127.0.0.1 at 2022-12-02 10:40:03 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"---", "group_by"=>"monthly", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.6ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE (start_date BETWEEN '2022-12-01 00:00:00' AND '2022-12-31 23:59:59.999999') ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 10.7ms | Allocations: 7316)
+  Rendered layout layouts/application.html.haml (Duration: 11.2ms | Allocations: 7488)
+Completed 200 OK in 15ms (Views: 10.4ms | ActiveRecord: 1.5ms | Allocations: 8885)
+
+
+Started GET "/admin?username=&time_type=---&group_by=weekly&commit=Search" for 127.0.0.1 at 2022-12-02 10:40:07 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"---", "group_by"=>"weekly", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.5ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE (start_date BETWEEN '2022-11-28 00:00:00' AND '2022-12-04 23:59:59.999999') ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 13.0ms | Allocations: 8716)
+  Rendered layout layouts/application.html.haml (Duration: 13.3ms | Allocations: 8888)
+Completed 200 OK in 17ms (Views: 12.8ms | ActiveRecord: 1.3ms | Allocations: 10280)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-12-02 10:42:10 +0300
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 21.2ms | Allocations: 13405)
+  Rendered layout layouts/application.html.haml (Duration: 22.1ms | Allocations: 13599)
+Completed 200 OK in 42ms (Views: 21.9ms | ActiveRecord: 6.1ms | Allocations: 23818)
+
+
+Started GET "/admin?username=&time_type=---&start_date=2022-11-27&end_date=2022-11-29&commit=Search" for 127.0.0.1 at 2022-12-02 10:42:17 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"---", "start_date"=>"2022-11-27", "end_date"=>"2022-11-29", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."start_date" BETWEEN $1 AND $2 LIMIT $3 OFFSET $4[0m  [["start_date", "2022-11-27 03:00:00"], ["start_date", "2022-11-30 02:59:59.999999"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 15.3ms | Allocations: 8756)
+  Rendered layout layouts/application.html.haml (Duration: 15.7ms | Allocations: 8928)
+Completed 200 OK in 19ms (Views: 14.8ms | ActiveRecord: 1.5ms | Allocations: 10319)
+
+
+Started GET "/admin?username=&time_type=---&start_date=2022-11-27&end_date=2022-11-29&commit=Search" for 127.0.0.1 at 2022-12-02 10:43:10 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"---", "start_date"=>"2022-11-27", "end_date"=>"2022-11-29", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."start_date" BETWEEN $1 AND $2 LIMIT $3 OFFSET $4[0m  [["start_date", "2022-11-27 03:00:00"], ["start_date", "2022-11-30 02:59:59.999999"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 12.7ms | Allocations: 8744)
+  Rendered layout layouts/application.html.haml (Duration: 13.2ms | Allocations: 8916)
+Completed 200 OK in 17ms (Views: 12.8ms | ActiveRecord: 1.3ms | Allocations: 10189)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-12-02 10:43:13 +0300
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 15.8ms | Allocations: 9412)
+  Rendered layout layouts/application.html.haml (Duration: 16.7ms | Allocations: 9584)
+Completed 200 OK in 21ms (Views: 16.3ms | ActiveRecord: 1.4ms | Allocations: 10746)
+
+
+Started GET "/admin?username=&time_type=---&start_date=2022-12-01&end_date=2022-12-02&commit=Search" for 127.0.0.1 at 2022-12-02 10:43:19 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"---", "start_date"=>"2022-12-01", "end_date"=>"2022-12-02", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."start_date" BETWEEN $1 AND $2 LIMIT $3 OFFSET $4[0m  [["start_date", "2022-12-01 03:00:00"], ["start_date", "2022-12-03 02:59:59.999999"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 10.6ms | Allocations: 7344)
+  Rendered layout layouts/application.html.haml (Duration: 11.0ms | Allocations: 7516)
+Completed 200 OK in 15ms (Views: 10.5ms | ActiveRecord: 1.2ms | Allocations: 8798)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-12-02 10:43:22 +0300
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 14.7ms | Allocations: 9412)
+  Rendered layout layouts/application.html.haml (Duration: 15.3ms | Allocations: 9584)
+Completed 200 OK in 18ms (Views: 14.6ms | ActiveRecord: 1.4ms | Allocations: 10740)
+
+
+Started GET "/admin?username=cano&time_type=---&group_by=monthly&commit=Search" for 127.0.0.1 at 2022-12-02 10:47:48 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"cano", "time_type"=>"---", "group_by"=>"monthly", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.7ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE (start_date BETWEEN '2022-12-01 00:00:00' AND '2022-12-31 23:59:59.999999') AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%cano%')) LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 15.7ms | Allocations: 11322)
+  Rendered layout layouts/application.html.haml (Duration: 16.0ms | Allocations: 11516)
+Completed 200 OK in 33ms (Views: 13.7ms | ActiveRecord: 8.2ms | Allocations: 22059)
+
+
+Started GET "/admin?username=&time_type=---&start_date=2022-11-27&end_date=2022-11-30&commit=Search" for 127.0.0.1 at 2022-12-02 10:47:56 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"---", "start_date"=>"2022-11-27", "end_date"=>"2022-11-30", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."start_date" BETWEEN $1 AND $2 LIMIT $3 OFFSET $4[0m  [["start_date", "2022-11-27 03:00:00"], ["start_date", "2022-12-01 02:59:59.999999"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 14.9ms | Allocations: 8751)
+  Rendered layout layouts/application.html.haml (Duration: 15.8ms | Allocations: 8923)
+Completed 200 OK in 19ms (Views: 15.2ms | ActiveRecord: 1.2ms | Allocations: 10305)
+
+
+Started GET "/admin?username=cano&time_type=---&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-02 10:48:16 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"cano", "time_type"=>"---", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.5ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%cano%')) ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 14.5ms | Allocations: 9424)
+  Rendered layout layouts/application.html.haml (Duration: 15.3ms | Allocations: 9596)
+Completed 200 OK in 19ms (Views: 14.8ms | ActiveRecord: 1.3ms | Allocations: 11052)
+
+
+Started GET "/admin?username=&time_type=feature&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-02 10:48:22 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"feature", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."time_type" = $1 ORDER BY "time_records"."start_date" DESC LIMIT $2 OFFSET $3[0m  [["time_type", "feature"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 9.7ms | Allocations: 7331)
+  Rendered layout layouts/application.html.haml (Duration: 10.2ms | Allocations: 7503)
+Completed 200 OK in 14ms (Views: 9.9ms | ActiveRecord: 1.2ms | Allocations: 8734)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-12-02 10:48:26 +0300
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 14.6ms | Allocations: 9412)
+  Rendered layout layouts/application.html.haml (Duration: 15.1ms | Allocations: 9584)
+Completed 200 OK in 18ms (Views: 14.7ms | ActiveRecord: 1.2ms | Allocations: 10746)
+
+
+Started GET "/admin?username=&time_type=---&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-02 10:50:31 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"---", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 13.7ms | Allocations: 9412)
+  Rendered layout layouts/application.html.haml (Duration: 14.2ms | Allocations: 9584)
+Completed 200 OK in 17ms (Views: 13.8ms | ActiveRecord: 1.2ms | Allocations: 10782)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-12-02 10:50:37 +0300
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 14.5ms | Allocations: 9412)
+  Rendered layout layouts/application.html.haml (Duration: 14.8ms | Allocations: 9584)
+Completed 200 OK in 18ms (Views: 14.1ms | ActiveRecord: 1.5ms | Allocations: 10730)
+
+
+Started GET "/admin?username=&time_type=feature&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-02 10:50:40 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"feature", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."time_type" = $1 ORDER BY "time_records"."start_date" DESC LIMIT $2 OFFSET $3[0m  [["time_type", "feature"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 9.4ms | Allocations: 7324)
+  Rendered layout layouts/application.html.haml (Duration: 9.8ms | Allocations: 7496)
+Completed 200 OK in 14ms (Views: 9.5ms | ActiveRecord: 1.2ms | Allocations: 8719)
+
+
+Started GET "/admin?username=cano&time_type=bug&group_by=monthly&commit=Search" for 127.0.0.1 at 2022-12-02 10:50:48 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"cano", "time_type"=>"bug", "group_by"=>"monthly", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.6ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE (start_date BETWEEN '2022-12-01 00:00:00' AND '2022-12-31 23:59:59.999999') AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%cano%')) AND "time_records"."time_type" = $1 LIMIT $2 OFFSET $3[0m  [["time_type", "bug"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  Rendered admin/index.html.haml within layouts/application (Duration: 6.4ms | Allocations: 6550)
+  Rendered layout layouts/application.html.haml (Duration: 7.1ms | Allocations: 6722)
+Completed 200 OK in 11ms (Views: 7.2ms | ActiveRecord: 1.1ms | Allocations: 8308)
+
+
+Started GET "/admin?username=&time_type=---&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-02 10:51:08 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"", "time_type"=>"---", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 20.1ms | Allocations: 9412)
+  Rendered layout layouts/application.html.haml (Duration: 20.5ms | Allocations: 9584)
+Completed 200 OK in 24ms (Views: 20.0ms | ActiveRecord: 1.3ms | Allocations: 10788)
+
+
+Started GET "/admin?username=cano&time_type=bug&group_by=weekly&commit=Search" for 127.0.0.1 at 2022-12-02 10:51:15 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"cano", "time_type"=>"bug", "group_by"=>"weekly", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.8ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE (start_date BETWEEN '2022-11-28 00:00:00' AND '2022-12-04 23:59:59.999999') AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%cano%')) AND "time_records"."time_type" = $1 LIMIT $2 OFFSET $3[0m  [["time_type", "bug"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  Rendered admin/index.html.haml within layouts/application (Duration: 7.7ms | Allocations: 6551)
+  Rendered layout layouts/application.html.haml (Duration: 8.0ms | Allocations: 6723)
+Completed 200 OK in 13ms (Views: 7.3ms | ActiveRecord: 1.5ms | Allocations: 8299)
+
+
+Started GET "/admin?username=cano&time_type=---&group_by=weekly&commit=Search" for 127.0.0.1 at 2022-12-02 10:52:21 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"cano", "time_type"=>"---", "group_by"=>"weekly", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.6ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE (start_date BETWEEN '2022-11-28 00:00:00' AND '2022-12-04 23:59:59.999999') AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%cano%')) LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 17.5ms | Allocations: 12730)
+  Rendered layout layouts/application.html.haml (Duration: 18.0ms | Allocations: 12924)
+Completed 200 OK in 35ms (Views: 15.8ms | ActiveRecord: 7.5ms | Allocations: 23545)
+
+
+Started GET "/admin?username=cano&time_type=feature&group_by=weekly&commit=Search" for 127.0.0.1 at 2022-12-02 10:52:35 +0300
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"cano", "time_type"=>"feature", "group_by"=>"weekly", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.5ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE (start_date BETWEEN '2022-11-28 00:00:00' AND '2022-12-04 23:59:59.999999') AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%cano%')) AND "time_records"."time_type" = $1 LIMIT $2 OFFSET $3[0m  [["time_type", "feature"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 7.8ms | Allocations: 7335)
+  Rendered layout layouts/application.html.haml (Duration: 8.3ms | Allocations: 7507)
+Completed 200 OK in 12ms (Views: 7.7ms | ActiveRecord: 1.2ms | Allocations: 9180)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-12-02 10:52:39 +0300
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 2)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 12.1ms | Allocations: 9413)
+  Rendered layout layouts/application.html.haml (Duration: 12.5ms | Allocations: 9585)
+Completed 200 OK in 16ms (Views: 12.0ms | ActiveRecord: 1.2ms | Allocations: 10772)
+
+
