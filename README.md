@@ -25,8 +25,8 @@ This is my first ruby on rails project. I learned a lot about the framework, whi
     DB_HOST=172.17.0.2
     DB_PORT=5432
     ```
-    - The last step before ```rails s``` is migrating our tables, please run this command ```rails db:migrate```
+    - The last step before ```rails s``` is migrating our tables, please run these commands ```rails db:migrate``` && ```rails db:seed```
     
 
-### Example video shows demo about the application.
-[![Watch the video](https://i.ibb.co/x6Wvf1j/denemee.png)](https://streamable.com/e/ud3udl)
+### Example demo video of project.
+[![Watch the video](https://i.ibb.co/x6Wvf1j/denemee.png)](https://vimeo.com/777277277)
