@@ -35,7 +35,7 @@
   %div.container
     %h4= "Your Time Records" 
 
-    - if @user_time_records.length >= 1
+    - if @user_time_records.size >= 1
       %table.table#table-id
         %tbody
           %tr
@@ -62,19 +62,5 @@
     = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
 
 
-%script{:src =>"https://unpkg.com/xlsx@0.18.1/dist/xlsx.full.min.js"}
 :javascript
   console.log('This is inline <script>');
-
-
-  function ExportSkillsToExcel(type, fn, dl){
-   var elt = document.getElementById('table-id');
-   var wb = XLSX.utils.table_to_book(elt, { sheet: "skills" });
-   return dl ?
-     XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
-     XLSX.writeFile(wb, fn || ('Skills.' + (type || 'xlsx')));
-  }
-  
-
-  //$('#datepicker').datetimepicker();
-    

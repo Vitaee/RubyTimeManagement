@@ -22,70 +22,58 @@ class AdminController < ApplicationController
                 end
             end
 
-
             if  param['username'] && param['time_type'] && param['start_date'] && param['end_date']
                  
-                @all_users = TimeRecord.by_user_type_dates(param['start_date'].beginning_of_day..param['end_date'].end_of_day, 
-                @user, param['time_type'])
-                .paginate(:page => params[:page], :per_page => 5)
+                @pagy, @all_users = pagy( TimeRecord.by_user_type_dates(param['start_date'].beginning_of_day..param['end_date'].end_of_day, 
+                @user, param['time_type']))
 
-            elsif param['username'] && param['time_type'] && param['group_by'] && @all_user.blank?
+            elsif param['username'] && param['time_type'] && param['group_by'] && @all_users.blank?
 
-                @all_users = TimeRecord.where(q).by_user_type(@user, param['time_type'])
-                .paginate(:page => params[:page], :per_page => 5)
+                @pagy, @all_users = pagy( TimeRecord.where(q).by_user_type(@user, param['time_type']) )
 
             elsif param['time_type'] && param['group_by'] && @all_users.blank?
 
-                @all_users = TimeRecord.where(q).where(time_type:param['time_type'])
-                .paginate(:page => params[:page], :per_page => 5)
+                @pagy, @all_users = pagy(TimeRecord.where(q).where(time_type:param['time_type']) )
  
             elsif param['username'] && param['group_by'] && @all_users.blank?
 
-                @all_users = TimeRecord.where(q).where(user_id:@user)
-                .paginate(:page => params[:page], :per_page => 5)  
+                @pagy, @all_users = pagy( TimeRecord.where(q).where(user_id:@user) )
 
             elsif param['username'] && param['start_date'] && param['end_date'] && @all_users.blank? 
                 
-                @all_users = TimeRecord.by_user_dates(@user, 
-                param['start_date'].beginning_of_day..param['end_date'].end_of_day)
-                .paginate(:page => params[:page], :per_page => 5)
+                @pagy, @all_users = pagy(TimeRecord.by_user_dates(@user, 
+                param['start_date'].beginning_of_day..param['end_date'].end_of_day))
             
             elsif param['time_type'] && param['start_date'] && param['end_date'] && @all_users.blank? 
                 
-                @all_users = TimeRecord.where(start_date: param['start_date'].beginning_of_day..param['end_date'].end_of_day, 
-                time_type: param['time_type'])
-                .paginate(:page => params[:page], :per_page => 5)
+                @pagy, @all_users = pagy( TimeRecord.where(start_date: param['start_date'].beginning_of_day..param['end_date'].end_of_day, 
+                time_type: param['time_type']) )
 
             elsif param['start_date'] && param['end_date'] && @all_users.blank?
 
-                @all_users = TimeRecord.where(start_date: param['start_date'].beginning_of_day..param['end_date'].end_of_day)
-                .paginate(:page => params[:page], :per_page => 5)
+                @pagy, @all_users = pagy( TimeRecord.where(start_date: param['start_date'].beginning_of_day..param['end_date'].end_of_day) )
 
             elsif param['time_type'] && param['username'] && @all_users.blank?
-                @all_users = TimeRecord.by_user_type(@user, param['time_type'])
-                .paginate(:page => params[:page], :per_page => 5) 
+                @pagy, @all_users = pagy( TimeRecord.by_user_type(@user, param['time_type']) )
                 
 
             elsif param['time_type'] && @all_user.blank?
-                @all_users = TimeRecord.where(time_type: params[:time_type] ).order(start_date: :desc)
-                .paginate(:page => params[:page], :per_page => 5)  
+                @pagy, @all_users = pagy( TimeRecord.where(time_type: params[:time_type] ).order(start_date: :desc) )
             
             elsif param['username'] &&  @all_users.blank?
                 
-                @all_users = TimeRecord.where(user_id: @user ).order(start_date: :desc)
-                .paginate(:page => params[:page], :per_page => 5) 
+                @pagy, @all_users = pagy( TimeRecord.where(user_id: @user ).order(start_date: :desc) )
 
             elsif param['group_by'] && @all_users.blank?
 
-                @all_users = TimeRecord.where(q).order(start_date: :desc)
-                .paginate(:page => params[:page], :per_page => 5)
+                @pagy, @all_users = pagy( TimeRecord.where(q).order(start_date: :desc) )
 
             else
-                @all_users = TimeRecord.all.order(start_date: :desc).paginate(:page => params[:page], :per_page => 5)
+                @pagy, @all_users = pagy( TimeRecord.all.order(start_date: :desc) )
             end
         else
-            if @all_user.blank?
-                @all_users = TimeRecord.all.order(start_date: :desc).paginate(:page => params[:page], :per_page => 5)
+            if @all_users.blank?
+                @pagy, @all_users = pagy(TimeRecord.all.order(start_date: :desc))
             end
     
         end

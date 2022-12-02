@@ -49,9 +49,9 @@
         %td= link_to "Details", {:controller => "home", :action => "show", :id => item.id}, {:target => "_blank"}
 
  
-  %nav{"aria-label" => "Page navigation example"} 
-    %ul.pagination
-      #{ will_paginate @all_users, list_classes: %w(pagination justify-content-end) }
+
+   
+  != pagy_bootstrap_nav(@pagy) 
 
   = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
 
