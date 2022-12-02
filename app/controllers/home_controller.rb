@@ -25,7 +25,7 @@ class HomeController < ApplicationController
             end
                 
             @timerecord = TimeRecord.new
-            @user_time_records = current_user.time_records
+            @pagy, @user_time_records = pagy( current_user.time_records )
         rescue
             redirect_to "/login"
         end

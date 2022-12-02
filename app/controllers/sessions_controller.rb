@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
                     redirect_to "/home", notice: "Signed in."
                 end
             else
-                flash.now[:alert] = "Incorrect email or password."
+                flash.now[:error] = "Incorrect email or password."
                 render :new, status: :unprocessable_entity
             end
         rescue

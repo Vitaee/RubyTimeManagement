@@ -54,6 +54,7 @@
               %td= object.comment
               %td= object.time_type
               %td= button_to "Delete", {:controller => :home, :action => "destroy", :id => object.id}, :method => :delete,  class: 'btn btn-danger' 
+      != pagy_bootstrap_nav(@pagy) 
     - else
       %p="You do not have any time record."
     
