@@ -57156,3 +57156,895 @@ Processing by SessionsController#new as HTML
 Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.0ms | Allocations: 1794)
 
 
+Started GET "/admin" for 127.0.0.1 at 2022-12-07 18:56:53 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/controllers/admin_controller.rb:19:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 72.7ms | Allocations: 60695)
+  Rendered layout layouts/application.html.haml (Duration: 102.8ms | Allocations: 65803)
+Completed 200 OK in 150ms (Views: 102.5ms | ActiveRecord: 8.4ms | Allocations: 100240)
+
+
+Started GET "/admin?username=Hanifi&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-07 18:56:59 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.6ms | Allocations: 1610)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 2)):
+  
+app/models/time_record.rb:8:in `block in <class:TimeRecord>'
+app/models/concerns/filterable.rb:14:in `public_send'
+app/models/concerns/filterable.rb:14:in `filter'
+app/controllers/admin_controller.rb:17:in `index'
+Started GET "/admin?username=Hanifi&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-07 18:57:31 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  Rendered admin/index.html.haml within layouts/application (Duration: 9.8ms | Allocations: 7196)
+  Rendered layout layouts/application.html.haml (Duration: 10.3ms | Allocations: 7278)
+Completed 500 Internal Server Error in 33ms (ActiveRecord: 7.1ms | Allocations: 17765)
+
+
+  
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    40:       %th{:scope => "col"} Time Type
+    41:       %th{:scope => "col"} Actions
+    42:     %tbody
+    43:       - @all_users.each do |item|
+    44:         %tr
+    45:         %td= item.user.username
+    46:         %td= item.start_date.in_time_zone("Europe/Istanbul").strftime('%Y-%m-%d %H:%M:%S')
+  
+app/views/admin/index.html.haml:43
+Started GET "/admin?username=Hanifi&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-07 18:58:01 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records" WHERE "time_records"."user_id" = $1 AND "time_records"."time_type" = $2[0m  [["user_id", nil], ["time_type", "bug"]]
+  ↳ app/controllers/admin_controller.rb:17:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1 AND "time_records"."time_type" = $2 LIMIT $3 OFFSET $4[0m  [["user_id", nil], ["time_type", "bug"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  Rendered admin/index.html.haml within layouts/application (Duration: 7.2ms | Allocations: 7538)
+  Rendered layout layouts/application.html.haml (Duration: 7.6ms | Allocations: 7735)
+Completed 200 OK in 38ms (Views: 9.2ms | ActiveRecord: 5.0ms | Allocations: 18988)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-12-07 18:58:09 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/controllers/admin_controller.rb:19:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 18.6ms | Allocations: 13718)
+  Rendered layout layouts/application.html.haml (Duration: 19.0ms | Allocations: 13894)
+Completed 200 OK in 35ms (Views: 24.0ms | ActiveRecord: 3.4ms | Allocations: 15750)
+
+
+Started GET "/admin?username=Hanifi&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-07 18:58:28 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records" WHERE "time_records"."user_id" = $1 AND "time_records"."time_type" = $2[0m  [["user_id", nil], ["time_type", "bug"]]
+  ↳ app/controllers/admin_controller.rb:17:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (4.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" = $1 AND "time_records"."time_type" = $2 LIMIT $3 OFFSET $4[0m  [["user_id", nil], ["time_type", "bug"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  Rendered admin/index.html.haml within layouts/application (Duration: 11.6ms | Allocations: 6698)
+  Rendered layout layouts/application.html.haml (Duration: 12.1ms | Allocations: 6874)
+Completed 200 OK in 21ms (Views: 8.5ms | ActiveRecord: 5.7ms | Allocations: 8747)
+
+
+Started GET "/admin?username=Hanifi&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-07 19:01:47 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records" WHERE "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%hanifi%')) AND "time_records"."time_type" = $1[0m  [["time_type", "bug"]]
+  ↳ app/controllers/admin_controller.rb:8:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.5ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%hanifi%')) AND "time_records"."time_type" = $1 LIMIT $2 OFFSET $3[0m  [["time_type", "bug"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 12.7ms | Allocations: 11540)
+  Rendered layout layouts/application.html.haml (Duration: 13.0ms | Allocations: 11737)
+Completed 200 OK in 34ms (Views: 13.2ms | ActiveRecord: 6.8ms | Allocations: 22978)
+
+
+Started GET "/admin?username=Hanifi&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-07 19:12:05 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 38ms (ActiveRecord: 4.1ms | Allocations: 18324)
+
+
+  [1m[36mCACHE TimeRecord Load (0.0ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `by_usernametime_typecontrolleraction' for #<ActiveRecord::Relation [#<TimeRecord id: 14, comment: "deneme task", time_type: "bug", start_date: "2022-11-25 18:21:00.000000000 +0000", end_date: "2022-11-25 18:22:06.009758000 +0000", created_at: "2022-11-25 18:22:01.925634000 +0000", updated_at: "2022-11-25 18:22:06.010168000 +0000", user_id: 1>, #<TimeRecord id: 15, comment: "bug fixed", time_type: "issue", start_date: "2022-11-25 20:27:00.000000000 +0000", end_date: "2022-11-25 18:28:00.825598000 +0000", created_at: "2022-11-25 18:27:51.664155000 +0000", updated_at: "2022-11-25 18:28:00.826013000 +0000", user_id: 1>, #<TimeRecord id: 17, comment: "deneme task", time_type: "feature", start_date: "2022-11-26 09:05:00.000000000 +0000", end_date: "2022-11-26 09:12:44.021100000 +0000", created_at: "2022-11-26 09:11:43.778691000 +0000", updated_at: "2022-11-26 09:12:44.021364000 +0000", user_id: 2>, #<TimeRecord id: 18, comment: "Selam ", time_type: "feature", start_date: "2022-11-26 11:14:00.000000000 +0000", end_date: "2022-11-26 12:14:00.000000000 +0000", created_at: "2022-11-26 12:14:20.141483000 +0000", updated_at: "2022-11-26 12:14:20.141483000 +0000", user_id: 1>, #<TimeRecord id: 20, comment: "taskks done", time_type: "done", start_date: "2022-11-26 11:00:00.000000000 +0000", end_date: "2022-11-26 12:00:00.000000000 +0000", created_at: "2022-11-26 13:00:36.794249000 +0000", updated_at: "2022-11-26 13:00:36.794249000 +0000", user_id: 4>, #<TimeRecord id: 21, comment: "task done", time_type: "done", start_date: "2022-11-26 14:45:00.000000000 +0000", end_date: "2022-11-26 16:35:00.000000000 +0000", created_at: "2022-11-26 16:45:30.513316000 +0000", updated_at: "2022-11-26 16:45:30.513316000 +0000", user_id: 5>, #<TimeRecord id: 22, comment: "task still", time_type: "issue", start_date: "2022-11-26 12:45:00.000000000 +0000", end_date: "2022-11-26 16:46:29.534552000 +0000", created_at: "2022-11-26 16:46:12.445843000 +0000", updated_at: "2022-11-26 16:46:29.535418000 +0000", user_id: 5>, #<TimeRecord id: 23, comment: "deneme taskları", time_type: "bug", start_date: "2022-11-27 08:44:00.000000000 +0000", end_date: "2022-11-27 09:45:00.000000000 +0000", created_at: "2022-11-27 09:45:14.194991000 +0000", updated_at: "2022-11-27 09:45:14.194991000 +0000", user_id: 4>, #<TimeRecord id: 24, comment: "time comment", time_type: "feature", start_date: "2022-11-24 10:15:00.000000000 +0000", end_date: "2022-11-25 11:15:00.000000000 +0000", created_at: "2022-11-27 10:16:09.633267000 +0000", updated_at: "2022-11-27 10:16:09.633267000 +0000", user_id: 5>, #<TimeRecord id: 25, comment: "time management example", time_type: "bug", start_date: "2022-11-22 11:16:00.000000000 +0000", end_date: "2022-11-23 06:16:00.000000000 +0000", created_at: "2022-11-27 10:16:46.322032000 +0000", updated_at: "2022-11-27 10:16:46.322032000 +0000", user_id: 5>, ...]>
+Did you mean?  by_username_time_type):
+  
+app/models/concerns/filterable.rb:24:in `public_send'
+app/models/concerns/filterable.rb:24:in `filter'
+app/controllers/admin_controller.rb:8:in `index'
+Started GET "/admin?username=Hanifi&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-07 19:12:56 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (lower(username) like '%hanifi%') /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  ↳ app/models/concerns/filterable.rb:16:in `write'
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 4.6ms | Allocations: 16644)
+
+
+  [1m[36mCACHE TimeRecord Load (0.0ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `by_usernametime_typecontrolleraction' for #<ActiveRecord::Relation [#<TimeRecord id: 14, comment: "deneme task", time_type: "bug", start_date: "2022-11-25 18:21:00.000000000 +0000", end_date: "2022-11-25 18:22:06.009758000 +0000", created_at: "2022-11-25 18:22:01.925634000 +0000", updated_at: "2022-11-25 18:22:06.010168000 +0000", user_id: 1>, #<TimeRecord id: 15, comment: "bug fixed", time_type: "issue", start_date: "2022-11-25 20:27:00.000000000 +0000", end_date: "2022-11-25 18:28:00.825598000 +0000", created_at: "2022-11-25 18:27:51.664155000 +0000", updated_at: "2022-11-25 18:28:00.826013000 +0000", user_id: 1>, #<TimeRecord id: 17, comment: "deneme task", time_type: "feature", start_date: "2022-11-26 09:05:00.000000000 +0000", end_date: "2022-11-26 09:12:44.021100000 +0000", created_at: "2022-11-26 09:11:43.778691000 +0000", updated_at: "2022-11-26 09:12:44.021364000 +0000", user_id: 2>, #<TimeRecord id: 18, comment: "Selam ", time_type: "feature", start_date: "2022-11-26 11:14:00.000000000 +0000", end_date: "2022-11-26 12:14:00.000000000 +0000", created_at: "2022-11-26 12:14:20.141483000 +0000", updated_at: "2022-11-26 12:14:20.141483000 +0000", user_id: 1>, #<TimeRecord id: 20, comment: "taskks done", time_type: "done", start_date: "2022-11-26 11:00:00.000000000 +0000", end_date: "2022-11-26 12:00:00.000000000 +0000", created_at: "2022-11-26 13:00:36.794249000 +0000", updated_at: "2022-11-26 13:00:36.794249000 +0000", user_id: 4>, #<TimeRecord id: 21, comment: "task done", time_type: "done", start_date: "2022-11-26 14:45:00.000000000 +0000", end_date: "2022-11-26 16:35:00.000000000 +0000", created_at: "2022-11-26 16:45:30.513316000 +0000", updated_at: "2022-11-26 16:45:30.513316000 +0000", user_id: 5>, #<TimeRecord id: 22, comment: "task still", time_type: "issue", start_date: "2022-11-26 12:45:00.000000000 +0000", end_date: "2022-11-26 16:46:29.534552000 +0000", created_at: "2022-11-26 16:46:12.445843000 +0000", updated_at: "2022-11-26 16:46:29.535418000 +0000", user_id: 5>, #<TimeRecord id: 23, comment: "deneme taskları", time_type: "bug", start_date: "2022-11-27 08:44:00.000000000 +0000", end_date: "2022-11-27 09:45:00.000000000 +0000", created_at: "2022-11-27 09:45:14.194991000 +0000", updated_at: "2022-11-27 09:45:14.194991000 +0000", user_id: 4>, #<TimeRecord id: 24, comment: "time comment", time_type: "feature", start_date: "2022-11-24 10:15:00.000000000 +0000", end_date: "2022-11-25 11:15:00.000000000 +0000", created_at: "2022-11-27 10:16:09.633267000 +0000", updated_at: "2022-11-27 10:16:09.633267000 +0000", user_id: 5>, #<TimeRecord id: 25, comment: "time management example", time_type: "bug", start_date: "2022-11-22 11:16:00.000000000 +0000", end_date: "2022-11-23 06:16:00.000000000 +0000", created_at: "2022-11-27 10:16:46.322032000 +0000", updated_at: "2022-11-27 10:16:46.322032000 +0000", user_id: 5>, ...]>
+Did you mean?  by_username_time_type):
+  
+app/models/concerns/filterable.rb:29:in `public_send'
+app/models/concerns/filterable.rb:29:in `filter'
+app/controllers/admin_controller.rb:8:in `index'
+Started GET "/admin?username=Hanifi&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-07 19:14:11 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (lower(username) like '%hanifi%') /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  ↳ app/models/concerns/filterable.rb:16:in `write'
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 37ms (ActiveRecord: 3.0ms | Allocations: 16572)
+
+
+  [1m[36mCACHE TimeRecord Load (0.0ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `by_usernametime_typecontrolleraction' for #<ActiveRecord::Relation [#<TimeRecord id: 14, comment: "deneme task", time_type: "bug", start_date: "2022-11-25 18:21:00.000000000 +0000", end_date: "2022-11-25 18:22:06.009758000 +0000", created_at: "2022-11-25 18:22:01.925634000 +0000", updated_at: "2022-11-25 18:22:06.010168000 +0000", user_id: 1>, #<TimeRecord id: 15, comment: "bug fixed", time_type: "issue", start_date: "2022-11-25 20:27:00.000000000 +0000", end_date: "2022-11-25 18:28:00.825598000 +0000", created_at: "2022-11-25 18:27:51.664155000 +0000", updated_at: "2022-11-25 18:28:00.826013000 +0000", user_id: 1>, #<TimeRecord id: 17, comment: "deneme task", time_type: "feature", start_date: "2022-11-26 09:05:00.000000000 +0000", end_date: "2022-11-26 09:12:44.021100000 +0000", created_at: "2022-11-26 09:11:43.778691000 +0000", updated_at: "2022-11-26 09:12:44.021364000 +0000", user_id: 2>, #<TimeRecord id: 18, comment: "Selam ", time_type: "feature", start_date: "2022-11-26 11:14:00.000000000 +0000", end_date: "2022-11-26 12:14:00.000000000 +0000", created_at: "2022-11-26 12:14:20.141483000 +0000", updated_at: "2022-11-26 12:14:20.141483000 +0000", user_id: 1>, #<TimeRecord id: 20, comment: "taskks done", time_type: "done", start_date: "2022-11-26 11:00:00.000000000 +0000", end_date: "2022-11-26 12:00:00.000000000 +0000", created_at: "2022-11-26 13:00:36.794249000 +0000", updated_at: "2022-11-26 13:00:36.794249000 +0000", user_id: 4>, #<TimeRecord id: 21, comment: "task done", time_type: "done", start_date: "2022-11-26 14:45:00.000000000 +0000", end_date: "2022-11-26 16:35:00.000000000 +0000", created_at: "2022-11-26 16:45:30.513316000 +0000", updated_at: "2022-11-26 16:45:30.513316000 +0000", user_id: 5>, #<TimeRecord id: 22, comment: "task still", time_type: "issue", start_date: "2022-11-26 12:45:00.000000000 +0000", end_date: "2022-11-26 16:46:29.534552000 +0000", created_at: "2022-11-26 16:46:12.445843000 +0000", updated_at: "2022-11-26 16:46:29.535418000 +0000", user_id: 5>, #<TimeRecord id: 23, comment: "deneme taskları", time_type: "bug", start_date: "2022-11-27 08:44:00.000000000 +0000", end_date: "2022-11-27 09:45:00.000000000 +0000", created_at: "2022-11-27 09:45:14.194991000 +0000", updated_at: "2022-11-27 09:45:14.194991000 +0000", user_id: 4>, #<TimeRecord id: 24, comment: "time comment", time_type: "feature", start_date: "2022-11-24 10:15:00.000000000 +0000", end_date: "2022-11-25 11:15:00.000000000 +0000", created_at: "2022-11-27 10:16:09.633267000 +0000", updated_at: "2022-11-27 10:16:09.633267000 +0000", user_id: 5>, #<TimeRecord id: 25, comment: "time management example", time_type: "bug", start_date: "2022-11-22 11:16:00.000000000 +0000", end_date: "2022-11-23 06:16:00.000000000 +0000", created_at: "2022-11-27 10:16:46.322032000 +0000", updated_at: "2022-11-27 10:16:46.322032000 +0000", user_id: 5>, ...]>
+Did you mean?  by_username_time_type):
+  
+app/models/concerns/filterable.rb:29:in `public_send'
+app/models/concerns/filterable.rb:29:in `filter'
+app/controllers/admin_controller.rb:8:in `index'
+Started GET "/admin?username=Hanifi&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-07 19:28:03 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (lower(username) like '%hanifi%') /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  ↳ app/models/concerns/filterable.rb:16:in `write'
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 44ms (ActiveRecord: 5.5ms | Allocations: 18903)
+
+
+  [1m[36mCACHE TimeRecord Load (0.0ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `by__username_time_type_controller_action' for #<ActiveRecord::Relation [#<TimeRecord id: 14, comment: "deneme task", time_type: "bug", start_date: "2022-11-25 18:21:00.000000000 +0000", end_date: "2022-11-25 18:22:06.009758000 +0000", created_at: "2022-11-25 18:22:01.925634000 +0000", updated_at: "2022-11-25 18:22:06.010168000 +0000", user_id: 1>, #<TimeRecord id: 15, comment: "bug fixed", time_type: "issue", start_date: "2022-11-25 20:27:00.000000000 +0000", end_date: "2022-11-25 18:28:00.825598000 +0000", created_at: "2022-11-25 18:27:51.664155000 +0000", updated_at: "2022-11-25 18:28:00.826013000 +0000", user_id: 1>, #<TimeRecord id: 17, comment: "deneme task", time_type: "feature", start_date: "2022-11-26 09:05:00.000000000 +0000", end_date: "2022-11-26 09:12:44.021100000 +0000", created_at: "2022-11-26 09:11:43.778691000 +0000", updated_at: "2022-11-26 09:12:44.021364000 +0000", user_id: 2>, #<TimeRecord id: 18, comment: "Selam ", time_type: "feature", start_date: "2022-11-26 11:14:00.000000000 +0000", end_date: "2022-11-26 12:14:00.000000000 +0000", created_at: "2022-11-26 12:14:20.141483000 +0000", updated_at: "2022-11-26 12:14:20.141483000 +0000", user_id: 1>, #<TimeRecord id: 20, comment: "taskks done", time_type: "done", start_date: "2022-11-26 11:00:00.000000000 +0000", end_date: "2022-11-26 12:00:00.000000000 +0000", created_at: "2022-11-26 13:00:36.794249000 +0000", updated_at: "2022-11-26 13:00:36.794249000 +0000", user_id: 4>, #<TimeRecord id: 21, comment: "task done", time_type: "done", start_date: "2022-11-26 14:45:00.000000000 +0000", end_date: "2022-11-26 16:35:00.000000000 +0000", created_at: "2022-11-26 16:45:30.513316000 +0000", updated_at: "2022-11-26 16:45:30.513316000 +0000", user_id: 5>, #<TimeRecord id: 22, comment: "task still", time_type: "issue", start_date: "2022-11-26 12:45:00.000000000 +0000", end_date: "2022-11-26 16:46:29.534552000 +0000", created_at: "2022-11-26 16:46:12.445843000 +0000", updated_at: "2022-11-26 16:46:29.535418000 +0000", user_id: 5>, #<TimeRecord id: 23, comment: "deneme taskları", time_type: "bug", start_date: "2022-11-27 08:44:00.000000000 +0000", end_date: "2022-11-27 09:45:00.000000000 +0000", created_at: "2022-11-27 09:45:14.194991000 +0000", updated_at: "2022-11-27 09:45:14.194991000 +0000", user_id: 4>, #<TimeRecord id: 24, comment: "time comment", time_type: "feature", start_date: "2022-11-24 10:15:00.000000000 +0000", end_date: "2022-11-25 11:15:00.000000000 +0000", created_at: "2022-11-27 10:16:09.633267000 +0000", updated_at: "2022-11-27 10:16:09.633267000 +0000", user_id: 5>, #<TimeRecord id: 25, comment: "time management example", time_type: "bug", start_date: "2022-11-22 11:16:00.000000000 +0000", end_date: "2022-11-23 06:16:00.000000000 +0000", created_at: "2022-11-27 10:16:46.322032000 +0000", updated_at: "2022-11-27 10:16:46.322032000 +0000", user_id: 5>, ...]>):
+  
+app/models/concerns/filterable.rb:29:in `public_send'
+app/models/concerns/filterable.rb:29:in `filter'
+app/controllers/admin_controller.rb:8:in `index'
+Started GET "/admin?username=Hanifi&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-07 19:28:33 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (lower(username) like '%hanifi%') /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  ↳ app/models/concerns/filterable.rb:16:in `write'
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 38ms (ActiveRecord: 4.8ms | Allocations: 16715)
+
+
+  [1m[36mCACHE TimeRecord Load (0.0ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `by_username_time_type_controller_action_' for #<ActiveRecord::Relation [#<TimeRecord id: 14, comment: "deneme task", time_type: "bug", start_date: "2022-11-25 18:21:00.000000000 +0000", end_date: "2022-11-25 18:22:06.009758000 +0000", created_at: "2022-11-25 18:22:01.925634000 +0000", updated_at: "2022-11-25 18:22:06.010168000 +0000", user_id: 1>, #<TimeRecord id: 15, comment: "bug fixed", time_type: "issue", start_date: "2022-11-25 20:27:00.000000000 +0000", end_date: "2022-11-25 18:28:00.825598000 +0000", created_at: "2022-11-25 18:27:51.664155000 +0000", updated_at: "2022-11-25 18:28:00.826013000 +0000", user_id: 1>, #<TimeRecord id: 17, comment: "deneme task", time_type: "feature", start_date: "2022-11-26 09:05:00.000000000 +0000", end_date: "2022-11-26 09:12:44.021100000 +0000", created_at: "2022-11-26 09:11:43.778691000 +0000", updated_at: "2022-11-26 09:12:44.021364000 +0000", user_id: 2>, #<TimeRecord id: 18, comment: "Selam ", time_type: "feature", start_date: "2022-11-26 11:14:00.000000000 +0000", end_date: "2022-11-26 12:14:00.000000000 +0000", created_at: "2022-11-26 12:14:20.141483000 +0000", updated_at: "2022-11-26 12:14:20.141483000 +0000", user_id: 1>, #<TimeRecord id: 20, comment: "taskks done", time_type: "done", start_date: "2022-11-26 11:00:00.000000000 +0000", end_date: "2022-11-26 12:00:00.000000000 +0000", created_at: "2022-11-26 13:00:36.794249000 +0000", updated_at: "2022-11-26 13:00:36.794249000 +0000", user_id: 4>, #<TimeRecord id: 21, comment: "task done", time_type: "done", start_date: "2022-11-26 14:45:00.000000000 +0000", end_date: "2022-11-26 16:35:00.000000000 +0000", created_at: "2022-11-26 16:45:30.513316000 +0000", updated_at: "2022-11-26 16:45:30.513316000 +0000", user_id: 5>, #<TimeRecord id: 22, comment: "task still", time_type: "issue", start_date: "2022-11-26 12:45:00.000000000 +0000", end_date: "2022-11-26 16:46:29.534552000 +0000", created_at: "2022-11-26 16:46:12.445843000 +0000", updated_at: "2022-11-26 16:46:29.535418000 +0000", user_id: 5>, #<TimeRecord id: 23, comment: "deneme taskları", time_type: "bug", start_date: "2022-11-27 08:44:00.000000000 +0000", end_date: "2022-11-27 09:45:00.000000000 +0000", created_at: "2022-11-27 09:45:14.194991000 +0000", updated_at: "2022-11-27 09:45:14.194991000 +0000", user_id: 4>, #<TimeRecord id: 24, comment: "time comment", time_type: "feature", start_date: "2022-11-24 10:15:00.000000000 +0000", end_date: "2022-11-25 11:15:00.000000000 +0000", created_at: "2022-11-27 10:16:09.633267000 +0000", updated_at: "2022-11-27 10:16:09.633267000 +0000", user_id: 5>, #<TimeRecord id: 25, comment: "time management example", time_type: "bug", start_date: "2022-11-22 11:16:00.000000000 +0000", end_date: "2022-11-23 06:16:00.000000000 +0000", created_at: "2022-11-27 10:16:46.322032000 +0000", updated_at: "2022-11-27 10:16:46.322032000 +0000", user_id: 5>, ...]>
+Did you mean?  by_username_time_type):
+  
+app/models/concerns/filterable.rb:29:in `public_send'
+app/models/concerns/filterable.rb:29:in `filter'
+app/controllers/admin_controller.rb:8:in `index'
+Started GET "/admin?username=Hanifi&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-07 19:31:06 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (lower(username) like '%hanifi%') /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  ↳ app/models/concerns/filterable.rb:16:in `write'
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 2.8ms | Allocations: 10398)
+
+
+  
+TypeError (no implicit conversion of String into Integer):
+  
+app/models/concerns/filterable.rb:22:in `block in filter'
+app/models/concerns/filterable.rb:21:in `filter'
+app/controllers/admin_controller.rb:8:in `index'
+Started GET "/admin?username=Hanifi&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-07 19:31:45 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (lower(username) like '%hanifi%') /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  ↳ app/models/concerns/filterable.rb:16:in `write'
+  [1m[36mTimeRecord Load (2.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 2.9ms | Allocations: 16524)
+
+
+  [1m[36mCACHE TimeRecord Load (0.0ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `by_["username", "time_type", "controller", "action"]' for #<ActiveRecord::Relation [#<TimeRecord id: 14, comment: "deneme task", time_type: "bug", start_date: "2022-11-25 18:21:00.000000000 +0000", end_date: "2022-11-25 18:22:06.009758000 +0000", created_at: "2022-11-25 18:22:01.925634000 +0000", updated_at: "2022-11-25 18:22:06.010168000 +0000", user_id: 1>, #<TimeRecord id: 15, comment: "bug fixed", time_type: "issue", start_date: "2022-11-25 20:27:00.000000000 +0000", end_date: "2022-11-25 18:28:00.825598000 +0000", created_at: "2022-11-25 18:27:51.664155000 +0000", updated_at: "2022-11-25 18:28:00.826013000 +0000", user_id: 1>, #<TimeRecord id: 17, comment: "deneme task", time_type: "feature", start_date: "2022-11-26 09:05:00.000000000 +0000", end_date: "2022-11-26 09:12:44.021100000 +0000", created_at: "2022-11-26 09:11:43.778691000 +0000", updated_at: "2022-11-26 09:12:44.021364000 +0000", user_id: 2>, #<TimeRecord id: 18, comment: "Selam ", time_type: "feature", start_date: "2022-11-26 11:14:00.000000000 +0000", end_date: "2022-11-26 12:14:00.000000000 +0000", created_at: "2022-11-26 12:14:20.141483000 +0000", updated_at: "2022-11-26 12:14:20.141483000 +0000", user_id: 1>, #<TimeRecord id: 20, comment: "taskks done", time_type: "done", start_date: "2022-11-26 11:00:00.000000000 +0000", end_date: "2022-11-26 12:00:00.000000000 +0000", created_at: "2022-11-26 13:00:36.794249000 +0000", updated_at: "2022-11-26 13:00:36.794249000 +0000", user_id: 4>, #<TimeRecord id: 21, comment: "task done", time_type: "done", start_date: "2022-11-26 14:45:00.000000000 +0000", end_date: "2022-11-26 16:35:00.000000000 +0000", created_at: "2022-11-26 16:45:30.513316000 +0000", updated_at: "2022-11-26 16:45:30.513316000 +0000", user_id: 5>, #<TimeRecord id: 22, comment: "task still", time_type: "issue", start_date: "2022-11-26 12:45:00.000000000 +0000", end_date: "2022-11-26 16:46:29.534552000 +0000", created_at: "2022-11-26 16:46:12.445843000 +0000", updated_at: "2022-11-26 16:46:29.535418000 +0000", user_id: 5>, #<TimeRecord id: 23, comment: "deneme taskları", time_type: "bug", start_date: "2022-11-27 08:44:00.000000000 +0000", end_date: "2022-11-27 09:45:00.000000000 +0000", created_at: "2022-11-27 09:45:14.194991000 +0000", updated_at: "2022-11-27 09:45:14.194991000 +0000", user_id: 4>, #<TimeRecord id: 24, comment: "time comment", time_type: "feature", start_date: "2022-11-24 10:15:00.000000000 +0000", end_date: "2022-11-25 11:15:00.000000000 +0000", created_at: "2022-11-27 10:16:09.633267000 +0000", updated_at: "2022-11-27 10:16:09.633267000 +0000", user_id: 5>, #<TimeRecord id: 25, comment: "time management example", time_type: "bug", start_date: "2022-11-22 11:16:00.000000000 +0000", end_date: "2022-11-23 06:16:00.000000000 +0000", created_at: "2022-11-27 10:16:46.322032000 +0000", updated_at: "2022-11-27 10:16:46.322032000 +0000", user_id: 5>, ...]>):
+  
+app/models/concerns/filterable.rb:29:in `public_send'
+app/models/concerns/filterable.rb:29:in `filter'
+app/controllers/admin_controller.rb:8:in `index'
+Started GET "/admin?username=Hanifi&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-07 19:34:38 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (lower(username) like '%hanifi%') /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  ↳ app/models/concerns/filterable.rb:16:in `write'
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 37ms (ActiveRecord: 3.5ms | Allocations: 16562)
+
+
+  [1m[36mCACHE TimeRecord Load (0.0ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `by_["username", "time_type", "controller", "action"]' for #<ActiveRecord::Relation [#<TimeRecord id: 14, comment: "deneme task", time_type: "bug", start_date: "2022-11-25 18:21:00.000000000 +0000", end_date: "2022-11-25 18:22:06.009758000 +0000", created_at: "2022-11-25 18:22:01.925634000 +0000", updated_at: "2022-11-25 18:22:06.010168000 +0000", user_id: 1>, #<TimeRecord id: 15, comment: "bug fixed", time_type: "issue", start_date: "2022-11-25 20:27:00.000000000 +0000", end_date: "2022-11-25 18:28:00.825598000 +0000", created_at: "2022-11-25 18:27:51.664155000 +0000", updated_at: "2022-11-25 18:28:00.826013000 +0000", user_id: 1>, #<TimeRecord id: 17, comment: "deneme task", time_type: "feature", start_date: "2022-11-26 09:05:00.000000000 +0000", end_date: "2022-11-26 09:12:44.021100000 +0000", created_at: "2022-11-26 09:11:43.778691000 +0000", updated_at: "2022-11-26 09:12:44.021364000 +0000", user_id: 2>, #<TimeRecord id: 18, comment: "Selam ", time_type: "feature", start_date: "2022-11-26 11:14:00.000000000 +0000", end_date: "2022-11-26 12:14:00.000000000 +0000", created_at: "2022-11-26 12:14:20.141483000 +0000", updated_at: "2022-11-26 12:14:20.141483000 +0000", user_id: 1>, #<TimeRecord id: 20, comment: "taskks done", time_type: "done", start_date: "2022-11-26 11:00:00.000000000 +0000", end_date: "2022-11-26 12:00:00.000000000 +0000", created_at: "2022-11-26 13:00:36.794249000 +0000", updated_at: "2022-11-26 13:00:36.794249000 +0000", user_id: 4>, #<TimeRecord id: 21, comment: "task done", time_type: "done", start_date: "2022-11-26 14:45:00.000000000 +0000", end_date: "2022-11-26 16:35:00.000000000 +0000", created_at: "2022-11-26 16:45:30.513316000 +0000", updated_at: "2022-11-26 16:45:30.513316000 +0000", user_id: 5>, #<TimeRecord id: 22, comment: "task still", time_type: "issue", start_date: "2022-11-26 12:45:00.000000000 +0000", end_date: "2022-11-26 16:46:29.534552000 +0000", created_at: "2022-11-26 16:46:12.445843000 +0000", updated_at: "2022-11-26 16:46:29.535418000 +0000", user_id: 5>, #<TimeRecord id: 23, comment: "deneme taskları", time_type: "bug", start_date: "2022-11-27 08:44:00.000000000 +0000", end_date: "2022-11-27 09:45:00.000000000 +0000", created_at: "2022-11-27 09:45:14.194991000 +0000", updated_at: "2022-11-27 09:45:14.194991000 +0000", user_id: 4>, #<TimeRecord id: 24, comment: "time comment", time_type: "feature", start_date: "2022-11-24 10:15:00.000000000 +0000", end_date: "2022-11-25 11:15:00.000000000 +0000", created_at: "2022-11-27 10:16:09.633267000 +0000", updated_at: "2022-11-27 10:16:09.633267000 +0000", user_id: 5>, #<TimeRecord id: 25, comment: "time management example", time_type: "bug", start_date: "2022-11-22 11:16:00.000000000 +0000", end_date: "2022-11-23 06:16:00.000000000 +0000", created_at: "2022-11-27 10:16:46.322032000 +0000", updated_at: "2022-11-27 10:16:46.322032000 +0000", user_id: 5>, ...]>):
+  
+app/models/concerns/filterable.rb:35:in `public_send'
+app/models/concerns/filterable.rb:35:in `filter'
+app/controllers/admin_controller.rb:8:in `index'
+Started GET "/admin?username=Hanifi&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-07 19:36:08 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (lower(username) like '%hanifi%') /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  ↳ app/models/concerns/filterable.rb:16:in `write'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (lower(username) like '%hanifi%') /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  ↳ app/models/concerns/filterable.rb:22:in `write'
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 38ms (ActiveRecord: 3.3ms | Allocations: 17327)
+
+
+  [1m[36mCACHE TimeRecord Load (0.0ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `by_["username", "time_type", "controller", "action"]' for #<ActiveRecord::Relation [#<TimeRecord id: 14, comment: "deneme task", time_type: "bug", start_date: "2022-11-25 18:21:00.000000000 +0000", end_date: "2022-11-25 18:22:06.009758000 +0000", created_at: "2022-11-25 18:22:01.925634000 +0000", updated_at: "2022-11-25 18:22:06.010168000 +0000", user_id: 1>, #<TimeRecord id: 15, comment: "bug fixed", time_type: "issue", start_date: "2022-11-25 20:27:00.000000000 +0000", end_date: "2022-11-25 18:28:00.825598000 +0000", created_at: "2022-11-25 18:27:51.664155000 +0000", updated_at: "2022-11-25 18:28:00.826013000 +0000", user_id: 1>, #<TimeRecord id: 17, comment: "deneme task", time_type: "feature", start_date: "2022-11-26 09:05:00.000000000 +0000", end_date: "2022-11-26 09:12:44.021100000 +0000", created_at: "2022-11-26 09:11:43.778691000 +0000", updated_at: "2022-11-26 09:12:44.021364000 +0000", user_id: 2>, #<TimeRecord id: 18, comment: "Selam ", time_type: "feature", start_date: "2022-11-26 11:14:00.000000000 +0000", end_date: "2022-11-26 12:14:00.000000000 +0000", created_at: "2022-11-26 12:14:20.141483000 +0000", updated_at: "2022-11-26 12:14:20.141483000 +0000", user_id: 1>, #<TimeRecord id: 20, comment: "taskks done", time_type: "done", start_date: "2022-11-26 11:00:00.000000000 +0000", end_date: "2022-11-26 12:00:00.000000000 +0000", created_at: "2022-11-26 13:00:36.794249000 +0000", updated_at: "2022-11-26 13:00:36.794249000 +0000", user_id: 4>, #<TimeRecord id: 21, comment: "task done", time_type: "done", start_date: "2022-11-26 14:45:00.000000000 +0000", end_date: "2022-11-26 16:35:00.000000000 +0000", created_at: "2022-11-26 16:45:30.513316000 +0000", updated_at: "2022-11-26 16:45:30.513316000 +0000", user_id: 5>, #<TimeRecord id: 22, comment: "task still", time_type: "issue", start_date: "2022-11-26 12:45:00.000000000 +0000", end_date: "2022-11-26 16:46:29.534552000 +0000", created_at: "2022-11-26 16:46:12.445843000 +0000", updated_at: "2022-11-26 16:46:29.535418000 +0000", user_id: 5>, #<TimeRecord id: 23, comment: "deneme taskları", time_type: "bug", start_date: "2022-11-27 08:44:00.000000000 +0000", end_date: "2022-11-27 09:45:00.000000000 +0000", created_at: "2022-11-27 09:45:14.194991000 +0000", updated_at: "2022-11-27 09:45:14.194991000 +0000", user_id: 4>, #<TimeRecord id: 24, comment: "time comment", time_type: "feature", start_date: "2022-11-24 10:15:00.000000000 +0000", end_date: "2022-11-25 11:15:00.000000000 +0000", created_at: "2022-11-27 10:16:09.633267000 +0000", updated_at: "2022-11-27 10:16:09.633267000 +0000", user_id: 5>, #<TimeRecord id: 25, comment: "time management example", time_type: "bug", start_date: "2022-11-22 11:16:00.000000000 +0000", end_date: "2022-11-23 06:16:00.000000000 +0000", created_at: "2022-11-27 10:16:46.322032000 +0000", updated_at: "2022-11-27 10:16:46.322032000 +0000", user_id: 5>, ...]>):
+  
+app/models/concerns/filterable.rb:40:in `public_send'
+app/models/concerns/filterable.rb:40:in `filter'
+app/controllers/admin_controller.rb:8:in `index'
+Started GET "/admin?username=Hanifi&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-07 19:36:54 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE (lower(username) like '%hanifi%') /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  ↳ app/models/concerns/filterable.rb:16:in `write'
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 3.8ms | Allocations: 16662)
+
+
+  [1m[36mCACHE TimeRecord Load (0.0ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `by_["username", "time_type"]' for #<ActiveRecord::Relation [#<TimeRecord id: 14, comment: "deneme task", time_type: "bug", start_date: "2022-11-25 18:21:00.000000000 +0000", end_date: "2022-11-25 18:22:06.009758000 +0000", created_at: "2022-11-25 18:22:01.925634000 +0000", updated_at: "2022-11-25 18:22:06.010168000 +0000", user_id: 1>, #<TimeRecord id: 15, comment: "bug fixed", time_type: "issue", start_date: "2022-11-25 20:27:00.000000000 +0000", end_date: "2022-11-25 18:28:00.825598000 +0000", created_at: "2022-11-25 18:27:51.664155000 +0000", updated_at: "2022-11-25 18:28:00.826013000 +0000", user_id: 1>, #<TimeRecord id: 17, comment: "deneme task", time_type: "feature", start_date: "2022-11-26 09:05:00.000000000 +0000", end_date: "2022-11-26 09:12:44.021100000 +0000", created_at: "2022-11-26 09:11:43.778691000 +0000", updated_at: "2022-11-26 09:12:44.021364000 +0000", user_id: 2>, #<TimeRecord id: 18, comment: "Selam ", time_type: "feature", start_date: "2022-11-26 11:14:00.000000000 +0000", end_date: "2022-11-26 12:14:00.000000000 +0000", created_at: "2022-11-26 12:14:20.141483000 +0000", updated_at: "2022-11-26 12:14:20.141483000 +0000", user_id: 1>, #<TimeRecord id: 20, comment: "taskks done", time_type: "done", start_date: "2022-11-26 11:00:00.000000000 +0000", end_date: "2022-11-26 12:00:00.000000000 +0000", created_at: "2022-11-26 13:00:36.794249000 +0000", updated_at: "2022-11-26 13:00:36.794249000 +0000", user_id: 4>, #<TimeRecord id: 21, comment: "task done", time_type: "done", start_date: "2022-11-26 14:45:00.000000000 +0000", end_date: "2022-11-26 16:35:00.000000000 +0000", created_at: "2022-11-26 16:45:30.513316000 +0000", updated_at: "2022-11-26 16:45:30.513316000 +0000", user_id: 5>, #<TimeRecord id: 22, comment: "task still", time_type: "issue", start_date: "2022-11-26 12:45:00.000000000 +0000", end_date: "2022-11-26 16:46:29.534552000 +0000", created_at: "2022-11-26 16:46:12.445843000 +0000", updated_at: "2022-11-26 16:46:29.535418000 +0000", user_id: 5>, #<TimeRecord id: 23, comment: "deneme taskları", time_type: "bug", start_date: "2022-11-27 08:44:00.000000000 +0000", end_date: "2022-11-27 09:45:00.000000000 +0000", created_at: "2022-11-27 09:45:14.194991000 +0000", updated_at: "2022-11-27 09:45:14.194991000 +0000", user_id: 4>, #<TimeRecord id: 24, comment: "time comment", time_type: "feature", start_date: "2022-11-24 10:15:00.000000000 +0000", end_date: "2022-11-25 11:15:00.000000000 +0000", created_at: "2022-11-27 10:16:09.633267000 +0000", updated_at: "2022-11-27 10:16:09.633267000 +0000", user_id: 5>, #<TimeRecord id: 25, comment: "time management example", time_type: "bug", start_date: "2022-11-22 11:16:00.000000000 +0000", end_date: "2022-11-23 06:16:00.000000000 +0000", created_at: "2022-11-27 10:16:46.322032000 +0000", updated_at: "2022-11-27 10:16:46.322032000 +0000", user_id: 5>, ...]>
+Did you mean?  by_username_time_type):
+  
+app/models/concerns/filterable.rb:35:in `public_send'
+app/models/concerns/filterable.rb:35:in `filter'
+app/controllers/admin_controller.rb:8:in `index'
+Started GET "/admin?username=Hanifi&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-07 19:37:42 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 37ms (ActiveRecord: 5.8ms | Allocations: 15836)
+
+
+  [1m[36mCACHE TimeRecord Load (0.0ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `by_username_time_type_' for #<ActiveRecord::Relation [#<TimeRecord id: 14, comment: "deneme task", time_type: "bug", start_date: "2022-11-25 18:21:00.000000000 +0000", end_date: "2022-11-25 18:22:06.009758000 +0000", created_at: "2022-11-25 18:22:01.925634000 +0000", updated_at: "2022-11-25 18:22:06.010168000 +0000", user_id: 1>, #<TimeRecord id: 15, comment: "bug fixed", time_type: "issue", start_date: "2022-11-25 20:27:00.000000000 +0000", end_date: "2022-11-25 18:28:00.825598000 +0000", created_at: "2022-11-25 18:27:51.664155000 +0000", updated_at: "2022-11-25 18:28:00.826013000 +0000", user_id: 1>, #<TimeRecord id: 17, comment: "deneme task", time_type: "feature", start_date: "2022-11-26 09:05:00.000000000 +0000", end_date: "2022-11-26 09:12:44.021100000 +0000", created_at: "2022-11-26 09:11:43.778691000 +0000", updated_at: "2022-11-26 09:12:44.021364000 +0000", user_id: 2>, #<TimeRecord id: 18, comment: "Selam ", time_type: "feature", start_date: "2022-11-26 11:14:00.000000000 +0000", end_date: "2022-11-26 12:14:00.000000000 +0000", created_at: "2022-11-26 12:14:20.141483000 +0000", updated_at: "2022-11-26 12:14:20.141483000 +0000", user_id: 1>, #<TimeRecord id: 20, comment: "taskks done", time_type: "done", start_date: "2022-11-26 11:00:00.000000000 +0000", end_date: "2022-11-26 12:00:00.000000000 +0000", created_at: "2022-11-26 13:00:36.794249000 +0000", updated_at: "2022-11-26 13:00:36.794249000 +0000", user_id: 4>, #<TimeRecord id: 21, comment: "task done", time_type: "done", start_date: "2022-11-26 14:45:00.000000000 +0000", end_date: "2022-11-26 16:35:00.000000000 +0000", created_at: "2022-11-26 16:45:30.513316000 +0000", updated_at: "2022-11-26 16:45:30.513316000 +0000", user_id: 5>, #<TimeRecord id: 22, comment: "task still", time_type: "issue", start_date: "2022-11-26 12:45:00.000000000 +0000", end_date: "2022-11-26 16:46:29.534552000 +0000", created_at: "2022-11-26 16:46:12.445843000 +0000", updated_at: "2022-11-26 16:46:29.535418000 +0000", user_id: 5>, #<TimeRecord id: 23, comment: "deneme taskları", time_type: "bug", start_date: "2022-11-27 08:44:00.000000000 +0000", end_date: "2022-11-27 09:45:00.000000000 +0000", created_at: "2022-11-27 09:45:14.194991000 +0000", updated_at: "2022-11-27 09:45:14.194991000 +0000", user_id: 4>, #<TimeRecord id: 24, comment: "time comment", time_type: "feature", start_date: "2022-11-24 10:15:00.000000000 +0000", end_date: "2022-11-25 11:15:00.000000000 +0000", created_at: "2022-11-27 10:16:09.633267000 +0000", updated_at: "2022-11-27 10:16:09.633267000 +0000", user_id: 5>, #<TimeRecord id: 25, comment: "time management example", time_type: "bug", start_date: "2022-11-22 11:16:00.000000000 +0000", end_date: "2022-11-23 06:16:00.000000000 +0000", created_at: "2022-11-27 10:16:46.322032000 +0000", updated_at: "2022-11-27 10:16:46.322032000 +0000", user_id: 5>, ...]>
+Did you mean?  by_username_time_type
+               by_username_time_type_dates):
+  
+app/models/concerns/filterable.rb:31:in `public_send'
+app/models/concerns/filterable.rb:31:in `filter'
+app/controllers/admin_controller.rb:8:in `index'
+Started GET "/admin?username=Hanifi&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-07 19:38:13 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 4.8ms | Allocations: 15832)
+
+
+  [1m[36mCACHE TimeRecord Load (0.0ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `by_username_time_type_' for #<ActiveRecord::Relation [#<TimeRecord id: 14, comment: "deneme task", time_type: "bug", start_date: "2022-11-25 18:21:00.000000000 +0000", end_date: "2022-11-25 18:22:06.009758000 +0000", created_at: "2022-11-25 18:22:01.925634000 +0000", updated_at: "2022-11-25 18:22:06.010168000 +0000", user_id: 1>, #<TimeRecord id: 15, comment: "bug fixed", time_type: "issue", start_date: "2022-11-25 20:27:00.000000000 +0000", end_date: "2022-11-25 18:28:00.825598000 +0000", created_at: "2022-11-25 18:27:51.664155000 +0000", updated_at: "2022-11-25 18:28:00.826013000 +0000", user_id: 1>, #<TimeRecord id: 17, comment: "deneme task", time_type: "feature", start_date: "2022-11-26 09:05:00.000000000 +0000", end_date: "2022-11-26 09:12:44.021100000 +0000", created_at: "2022-11-26 09:11:43.778691000 +0000", updated_at: "2022-11-26 09:12:44.021364000 +0000", user_id: 2>, #<TimeRecord id: 18, comment: "Selam ", time_type: "feature", start_date: "2022-11-26 11:14:00.000000000 +0000", end_date: "2022-11-26 12:14:00.000000000 +0000", created_at: "2022-11-26 12:14:20.141483000 +0000", updated_at: "2022-11-26 12:14:20.141483000 +0000", user_id: 1>, #<TimeRecord id: 20, comment: "taskks done", time_type: "done", start_date: "2022-11-26 11:00:00.000000000 +0000", end_date: "2022-11-26 12:00:00.000000000 +0000", created_at: "2022-11-26 13:00:36.794249000 +0000", updated_at: "2022-11-26 13:00:36.794249000 +0000", user_id: 4>, #<TimeRecord id: 21, comment: "task done", time_type: "done", start_date: "2022-11-26 14:45:00.000000000 +0000", end_date: "2022-11-26 16:35:00.000000000 +0000", created_at: "2022-11-26 16:45:30.513316000 +0000", updated_at: "2022-11-26 16:45:30.513316000 +0000", user_id: 5>, #<TimeRecord id: 22, comment: "task still", time_type: "issue", start_date: "2022-11-26 12:45:00.000000000 +0000", end_date: "2022-11-26 16:46:29.534552000 +0000", created_at: "2022-11-26 16:46:12.445843000 +0000", updated_at: "2022-11-26 16:46:29.535418000 +0000", user_id: 5>, #<TimeRecord id: 23, comment: "deneme taskları", time_type: "bug", start_date: "2022-11-27 08:44:00.000000000 +0000", end_date: "2022-11-27 09:45:00.000000000 +0000", created_at: "2022-11-27 09:45:14.194991000 +0000", updated_at: "2022-11-27 09:45:14.194991000 +0000", user_id: 4>, #<TimeRecord id: 24, comment: "time comment", time_type: "feature", start_date: "2022-11-24 10:15:00.000000000 +0000", end_date: "2022-11-25 11:15:00.000000000 +0000", created_at: "2022-11-27 10:16:09.633267000 +0000", updated_at: "2022-11-27 10:16:09.633267000 +0000", user_id: 5>, #<TimeRecord id: 25, comment: "time management example", time_type: "bug", start_date: "2022-11-22 11:16:00.000000000 +0000", end_date: "2022-11-23 06:16:00.000000000 +0000", created_at: "2022-11-27 10:16:46.322032000 +0000", updated_at: "2022-11-27 10:16:46.322032000 +0000", user_id: 5>, ...]>
+Did you mean?  by_username_time_type
+               by_username_time_type_dates):
+  
+app/models/concerns/filterable.rb:33:in `public_send'
+app/models/concerns/filterable.rb:33:in `filter'
+app/controllers/admin_controller.rb:8:in `index'
+Started GET "/admin?username=Hanifi&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-07 19:39:33 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 35ms (ActiveRecord: 4.9ms | Allocations: 15804)
+
+
+  [1m[36mCACHE TimeRecord Load (0.0ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `by_username_time_type_' for #<ActiveRecord::Relation [#<TimeRecord id: 14, comment: "deneme task", time_type: "bug", start_date: "2022-11-25 18:21:00.000000000 +0000", end_date: "2022-11-25 18:22:06.009758000 +0000", created_at: "2022-11-25 18:22:01.925634000 +0000", updated_at: "2022-11-25 18:22:06.010168000 +0000", user_id: 1>, #<TimeRecord id: 15, comment: "bug fixed", time_type: "issue", start_date: "2022-11-25 20:27:00.000000000 +0000", end_date: "2022-11-25 18:28:00.825598000 +0000", created_at: "2022-11-25 18:27:51.664155000 +0000", updated_at: "2022-11-25 18:28:00.826013000 +0000", user_id: 1>, #<TimeRecord id: 17, comment: "deneme task", time_type: "feature", start_date: "2022-11-26 09:05:00.000000000 +0000", end_date: "2022-11-26 09:12:44.021100000 +0000", created_at: "2022-11-26 09:11:43.778691000 +0000", updated_at: "2022-11-26 09:12:44.021364000 +0000", user_id: 2>, #<TimeRecord id: 18, comment: "Selam ", time_type: "feature", start_date: "2022-11-26 11:14:00.000000000 +0000", end_date: "2022-11-26 12:14:00.000000000 +0000", created_at: "2022-11-26 12:14:20.141483000 +0000", updated_at: "2022-11-26 12:14:20.141483000 +0000", user_id: 1>, #<TimeRecord id: 20, comment: "taskks done", time_type: "done", start_date: "2022-11-26 11:00:00.000000000 +0000", end_date: "2022-11-26 12:00:00.000000000 +0000", created_at: "2022-11-26 13:00:36.794249000 +0000", updated_at: "2022-11-26 13:00:36.794249000 +0000", user_id: 4>, #<TimeRecord id: 21, comment: "task done", time_type: "done", start_date: "2022-11-26 14:45:00.000000000 +0000", end_date: "2022-11-26 16:35:00.000000000 +0000", created_at: "2022-11-26 16:45:30.513316000 +0000", updated_at: "2022-11-26 16:45:30.513316000 +0000", user_id: 5>, #<TimeRecord id: 22, comment: "task still", time_type: "issue", start_date: "2022-11-26 12:45:00.000000000 +0000", end_date: "2022-11-26 16:46:29.534552000 +0000", created_at: "2022-11-26 16:46:12.445843000 +0000", updated_at: "2022-11-26 16:46:29.535418000 +0000", user_id: 5>, #<TimeRecord id: 23, comment: "deneme taskları", time_type: "bug", start_date: "2022-11-27 08:44:00.000000000 +0000", end_date: "2022-11-27 09:45:00.000000000 +0000", created_at: "2022-11-27 09:45:14.194991000 +0000", updated_at: "2022-11-27 09:45:14.194991000 +0000", user_id: 4>, #<TimeRecord id: 24, comment: "time comment", time_type: "feature", start_date: "2022-11-24 10:15:00.000000000 +0000", end_date: "2022-11-25 11:15:00.000000000 +0000", created_at: "2022-11-27 10:16:09.633267000 +0000", updated_at: "2022-11-27 10:16:09.633267000 +0000", user_id: 5>, #<TimeRecord id: 25, comment: "time management example", time_type: "bug", start_date: "2022-11-22 11:16:00.000000000 +0000", end_date: "2022-11-23 06:16:00.000000000 +0000", created_at: "2022-11-27 10:16:46.322032000 +0000", updated_at: "2022-11-27 10:16:46.322032000 +0000", user_id: 5>, ...]>
+Did you mean?  by_username_time_type
+               by_username_time_type_dates):
+  
+app/models/concerns/filterable.rb:26:in `public_send'
+app/models/concerns/filterable.rb:26:in `filter'
+app/controllers/admin_controller.rb:8:in `index'
+Started GET "/admin?username=Hanifi&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-07 19:40:23 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Load (0.2ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 32ms (ActiveRecord: 2.9ms | Allocations: 15810)
+
+
+  [1m[36mCACHE TimeRecord Load (0.0ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `by_username_time_type_' for #<ActiveRecord::Relation [#<TimeRecord id: 14, comment: "deneme task", time_type: "bug", start_date: "2022-11-25 18:21:00.000000000 +0000", end_date: "2022-11-25 18:22:06.009758000 +0000", created_at: "2022-11-25 18:22:01.925634000 +0000", updated_at: "2022-11-25 18:22:06.010168000 +0000", user_id: 1>, #<TimeRecord id: 15, comment: "bug fixed", time_type: "issue", start_date: "2022-11-25 20:27:00.000000000 +0000", end_date: "2022-11-25 18:28:00.825598000 +0000", created_at: "2022-11-25 18:27:51.664155000 +0000", updated_at: "2022-11-25 18:28:00.826013000 +0000", user_id: 1>, #<TimeRecord id: 17, comment: "deneme task", time_type: "feature", start_date: "2022-11-26 09:05:00.000000000 +0000", end_date: "2022-11-26 09:12:44.021100000 +0000", created_at: "2022-11-26 09:11:43.778691000 +0000", updated_at: "2022-11-26 09:12:44.021364000 +0000", user_id: 2>, #<TimeRecord id: 18, comment: "Selam ", time_type: "feature", start_date: "2022-11-26 11:14:00.000000000 +0000", end_date: "2022-11-26 12:14:00.000000000 +0000", created_at: "2022-11-26 12:14:20.141483000 +0000", updated_at: "2022-11-26 12:14:20.141483000 +0000", user_id: 1>, #<TimeRecord id: 20, comment: "taskks done", time_type: "done", start_date: "2022-11-26 11:00:00.000000000 +0000", end_date: "2022-11-26 12:00:00.000000000 +0000", created_at: "2022-11-26 13:00:36.794249000 +0000", updated_at: "2022-11-26 13:00:36.794249000 +0000", user_id: 4>, #<TimeRecord id: 21, comment: "task done", time_type: "done", start_date: "2022-11-26 14:45:00.000000000 +0000", end_date: "2022-11-26 16:35:00.000000000 +0000", created_at: "2022-11-26 16:45:30.513316000 +0000", updated_at: "2022-11-26 16:45:30.513316000 +0000", user_id: 5>, #<TimeRecord id: 22, comment: "task still", time_type: "issue", start_date: "2022-11-26 12:45:00.000000000 +0000", end_date: "2022-11-26 16:46:29.534552000 +0000", created_at: "2022-11-26 16:46:12.445843000 +0000", updated_at: "2022-11-26 16:46:29.535418000 +0000", user_id: 5>, #<TimeRecord id: 23, comment: "deneme taskları", time_type: "bug", start_date: "2022-11-27 08:44:00.000000000 +0000", end_date: "2022-11-27 09:45:00.000000000 +0000", created_at: "2022-11-27 09:45:14.194991000 +0000", updated_at: "2022-11-27 09:45:14.194991000 +0000", user_id: 4>, #<TimeRecord id: 24, comment: "time comment", time_type: "feature", start_date: "2022-11-24 10:15:00.000000000 +0000", end_date: "2022-11-25 11:15:00.000000000 +0000", created_at: "2022-11-27 10:16:09.633267000 +0000", updated_at: "2022-11-27 10:16:09.633267000 +0000", user_id: 5>, #<TimeRecord id: 25, comment: "time management example", time_type: "bug", start_date: "2022-11-22 11:16:00.000000000 +0000", end_date: "2022-11-23 06:16:00.000000000 +0000", created_at: "2022-11-27 10:16:46.322032000 +0000", updated_at: "2022-11-27 10:16:46.322032000 +0000", user_id: 5>, ...]>
+Did you mean?  by_username_time_type
+               by_username_time_type_dates):
+  
+app/models/concerns/filterable.rb:26:in `public_send'
+app/models/concerns/filterable.rb:26:in `filter'
+app/controllers/admin_controller.rb:8:in `index'
+Started GET "/admin?username=Hanifi&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-07 19:41:07 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 38ms (ActiveRecord: 7.1ms | Allocations: 15768)
+
+
+  [1m[36mCACHE TimeRecord Load (0.0ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `by_username_time_type_' for #<ActiveRecord::Relation [#<TimeRecord id: 14, comment: "deneme task", time_type: "bug", start_date: "2022-11-25 18:21:00.000000000 +0000", end_date: "2022-11-25 18:22:06.009758000 +0000", created_at: "2022-11-25 18:22:01.925634000 +0000", updated_at: "2022-11-25 18:22:06.010168000 +0000", user_id: 1>, #<TimeRecord id: 15, comment: "bug fixed", time_type: "issue", start_date: "2022-11-25 20:27:00.000000000 +0000", end_date: "2022-11-25 18:28:00.825598000 +0000", created_at: "2022-11-25 18:27:51.664155000 +0000", updated_at: "2022-11-25 18:28:00.826013000 +0000", user_id: 1>, #<TimeRecord id: 17, comment: "deneme task", time_type: "feature", start_date: "2022-11-26 09:05:00.000000000 +0000", end_date: "2022-11-26 09:12:44.021100000 +0000", created_at: "2022-11-26 09:11:43.778691000 +0000", updated_at: "2022-11-26 09:12:44.021364000 +0000", user_id: 2>, #<TimeRecord id: 18, comment: "Selam ", time_type: "feature", start_date: "2022-11-26 11:14:00.000000000 +0000", end_date: "2022-11-26 12:14:00.000000000 +0000", created_at: "2022-11-26 12:14:20.141483000 +0000", updated_at: "2022-11-26 12:14:20.141483000 +0000", user_id: 1>, #<TimeRecord id: 20, comment: "taskks done", time_type: "done", start_date: "2022-11-26 11:00:00.000000000 +0000", end_date: "2022-11-26 12:00:00.000000000 +0000", created_at: "2022-11-26 13:00:36.794249000 +0000", updated_at: "2022-11-26 13:00:36.794249000 +0000", user_id: 4>, #<TimeRecord id: 21, comment: "task done", time_type: "done", start_date: "2022-11-26 14:45:00.000000000 +0000", end_date: "2022-11-26 16:35:00.000000000 +0000", created_at: "2022-11-26 16:45:30.513316000 +0000", updated_at: "2022-11-26 16:45:30.513316000 +0000", user_id: 5>, #<TimeRecord id: 22, comment: "task still", time_type: "issue", start_date: "2022-11-26 12:45:00.000000000 +0000", end_date: "2022-11-26 16:46:29.534552000 +0000", created_at: "2022-11-26 16:46:12.445843000 +0000", updated_at: "2022-11-26 16:46:29.535418000 +0000", user_id: 5>, #<TimeRecord id: 23, comment: "deneme taskları", time_type: "bug", start_date: "2022-11-27 08:44:00.000000000 +0000", end_date: "2022-11-27 09:45:00.000000000 +0000", created_at: "2022-11-27 09:45:14.194991000 +0000", updated_at: "2022-11-27 09:45:14.194991000 +0000", user_id: 4>, #<TimeRecord id: 24, comment: "time comment", time_type: "feature", start_date: "2022-11-24 10:15:00.000000000 +0000", end_date: "2022-11-25 11:15:00.000000000 +0000", created_at: "2022-11-27 10:16:09.633267000 +0000", updated_at: "2022-11-27 10:16:09.633267000 +0000", user_id: 5>, #<TimeRecord id: 25, comment: "time management example", time_type: "bug", start_date: "2022-11-22 11:16:00.000000000 +0000", end_date: "2022-11-23 06:16:00.000000000 +0000", created_at: "2022-11-27 10:16:46.322032000 +0000", updated_at: "2022-11-27 10:16:46.322032000 +0000", user_id: 5>, ...]>
+Did you mean?  by_username_time_type
+               by_username_time_type_dates):
+  
+app/models/concerns/filterable.rb:27:in `public_send'
+app/models/concerns/filterable.rb:27:in `filter'
+app/controllers/admin_controller.rb:8:in `index'
+Started GET "/admin?username=Hanifi&time_type=bug&start_date=&end_date=&group_by=---&commit=Search" for 127.0.0.1 at 2022-12-07 19:41:46 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"bug", "start_date"=>"", "end_date"=>"", "group_by"=>"---", "commit"=>"Search"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records" WHERE "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%hanifi%')) AND "time_records"."time_type" = $1[0m  [["time_type", "bug"]]
+  ↳ app/controllers/admin_controller.rb:8:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.5ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%hanifi%')) AND "time_records"."time_type" = $1 LIMIT $2 OFFSET $3[0m  [["time_type", "bug"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 13.9ms | Allocations: 11659)
+  Rendered layout layouts/application.html.haml (Duration: 14.3ms | Allocations: 11856)
+Completed 200 OK in 46ms (Views: 12.6ms | ActiveRecord: 8.2ms | Allocations: 23145)
+
+
+Started GET "/admin?username=Hanifi&time_type=---&start_date=2022-11-28&end_date=2022-12-05&commit=Search" for 127.0.0.1 at 2022-12-07 19:46:10 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"---", "start_date"=>"2022-11-28", "end_date"=>"2022-12-05", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records" WHERE "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%hanifi%')) AND "time_records"."start_date" BETWEEN $1 AND $2[0m  [["start_date", "2022-11-28 02:00:00"], ["start_date", "2022-12-05"]]
+  ↳ app/controllers/admin_controller.rb:8:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%hanifi%')) AND "time_records"."start_date" BETWEEN $1 AND $2 LIMIT $3 OFFSET $4[0m  [["start_date", "2022-11-28 02:00:00"], ["start_date", "2022-12-05"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  Rendered admin/index.html.haml within layouts/application (Duration: 10.5ms | Allocations: 7656)
+  Rendered layout layouts/application.html.haml (Duration: 11.7ms | Allocations: 7853)
+Completed 200 OK in 37ms (Views: 13.0ms | ActiveRecord: 5.0ms | Allocations: 19502)
+
+
+Started GET "/admin?username=Hanifi&time_type=---&start_date=2022-11-28&end_date=2022-12-05&commit=Search" for 127.0.0.1 at 2022-12-07 19:47:03 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"---", "start_date"=>"2022-11-28", "end_date"=>"2022-12-05", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records" WHERE "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%hanifi%')) AND "time_records"."start_date" BETWEEN $1 AND $2[0m  [["start_date", "2022-11-28 02:00:00"], ["start_date", "2022-12-05"]]
+  ↳ app/controllers/admin_controller.rb:8:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.8ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%hanifi%')) AND "time_records"."start_date" BETWEEN $1 AND $2 LIMIT $3 OFFSET $4[0m  [["start_date", "2022-11-28 02:00:00"], ["start_date", "2022-12-05"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  Rendered admin/index.html.haml within layouts/application (Duration: 10.0ms | Allocations: 7664)
+  Rendered layout layouts/application.html.haml (Duration: 11.1ms | Allocations: 7861)
+Completed 200 OK in 44ms (Views: 12.1ms | ActiveRecord: 4.7ms | Allocations: 19325)
+
+
+Started GET "/admin?username=Hanifi&time_type=---&start_date=2022-11-28&end_date=2022-12-05&commit=Search" for 127.0.0.1 at 2022-12-07 19:48:12 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"---", "start_date"=>"2022-11-28", "end_date"=>"2022-12-05", "commit"=>"Search"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records" WHERE "time_records"."start_date" BETWEEN $1 AND $2 AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%hanifi%'))[0m  [["start_date", "2022-11-28 02:00:00"], ["start_date", "2022-12-05"]]
+  ↳ app/controllers/admin_controller.rb:8:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.5ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."start_date" BETWEEN $1 AND $2 AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%hanifi%')) LIMIT $3 OFFSET $4[0m  [["start_date", "2022-11-28 02:00:00"], ["start_date", "2022-12-05"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  Rendered admin/index.html.haml within layouts/application (Duration: 8.5ms | Allocations: 7668)
+  Rendered layout layouts/application.html.haml (Duration: 10.0ms | Allocations: 7865)
+Completed 200 OK in 33ms (Views: 11.9ms | ActiveRecord: 6.0ms | Allocations: 19291)
+
+
+Started GET "/admin?username=Hanifi&time_type=---&start_date=2022-11-28&end_date=2022-12-05&commit=Search" for 127.0.0.1 at 2022-12-07 19:48:38 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"---", "start_date"=>"2022-11-28", "end_date"=>"2022-12-05", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records" WHERE "time_records"."start_date" BETWEEN $1 AND $2 AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%hanifi%'))[0m  [["start_date", "2022-11-28 02:00:00"], ["start_date", "2022-12-06 01:59:59.999999"]]
+  ↳ app/controllers/admin_controller.rb:8:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.5ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."start_date" BETWEEN $1 AND $2 AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%hanifi%')) LIMIT $3 OFFSET $4[0m  [["start_date", "2022-11-28 02:00:00"], ["start_date", "2022-12-06 01:59:59.999999"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  Rendered admin/index.html.haml within layouts/application (Duration: 8.2ms | Allocations: 7675)
+  Rendered layout layouts/application.html.haml (Duration: 9.3ms | Allocations: 7872)
+Completed 200 OK in 33ms (Views: 9.6ms | ActiveRecord: 5.5ms | Allocations: 19495)
+
+
+Started GET "/admin?username=Hanifi&time_type=---&start_date=2022-11-28&end_date=2022-12-05&commit=Search" for 127.0.0.1 at 2022-12-07 19:48:40 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"---", "start_date"=>"2022-11-28", "end_date"=>"2022-12-05", "commit"=>"Search"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records" WHERE "time_records"."start_date" BETWEEN $1 AND $2 AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%hanifi%'))[0m  [["start_date", "2022-11-28 02:00:00"], ["start_date", "2022-12-06 01:59:59.999999"]]
+  ↳ app/controllers/admin_controller.rb:8:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (3.6ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."start_date" BETWEEN $1 AND $2 AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%hanifi%')) LIMIT $3 OFFSET $4[0m  [["start_date", "2022-11-28 02:00:00"], ["start_date", "2022-12-06 01:59:59.999999"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  Rendered admin/index.html.haml within layouts/application (Duration: 10.2ms | Allocations: 6709)
+  Rendered layout layouts/application.html.haml (Duration: 10.7ms | Allocations: 6884)
+Completed 200 OK in 17ms (Views: 7.2ms | ActiveRecord: 4.8ms | Allocations: 9112)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-12-07 19:50:25 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/controllers/admin_controller.rb:10:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 21.4ms | Allocations: 14682)
+  Rendered layout layouts/application.html.haml (Duration: 22.1ms | Allocations: 14879)
+Completed 200 OK in 43ms (Views: 19.0ms | ActiveRecord: 9.6ms | Allocations: 25821)
+
+
+Started GET "/admin?username=harunn&time_type=---&start_date=2022-11-30&end_date=2022-12-03&commit=Search" for 127.0.0.1 at 2022-12-07 19:51:08 +0200
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"harunn", "time_type"=>"---", "start_date"=>"2022-11-30", "end_date"=>"2022-12-03", "commit"=>"Search"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records" WHERE "time_records"."start_date" BETWEEN $1 AND $2 AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%harunn%'))[0m  [["start_date", "2022-11-30 02:00:00"], ["start_date", "2022-12-04 01:59:59.999999"]]
+  ↳ app/controllers/admin_controller.rb:8:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.6ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."start_date" BETWEEN $1 AND $2 AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%harunn%')) LIMIT $3 OFFSET $4[0m  [["start_date", "2022-11-30 02:00:00"], ["start_date", "2022-12-04 01:59:59.999999"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 49.9ms | Allocations: 57630)
+  Rendered layout layouts/application.html.haml (Duration: 55.1ms | Allocations: 62738)
+Completed 200 OK in 106ms (Views: 56.5ms | ActiveRecord: 8.5ms | Allocations: 97913)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-12-07 19:51:15 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/controllers/admin_controller.rb:10:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 13.9ms | Allocations: 10762)
+  Rendered layout layouts/application.html.haml (Duration: 14.2ms | Allocations: 10945)
+Completed 200 OK in 30ms (Views: 13.1ms | ActiveRecord: 2.7ms | Allocations: 12910)
+
+
+Started GET "/admin?username=Hanifi&time_type=---&start_date=2022-11-27&end_date=2022-12-07&commit=Search" for 127.0.0.1 at 2022-12-07 19:51:30 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"---", "start_date"=>"2022-11-27", "end_date"=>"2022-12-07", "commit"=>"Search"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (5.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records" WHERE "time_records"."start_date" BETWEEN $1 AND $2 AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%hanifi%'))[0m  [["start_date", "2022-11-27 02:00:00"], ["start_date", "2022-12-08 01:59:59.999999"]]
+  ↳ app/controllers/admin_controller.rb:8:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.6ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."start_date" BETWEEN $1 AND $2 AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%hanifi%')) LIMIT $3 OFFSET $4[0m  [["start_date", "2022-11-27 02:00:00"], ["start_date", "2022-12-08 01:59:59.999999"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 9.0ms | Allocations: 7530)
+  Rendered layout layouts/application.html.haml (Duration: 9.3ms | Allocations: 7706)
+Completed 200 OK in 27ms (Views: 8.7ms | ActiveRecord: 7.0ms | Allocations: 9833)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-12-07 19:51:35 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/controllers/admin_controller.rb:10:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (3.5ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 24.6ms | Allocations: 10506)
+  Rendered layout layouts/application.html.haml (Duration: 25.9ms | Allocations: 10682)
+Completed 200 OK in 33ms (Views: 22.9ms | ActiveRecord: 5.3ms | Allocations: 12306)
+
+
+Started GET "/admin?page=2" for 127.0.0.1 at 2022-12-07 19:51:39 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/controllers/admin_controller.rb:10:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (2.7ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 5]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 21.8ms | Allocations: 10582)
+  Rendered layout layouts/application.html.haml (Duration: 22.3ms | Allocations: 10757)
+Completed 200 OK in 33ms (Views: 19.0ms | ActiveRecord: 5.3ms | Allocations: 12376)
+
+
+Started GET "/admin?page=3" for 127.0.0.1 at 2022-12-07 19:51:40 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"page"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/controllers/admin_controller.rb:10:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 10]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 24.8ms | Allocations: 10583)
+  Rendered layout layouts/application.html.haml (Duration: 25.9ms | Allocations: 10758)
+Completed 200 OK in 40ms (Views: 25.4ms | ActiveRecord: 2.9ms | Allocations: 12365)
+
+
+Started GET "/admin?page=2" for 127.0.0.1 at 2022-12-07 19:51:41 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"page"=>"2"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/controllers/admin_controller.rb:10:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.6ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 5]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 23.0ms | Allocations: 10583)
+  Rendered layout layouts/application.html.haml (Duration: 23.5ms | Allocations: 10758)
+Completed 200 OK in 35ms (Views: 22.6ms | ActiveRecord: 3.7ms | Allocations: 12372)
+
+
+Started GET "/admin?page=1" for 127.0.0.1 at 2022-12-07 19:51:42 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"page"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (12.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/controllers/admin_controller.rb:10:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 101.7ms | Allocations: 10502)
+  Rendered layout layouts/application.html.haml (Duration: 102.9ms | Allocations: 10677)
+Completed 200 OK in 160ms (Views: 116.1ms | ActiveRecord: 15.0ms | Allocations: 12297)
+
+
+Started GET "/admin?username=Hanifi&time_type=---&start_date=2022-11-24&end_date=2022-12-03&commit=Search" for 127.0.0.1 at 2022-12-07 19:51:55 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"---", "start_date"=>"2022-11-24", "end_date"=>"2022-12-03", "commit"=>"Search"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records" WHERE "time_records"."start_date" BETWEEN $1 AND $2 AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%hanifi%'))[0m  [["start_date", "2022-11-24 02:00:00"], ["start_date", "2022-12-04 01:59:59.999999"]]
+  ↳ app/controllers/admin_controller.rb:8:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.4ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."start_date" BETWEEN $1 AND $2 AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%hanifi%')) LIMIT $3 OFFSET $4[0m  [["start_date", "2022-11-24 02:00:00"], ["start_date", "2022-12-04 01:59:59.999999"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 14.4ms | Allocations: 8986)
+  Rendered layout layouts/application.html.haml (Duration: 15.5ms | Allocations: 9162)
+Completed 200 OK in 32ms (Views: 15.7ms | ActiveRecord: 2.5ms | Allocations: 11264)
+
+
+Started GET "/admin?username=harun&time_type=---&group_by=monthly&commit=Search" for 127.0.0.1 at 2022-12-07 19:57:52 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"harun", "time_type"=>"---", "group_by"=>"monthly", "commit"=>"Search"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records" WHERE (start_date BETWEEN '2022-12-01 00:00:00' AND '2022-12-31 23:59:59.999999') AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%harun%'))[0m
+  ↳ app/controllers/admin_controller.rb:9:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.6ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE (start_date BETWEEN '2022-12-01 00:00:00' AND '2022-12-31 23:59:59.999999') AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%harun%')) LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 13.4ms | Allocations: 11521)
+  Rendered layout layouts/application.html.haml (Duration: 14.2ms | Allocations: 11718)
+Completed 200 OK in 47ms (Views: 14.3ms | ActiveRecord: 6.4ms | Allocations: 25924)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-12-07 19:57:56 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/controllers/admin_controller.rb:11:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.3ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 18.7ms | Allocations: 10522)
+  Rendered layout layouts/application.html.haml (Duration: 19.2ms | Allocations: 10697)
+Completed 200 OK in 26ms (Views: 15.1ms | ActiveRecord: 6.4ms | Allocations: 12493)
+
+
+Started GET "/admin" for 127.0.0.1 at 2022-12-07 20:07:47 +0200
+Processing by AdminController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records"[0m
+  ↳ app/controllers/admin_controller.rb:13:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.6ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" ORDER BY "time_records"."start_date" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 27.1ms | Allocations: 14558)
+  Rendered layout layouts/application.html.haml (Duration: 28.9ms | Allocations: 14755)
+Completed 200 OK in 61ms (Views: 28.9ms | ActiveRecord: 9.2ms | Allocations: 28309)
+
+
+Started GET "/admin?username=Hanifi&time_type=---&start_date=2022-11-09&end_date=2022-12-07&commit=Search" for 127.0.0.1 at 2022-12-07 20:08:04 +0200
+Processing by AdminController#index as HTML
+  Parameters: {"username"=>"Hanifi", "time_type"=>"---", "start_date"=>"2022-11-09", "end_date"=>"2022-12-07", "commit"=>"Search"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/concerns/authentication.rb:35:in `current_user'
+  [1m[36mTimeRecord Count (5.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "time_records" WHERE "time_records"."start_date" BETWEEN $1 AND $2 AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%hanifi%'))[0m  [["start_date", "2022-11-09 02:00:00"], ["start_date", "2022-12-08 01:59:59.999999"]]
+  ↳ app/controllers/admin_controller.rb:9:in `index'
+  Rendering layout layouts/application.html.haml
+  Rendering admin/index.html.haml within layouts/application
+  [1m[36mUser Count (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" WHERE (id != 3)[0m
+  ↳ app/views/admin/index.html.haml:5
+  [1m[36mTimeRecord Load (0.5ms)[0m  [1m[34mSELECT "time_records".* FROM "time_records" WHERE "time_records"."start_date" BETWEEN $1 AND $2 AND "time_records"."user_id" IN (SELECT "users"."id" FROM "users" WHERE (lower(username) like '%hanifi%')) LIMIT $3 OFFSET $4[0m  [["start_date", "2022-11-09 02:00:00"], ["start_date", "2022-12-08 01:59:59.999999"], ["LIMIT", 5], ["OFFSET", 0]]
+  ↳ app/views/admin/index.html.haml:43
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/views/admin/index.html.haml:45
+  Rendered admin/index.html.haml within layouts/application (Duration: 19.3ms | Allocations: 9714)
+  Rendered layout layouts/application.html.haml (Duration: 21.1ms | Allocations: 9889)
+Completed 200 OK in 35ms (Views: 20.1ms | ActiveRecord: 8.4ms | Allocations: 12102)
+
+
