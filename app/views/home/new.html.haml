@@ -60,7 +60,7 @@
     
     %br 
 
-    = button_to "Logout", { action: "destroy", controller: "sessions"}, { class: 'btn btn-danger' }
+    = button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }
 
 
 :javascript

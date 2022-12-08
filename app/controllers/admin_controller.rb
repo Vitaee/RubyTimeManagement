@@ -21,12 +21,10 @@ class AdminController < ApplicationController
 
     def give_me_filter_params
         params.delete_if{|key,value| value.blank? || value=='---' || value=="Search"}
-        
-        if params['start_date']
-            params['start_date'] =  Date.strptime(params['start_date'], "%Y-%m-%d")
-            params['end_date'] = Date.strptime(params['end_date'], "%Y-%m-%d")
-        end
+        params
+    end
 
-        return params
+    def redirect_if_not_admin
+        redirect_to "/home" unless current_user.is_admin == true
     end
 end

@@ -49,6 +49,7 @@ gem 'jquery-rails'
 gem 'autoprefixer-rails'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'pagy'
+gem 'devise'
 # Use Sass to process CSS
 # gem "sassc-rails"
 

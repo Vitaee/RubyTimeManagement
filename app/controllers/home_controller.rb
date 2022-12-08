@@ -17,18 +17,14 @@ class HomeController < ApplicationController
     end
 
     def new
-        begin
-            if current_user
-                if current_user.is_admin
-                    redirect_to "/admin"
-                end
-            end
-                
-            @timerecord = TimeRecord.new
-            @pagy, @user_time_records = pagy( current_user.time_records )
-        rescue
-            redirect_to "/login"
+        
+        if current_user.is_admin
+            redirect_to "/admin"
         end
+            
+        @timerecord = TimeRecord.new
+        @pagy, @user_time_records = pagy( current_user.time_records )
+
     end
 
     def update
@@ -39,8 +35,7 @@ class HomeController < ApplicationController
 
     def show
         begin
-            @user = current_user
-            @timerecord = @user.time_records.find(params[:id])
+            @timerecord = current_user.time_records.find(params[:id])
         rescue
             @timerecord = TimeRecord.find(params[:id])
         end
